@@ -1,0 +1,5 @@
+# do not include this files on git
+/tools/
+/vendor/
+/composer.lock
+.phpunit.result.cache
