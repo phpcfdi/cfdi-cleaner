@@ -10,16 +10,30 @@ use PhpCfdi\CfdiCleaner\XmlNsSchemaLocation;
 
 class RepairXmlNsSchemaLocationTest extends TestCase
 {
-    public function testCleaning(): void
+    /** @return array<array{string, string}> */
+    public function providerInputCases(): array
     {
-        $input = $this->fileContents('xmlns-schemalocation-dirty.xml');
+        $input = '<root xmlns:schemaLocation="http://a/a http://a.a/a.xsd"/>';
+        $expected = '<root xsi:schemaLocation="http://a/a http://a.a/a.xsd"/>';
+        return [
+            'spaces' => [$expected, $input],
+            'tabs' => [$expected, str_replace("\txmlns", ' xmlns', $input)],
+            'line feed' => [$expected, str_replace("\nxmlns", ' xmlns', $input)],
+        ];
+    }
+
+    /**
+     * @dataProvider providerInputCases
+     * @param string $expected
+     * @param string $input
+     */
+    public function testCleaning(string $expected, string $input): void
+    {
         $document = Document::load($input);
 
         $cleaner = new XmlNsSchemaLocation();
         $cleaner->clean($document);
 
-        $expectedFilePath = $this->filePath('xmlns-schemalocation-clean.xml');
-        $clean = $document->getXmlContents();
-        $this->assertXmlStringEqualsXmlFile($expectedFilePath, $clean);
+        $this->assertEquals($expected, $document->getXmlContents());
     }
 }

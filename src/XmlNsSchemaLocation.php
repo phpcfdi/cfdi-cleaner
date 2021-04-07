@@ -9,7 +9,7 @@ class XmlNsSchemaLocation implements CleanerInterface
     public function clean(Document $document): void
     {
         $document->setXmlContents(
-            str_replace(' xmlns:schemaLocation="', ' xsi:schemaLocation="', $document->getXmlContents())
+            preg_replace('/(\s)xmlns:schemaLocation="/', '$1xsi:schemaLocation="', $document->getXmlContents()) ?? ''
         );
     }
 }
