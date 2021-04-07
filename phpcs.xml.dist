@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="phpcs.xsd" name="EngineWorks">
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="EngineWorks">
     <description>The EngineWorks (PSR-2 based) coding standard.</description>
 
     <file>src</file>
@@ -9,7 +9,7 @@
     <arg name="encoding" value="utf-8"/>
     <arg name="report-width" value="auto"/>
     <arg name="extensions" value="php"/>
-    
+
     <rule ref="PSR2"/>
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
