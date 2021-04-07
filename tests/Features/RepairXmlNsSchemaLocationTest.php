@@ -13,12 +13,19 @@ class RepairXmlNsSchemaLocationTest extends TestCase
     /** @return array<array{string, string}> */
     public function providerInputCases(): array
     {
-        $input = '<root xmlns:schemaLocation="http://a/a http://a.a/a.xsd"/>';
-        $expected = '<root xsi:schemaLocation="http://a/a http://a.a/a.xsd"/>';
         return [
-            'spaces' => [$expected, $input],
-            'tabs' => [$expected, str_replace("\txmlns", ' xmlns', $input)],
-            'line feed' => [$expected, str_replace("\nxmlns", ' xmlns', $input)],
+            'spaces' => [
+                '<root xsi:schemaLocation="http://a/a http://a/a.xsd"/>',
+                '<root xmlns:schemaLocation="http://a/a http://a/a.xsd"/>',
+            ],
+            'tabs' => [
+                "<root\txsi:schemaLocation=\"http://a/a http://a/a.xsd\"/>",
+                "<root\txmlns:schemaLocation=\"http://a/a http://a/a.xsd\"/>",
+            ],
+            'line feed' => [
+                "<root\nxsi:schemaLocation=\"http://a/a http://a/a.xsd\"/>",
+                "<root\nxmlns:schemaLocation=\"http://a/a http://a/a.xsd\"/>",
+            ],
         ];
     }
 
