@@ -11,7 +11,7 @@ class RemoveDuplicatedCfdi3Namespace implements CleanerInterface
         $content = $document->getXmlContents();
         if (false !== strpos($content, 'xmlns="http://www.sat.gob.mx/cfd/3"')
             && false !== strpos($content, 'xmlns:cfdi="http://www.sat.gob.mx/cfd/3"')) {
-            $content = preg_replace('#(\s)+xmlns="http://www.sat.gob.mx/cfd/3"(\s)+#', ' ', $content) ?? '';
+            $content = preg_replace('#\s*xmlns="http://www.sat.gob.mx/cfd/3"\s*#', ' ', $content) ?? '';
         }
         $document->setXmlContents($content);
     }
