@@ -6,14 +6,8 @@ namespace PhpCfdi\CfdiCleaner;
 
 class RemoveNonXmlStrings implements CleanerInterface
 {
-    public function clean(Document $document): void
+    public function clean(string $xml): string
     {
-        $document->setXmlContents(
-            preg_replace(
-                ['/^(\s|.)*?</m', '/>(?:(.|\s)(?!>))*$/m'],
-                ['<', '>'],
-                $document->getXmlContents()
-            ) ?? ''
-        );
+        return preg_replace(['/^(\s|.)*?</m', '/>(?:(.|\s)(?!>))*$/m'], ['<', '>'], $xml) ?? '';
     }
 }

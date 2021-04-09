@@ -6,10 +6,8 @@ namespace PhpCfdi\CfdiCleaner;
 
 class XmlNsSchemaLocation implements CleanerInterface
 {
-    public function clean(Document $document): void
+    public function clean(string $xml): string
     {
-        $document->setXmlContents(
-            preg_replace('/(\s)xmlns:schemaLocation="/', '$1xsi:schemaLocation="', $document->getXmlContents()) ?? ''
-        );
+        return preg_replace('/(\s)xmlns:schemaLocation="/', '$1xsi:schemaLocation="', $xml) ?? '';
     }
 }

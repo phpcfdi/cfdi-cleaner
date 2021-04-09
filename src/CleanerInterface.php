@@ -6,5 +6,5 @@ namespace PhpCfdi\CfdiCleaner;
 
 interface CleanerInterface
 {
-    public function clean(Document $document): void;
+    public function clean(string $xml): string;
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PhpCfdi\CfdiCleaner\Tests\Features;
 
-use PhpCfdi\CfdiCleaner\Document;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlNsSchemaLocation;
 
@@ -15,16 +14,16 @@ class RepairXmlNsSchemaLocationTest extends TestCase
     {
         return [
             'spaces' => [
-                '<root xsi:schemaLocation="http://a/a http://a/a.xsd"/>',
-                '<root xmlns:schemaLocation="http://a/a http://a/a.xsd"/>',
+                '<root xsi:schemaLocation="http://localhost/a http://localhost/a.xsd"/>',
+                '<root xmlns:schemaLocation="http://localhost/a http://localhost/a.xsd"/>',
             ],
             'tabs' => [
-                "<root\txsi:schemaLocation=\"http://a/a http://a/a.xsd\"/>",
-                "<root\txmlns:schemaLocation=\"http://a/a http://a/a.xsd\"/>",
+                "<root\txsi:schemaLocation=\"http://localhost/a http://localhost/a.xsd\"/>",
+                "<root\txmlns:schemaLocation=\"http://localhost/a http://localhost/a.xsd\"/>",
             ],
             'line feed' => [
-                "<root\nxsi:schemaLocation=\"http://a/a http://a/a.xsd\"/>",
-                "<root\nxmlns:schemaLocation=\"http://a/a http://a/a.xsd\"/>",
+                "<root\nxsi:schemaLocation=\"http://localhost/a http://localhost/a.xsd\"/>",
+                "<root\nxmlns:schemaLocation=\"http://localhost/a http://localhost/a.xsd\"/>",
             ],
         ];
     }
@@ -36,11 +35,9 @@ class RepairXmlNsSchemaLocationTest extends TestCase
      */
     public function testCleaning(string $expected, string $input): void
     {
-        $document = Document::load($input);
-
         $cleaner = new XmlNsSchemaLocation();
-        $cleaner->clean($document);
+        $clean = $cleaner->clean($input);
 
-        $this->assertEquals($expected, $document->getXmlContents());
+        $this->assertEquals($expected, $clean);
     }
 }

@@ -6,12 +6,11 @@ namespace PhpCfdi\CfdiCleaner;
 
 class AppendXmlDeclaration implements CleanerInterface
 {
-    public function clean(Document $document): void
+    public function clean(string $xml): string
     {
-        $contents = $document->getXmlContents();
-        if ('<?xml ' !== substr($contents, 0, 6)) {
-            $contents = '<?xml version="1.0"?>' . "\n" . $contents;
+        if ('<?xml ' !== substr($xml, 0, 6)) {
+            $xml = '<?xml version="1.0"?>' . "\n" . $xml;
         }
-        $document->setXmlContents($contents);
+        return $xml;
     }
 }
