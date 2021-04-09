@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
-use PhpCfdi\CfdiCleaner\RemoveNonXmlStrings;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
+use PhpCfdi\CfdiCleaner\XmlStringCleaners\RemoveNonXmlStrings;
 
 class RemoveNonXmlStringsTest extends TestCase
 {

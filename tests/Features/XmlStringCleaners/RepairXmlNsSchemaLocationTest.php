@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
-use PhpCfdi\CfdiCleaner\XmlNsSchemaLocation;
+use PhpCfdi\CfdiCleaner\XmlStringCleaners\XmlNsSchemaLocation;
 
 class RepairXmlNsSchemaLocationTest extends TestCase
 {

@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner;
+namespace PhpCfdi\CfdiCleaner\XmlStringCleaners;
 
-class RemoveDuplicatedCfdi3Namespace implements CleanerInterface
+use PhpCfdi\CfdiCleaner\XmlStringCleanerInterface;
+
+class RemoveDuplicatedCfdi3Namespace implements XmlStringCleanerInterface
 {
     public function clean(string $xml): string
     {

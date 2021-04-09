@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
-use PhpCfdi\CfdiCleaner\AppendXmlDeclaration;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
+use PhpCfdi\CfdiCleaner\XmlStringCleaners\AppendXmlDeclaration;
 
 class AddXmlDeclarationTest extends TestCase
 {

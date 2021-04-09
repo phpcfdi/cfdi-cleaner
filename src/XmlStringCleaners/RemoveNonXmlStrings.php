@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner;
+namespace PhpCfdi\CfdiCleaner\XmlStringCleaners;
 
-class RemoveNonXmlStrings implements CleanerInterface
+use PhpCfdi\CfdiCleaner\XmlStringCleanerInterface;
+
+class RemoveNonXmlStrings implements XmlStringCleanerInterface
 {
     public function clean(string $xml): string
     {
