@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaner;
 
-use DOMDocument;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleaner\RemoveAddenda;
 
@@ -12,17 +11,14 @@ final class RemoveAddendaTest extends TestCase
 {
     public function testCleanDocumentWithAddenda(): void
     {
-        $input = /** @lang text */ <<< XML
-            <?xml version="1.0" encoding="UTF-8"?>
+        $document = $this->createDocument(<<< XML
             <x:Comprobante xmlns:x="http://www.sat.gob.mx/cfd/3">
             <x:Addenda>
-                <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar"></o:OtherData>
+                <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar" />
             </x:Addenda>
             </x:Comprobante>
-            XML;
-
-        $document = new DOMDocument();
-        $document->loadXML($input);
+            XML
+        );
 
         $cleaner = new RemoveAddenda();
         $cleaner->clean($document);
