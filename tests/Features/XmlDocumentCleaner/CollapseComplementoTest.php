@@ -4,22 +4,12 @@ declare(strict_types=1);
 
 namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaner;
 
-use DOMDocument;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleaner\CollapseComplemento;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleaner\RemoveAddenda;
 
 class CollapseComplementoTest extends TestCase
 {
-    protected function createDocument(string $xml): DOMDocument
-    {
-        $document = new DOMDocument();
-        $document->preserveWhiteSpace = false;
-        $document->formatOutput = true;
-        $document->loadXML($xml);
-        return $document;
-    }
-
     public function testCleanNonCfdiNotAlterDocument(): void
     {
         $document = $this->createDocument(
