@@ -63,7 +63,7 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
 
     public function uriEndsWithXsd(string $uri): bool
     {
-        return ('.xsd' === strtolower(substr($uri, -4) ?: ''));
+        return str_ends_with(strtolower($uri), '.xsd');
     }
 
     /**
