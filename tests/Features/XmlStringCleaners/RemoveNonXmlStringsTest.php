@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
-use PhpCfdi\CfdiCleaner\Document;
-use PhpCfdi\CfdiCleaner\RemoveNonXmlStrings;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
+use PhpCfdi\CfdiCleaner\XmlStringCleaners\RemoveNonXmlStrings;
 
 class RemoveNonXmlStringsTest extends TestCase
 {
@@ -29,11 +28,9 @@ class RemoveNonXmlStringsTest extends TestCase
      */
     public function testClean(string $expected, string $input): void
     {
-        $document = Document::load($input);
-
         $cleaner = new RemoveNonXmlStrings();
-        $cleaner->clean($document);
+        $clean = $cleaner->clean($input);
 
-        $this->assertEquals($expected, $document->getXmlContents());
+        $this->assertEquals($expected, $clean);
     }
 }

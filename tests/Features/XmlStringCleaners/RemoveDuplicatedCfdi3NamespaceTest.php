@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
-use PhpCfdi\CfdiCleaner\Document;
-use PhpCfdi\CfdiCleaner\RemoveDuplicatedCfdi3Namespace;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
+use PhpCfdi\CfdiCleaner\XmlStringCleaners\RemoveDuplicatedCfdi3Namespace;
 
 class RemoveDuplicatedCfdi3NamespaceTest extends TestCase
 {
@@ -38,11 +37,9 @@ class RemoveDuplicatedCfdi3NamespaceTest extends TestCase
      */
     public function testClean(string $expected, string $input): void
     {
-        $document = Document::load($input);
-
         $cleaner = new RemoveDuplicatedCfdi3Namespace();
-        $cleaner->clean($document);
+        $clean = $cleaner->clean($input);
 
-        $this->assertEquals($expected, $document->getXmlContents());
+        $this->assertEquals($expected, $clean);
     }
 }
