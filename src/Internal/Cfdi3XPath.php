@@ -45,6 +45,6 @@ class Cfdi3XPath
      */
     public function queryElements(string $xpathQuery): DOMNodeList
     {
-        return $this->xpath->query($xpathQuery) ?: new DOMNodeList();
+        return $this->xpath->query($xpathQuery, null, false) ?: new DOMNodeList();
     }
 }
