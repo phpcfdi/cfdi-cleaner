@@ -13,13 +13,13 @@ final class RemoveAddendaTest extends TestCase
     public function testCleanDocumentWithAddenda(): void
     {
         $input = /** @lang text */ <<< XML
-        <?xml version="1.0" encoding="UTF-8"?>
-        <x:Comprobante xmlns:x="http://www.sat.gob.mx/cfd/3">
-        <x:Addenda>
-            <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar"></o:OtherData>
-        </x:Addenda>
-        </x:Comprobante>
-        XML;
+            <?xml version="1.0" encoding="UTF-8"?>
+            <x:Comprobante xmlns:x="http://www.sat.gob.mx/cfd/3">
+            <x:Addenda>
+                <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar"></o:OtherData>
+            </x:Addenda>
+            </x:Comprobante>
+            XML;
 
         $document = new DOMDocument();
         $document->loadXML($input);
