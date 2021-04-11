@@ -6,6 +6,7 @@ namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaner;
 
 use DOMDocument;
 use PhpCfdi\CfdiCleaner\Internal\Cfdi3XPath;
+use PhpCfdi\CfdiCleaner\Internal\SchemaLocation;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
 class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
@@ -15,20 +16,14 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
         $xpath = Cfdi3XPath::createFromDocument($document);
         $schemaLocations = $xpath->queryAttributes('//@xsi:schemaLocation');
         foreach ($schemaLocations as $schemaLocation) {
-            $schemaLocation->value = $this->cleanSchemaLocationsValue($schemaLocation->value);
+            $schemaLocation->value = $this->cleanSchemaLocationValue($schemaLocation->value);
         }
     }
 
-    public function cleanSchemaLocationsValue(string $schemaLocationValue): string
+    public function cleanSchemaLocationValue(string $schemaLocationValue): string
     {
-        $schemaLocations = $this->schemaLocationValueNamespaceXsdPairToArray($schemaLocationValue);
-        return implode(' ', array_map(
-            function (string $namespace, string $location): string {
-                return $namespace . ' ' . $location;
-            },
-            array_keys($schemaLocations),
-            $schemaLocations,
-        ));
+        $schemaLocation = new SchemaLocation($this->schemaLocationValueNamespaceXsdPairToArray($schemaLocationValue));
+        return $schemaLocation->asValue();
     }
 
     /**
@@ -39,8 +34,8 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
      */
     public function schemaLocationValueNamespaceXsdPairToArray(string $schemaLocationValue): array
     {
-        $schemaLocations = [];
-        $components = $this->schemaLocationValueToArray($schemaLocationValue);
+        $components = SchemaLocation::valueToComponents($schemaLocationValue);
+        $pairs = [];
         $length = count($components);
         for ($c = 0; $c < $length; $c = $c + 1) {
             $namespace = $components[$c];
@@ -54,24 +49,15 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
             }
 
             // namespace match with location that ends with xsd
-            $schemaLocations[$namespace] = $location;
+            $pairs[$namespace] = $location;
             $c = $c + 1; // skip ns declaration
         }
 
-        return $schemaLocations;
+        return $pairs;
     }
 
     public function uriEndsWithXsd(string $uri): bool
     {
         return str_ends_with(strtolower($uri), '.xsd');
-    }
-
-    /**
-     * @param string $schemaLocationValue
-     * @return string[]
-     */
-    public function schemaLocationValueToArray(string $schemaLocationValue): array
-    {
-        return array_values(array_filter(explode(' ', preg_replace('/\s/', ' ', $schemaLocationValue) ?? '')));
     }
 }
