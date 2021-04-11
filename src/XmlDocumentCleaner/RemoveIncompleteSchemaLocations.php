@@ -7,16 +7,20 @@ namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaner;
 use DOMDocument;
 use PhpCfdi\CfdiCleaner\Internal\Cfdi3XPath;
 use PhpCfdi\CfdiCleaner\Internal\SchemaLocation;
+use PhpCfdi\CfdiCleaner\Internal\XmlAttributeMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
 class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
 {
+    use XmlAttributeMethodsTrait;
+
     public function clean(DOMDocument $document): void
     {
         $xpath = Cfdi3XPath::createFromDocument($document);
         $schemaLocations = $xpath->queryAttributes('//@xsi:schemaLocation');
         foreach ($schemaLocations as $schemaLocation) {
-            $schemaLocation->value = $this->cleanSchemaLocationValue($schemaLocation->value);
+            $value = $this->cleanSchemaLocationValue($schemaLocation->value);
+            $this->attributeSetValueOrRemoveIfEmpty($schemaLocation, $value);
         }
     }
 

@@ -9,10 +9,15 @@ use DOMDocument;
 use DOMElement;
 use DOMNodeList;
 use DOMXPath;
+use PhpCfdi\CfdiCleaner\Internal\XmlAttributeMethodsTrait;
+use PhpCfdi\CfdiCleaner\Internal\XmlElementMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
 class RemoveNonSatNamespacesNodes implements XmlDocumentCleanerInterface
 {
+    use XmlAttributeMethodsTrait;
+    use XmlElementMethodsTrait;
+
     public function clean(DOMDocument $document): void
     {
         $xpath = new DOMXPath($document);
@@ -43,15 +48,7 @@ class RemoveNonSatNamespacesNodes implements XmlDocumentCleanerInterface
         /** @var DOMNodeList<DOMElement> $elements */
         $elements = $xpath->query(sprintf('//*[namespace-uri()="%1$s"]', $namespace));
         foreach ($elements as $element) {
-            $this->removeElement($element);
-        }
-    }
-
-    private function removeElement(DOMElement $node): void
-    {
-        $parent = $node->parentNode;
-        if (null !== $parent) {
-            $parent->removeChild($node);
+            $this->elementRemove($element);
         }
     }
 
@@ -60,14 +57,7 @@ class RemoveNonSatNamespacesNodes implements XmlDocumentCleanerInterface
         /** @var DOMNodeList<DOMAttr> $attributes */
         $attributes = $xpath->query(sprintf('//@*[namespace-uri()="%1$s"]', $namespace));
         foreach ($attributes as $attribute) {
-            $this->removeAttribute($attribute);
+            $this->attributeRemove($attribute);
         }
-    }
-
-    private function removeAttribute(DOMAttr $attribute): void
-    {
-        /** @var DOMElement $parent */
-        $parent = $attribute->parentNode;
-        $parent->removeAttribute($attribute->nodeName);
     }
 }
