@@ -7,15 +7,13 @@ namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaner;
 use DOMDocument;
 use DOMElement;
 use DOMNode;
-use DOMNodeList;
-use DOMXPath;
+use PhpCfdi\CfdiCleaner\Internal\XmlConstants;
+use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
 class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
 {
-    private const NAMESPACE_XML = 'http://www.w3.org/XML/1998/namespace';
-
-    private const NAMESPACE_XMLNS = 'http://www.w3.org/2000/xmlns/';
+    use XmlNamespaceMethodsTrait;
 
     public function clean(DOMDocument $document): void
     {
@@ -24,11 +22,8 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
             return;
         }
 
-        $xpath = new DOMXPath($document);
-        $namespacesNodes = $xpath->query('//namespace::*') ?: new DOMNodeList();
-
-        foreach ($namespacesNodes as $namespacesNode) {
-            $this->cleanNameSpaceNode($rootElement, $namespacesNode);
+        foreach ($this->iterateNonReservedNamespaces($document) as $namespaceNode) {
+            $this->cleanNameSpaceNode($rootElement, $namespaceNode);
         }
     }
 
@@ -38,33 +33,16 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
      */
     private function cleanNameSpaceNode(DOMElement $rootElement, $namespacesNode): void
     {
-        $namespace = $namespacesNode->nodeValue;
-
-        if ($this->isNamespaceReserved($namespace)) {
-            return;
-        }
-
         if ($rootElement === $namespacesNode->parentNode) {
             return;
         }
 
-        $rootElement->setAttributeNS(self::NAMESPACE_XMLNS, $namespacesNode->nodeName, $namespace);
+        $rootElement->setAttributeNS(
+            XmlConstants::NAMESPACE_XMLNS,
+            $namespacesNode->nodeName,
+            $namespacesNode->nodeValue
+        );
+
         $this->removeNamespaceNodeAttribute($namespacesNode);
-    }
-
-    private function isNamespaceReserved(string $namespace): bool
-    {
-        return ('' === $namespace || self::NAMESPACE_XML === $namespace);
-    }
-
-    /**
-     * @param DOMNode&object $namespaceNode
-     */
-    private function removeNamespaceNodeAttribute($namespaceNode): void
-    {
-        $ownerElement = $namespaceNode->parentNode;
-        if ($ownerElement instanceof DOMElement) {
-            $ownerElement->removeAttributeNS($namespaceNode->nodeValue, $namespaceNode->localName);
-        }
     }
 }

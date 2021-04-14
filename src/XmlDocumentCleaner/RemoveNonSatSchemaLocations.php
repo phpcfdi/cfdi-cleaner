@@ -8,11 +8,13 @@ use DOMDocument;
 use PhpCfdi\CfdiCleaner\Internal\Cfdi3XPath;
 use PhpCfdi\CfdiCleaner\Internal\SchemaLocation;
 use PhpCfdi\CfdiCleaner\Internal\XmlAttributeMethodsTrait;
+use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
 class RemoveNonSatSchemaLocations implements XmlDocumentCleanerInterface
 {
     use XmlAttributeMethodsTrait;
+    use XmlNamespaceMethodsTrait;
 
     public function clean(DOMDocument $document): void
     {
@@ -29,14 +31,9 @@ class RemoveNonSatSchemaLocations implements XmlDocumentCleanerInterface
         $schemaLocation = SchemaLocation::createFromValue($schemaLocationValue);
         $schemaLocation->filterUsingNamespace(
             function (string $namespace): bool {
-                return $this->isNamespaceAllowed($namespace);
+                return $this->isNamespaceRelatedToSat($namespace);
             }
         );
         return $schemaLocation->asValue();
-    }
-
-    public function isNamespaceAllowed(string $namespace): bool
-    {
-        return str_starts_with($namespace, 'http://www.sat.gob.mx/');
     }
 }

@@ -11,19 +11,21 @@ use DOMNodeList;
 use DOMXPath;
 use PhpCfdi\CfdiCleaner\Internal\XmlAttributeMethodsTrait;
 use PhpCfdi\CfdiCleaner\Internal\XmlElementMethodsTrait;
+use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
 class RemoveNonSatNamespacesNodes implements XmlDocumentCleanerInterface
 {
     use XmlAttributeMethodsTrait;
     use XmlElementMethodsTrait;
+    use XmlNamespaceMethodsTrait;
 
     public function clean(DOMDocument $document): void
     {
         $xpath = new DOMXPath($document);
-        $namespaces = $this->obtainNamespacesFromDocument($xpath);
+        $namespaces = $this->obtainNamespacesFromDocument($document);
         foreach ($namespaces as $namespace) {
-            if (! $this->isNamespaceAllowed($namespace)) {
+            if (! $this->isNamespaceRelatedToSat($namespace)) {
                 $this->removeElementsWithNamespace($xpath, $namespace);
                 $this->removeAttributesWithNamespace($xpath, $namespace);
             }
@@ -31,16 +33,13 @@ class RemoveNonSatNamespacesNodes implements XmlDocumentCleanerInterface
     }
 
     /** @return string[] */
-    private function obtainNamespacesFromDocument(DOMXPath $xpath): array
+    private function obtainNamespacesFromDocument(DOMDocument $document): array
     {
-        $nodeList = $xpath->query('//namespace::*') ?: new DOMNodeList();
-        return array_unique(array_column(iterator_to_array($nodeList), 'nodeValue'));
-    }
-
-    public function isNamespaceAllowed(string $namespace): bool
-    {
-        return str_starts_with($namespace, 'http://www.sat.gob.mx/')
-            || str_starts_with($namespace, 'http://www.w3.org/');
+        $namespaces = [];
+        foreach ($this->iterateNonReservedNamespaces($document) as $namespaceNode) {
+            $namespaces[] = $namespaceNode->nodeValue;
+        }
+        return array_unique($namespaces);
     }
 
     private function removeElementsWithNamespace(DOMXPath $xpath, string $namespace): void
