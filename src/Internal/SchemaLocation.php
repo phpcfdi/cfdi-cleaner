@@ -67,4 +67,9 @@ final class SchemaLocation
             $this->pairs,
         ));
     }
+
+    public function import(self $source): void
+    {
+        $this->pairs = array_merge($this->pairs, $source->pairs);
+    }
 }
