@@ -27,7 +27,7 @@ class Cfdi3XPath
     {
         $xpath = new DOMXPath($document);
         $xpath->registerNamespace('cfdi', 'http://www.sat.gob.mx/cfd/3');
-        $xpath->registerNamespace('xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+        $xpath->registerNamespace('xsi', XmlConstants::NAMESPACE_XSI);
         return new self($xpath);
     }
 
