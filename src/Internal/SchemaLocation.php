@@ -52,6 +52,17 @@ final class SchemaLocation
         return new self($pairs);
     }
 
+    /** @return array<string, string> */
+    public function getPairs(): array
+    {
+        return $this->pairs;
+    }
+
+    public function setPair(string $namespace, string $location): void
+    {
+        $this->pairs[$namespace] = $location;
+    }
+
     public function filterUsingNamespace(callable $filterFunction): void
     {
         $this->pairs = array_filter($this->pairs, $filterFunction, ARRAY_FILTER_USE_KEY);
