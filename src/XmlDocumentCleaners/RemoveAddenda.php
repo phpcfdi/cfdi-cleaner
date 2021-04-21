@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaner;
+namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaners;
 
 use DOMDocument;
 use PhpCfdi\CfdiCleaner\Internal\XmlElementMethodsTrait;

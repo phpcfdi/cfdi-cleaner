@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaner;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
-use PhpCfdi\CfdiCleaner\XmlDocumentCleaner\RemoveNonSatNamespacesNodes;
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RemoveNonSatNamespacesNodes;
 
 final class RemoveNonSatNamespacesNodesTest extends TestCase
 {

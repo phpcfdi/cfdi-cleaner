@@ -4,10 +4,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaner;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
-use PhpCfdi\CfdiCleaner\XmlDocumentCleaner\SetKnownSchemaLocations;
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\SetKnownSchemaLocations;
 
 final class SetKnownSchemaLocationsTest extends TestCase
 {

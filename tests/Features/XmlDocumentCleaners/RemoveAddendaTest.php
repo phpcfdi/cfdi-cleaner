@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaner;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
-use PhpCfdi\CfdiCleaner\XmlDocumentCleaner\RemoveAddenda;
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RemoveAddenda;
 
 final class RemoveAddendaTest extends TestCase
 {

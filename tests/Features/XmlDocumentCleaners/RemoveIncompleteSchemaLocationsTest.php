@@ -4,10 +4,10 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaner;
+namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
-use PhpCfdi\CfdiCleaner\XmlDocumentCleaner\RemoveIncompleteSchemaLocations;
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RemoveIncompleteSchemaLocations;
 
 class RemoveIncompleteSchemaLocationsTest extends TestCase
 {
