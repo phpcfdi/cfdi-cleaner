@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaner;
 
+use DOMAttr;
 use DOMDocument;
+use DOMNodeList;
 use DOMXPath;
-use PhpCfdi\CfdiCleaner\Internal\Cfdi3XPath;
 use PhpCfdi\CfdiCleaner\Internal\SchemaLocation;
 use PhpCfdi\CfdiCleaner\Internal\XmlAttributeMethodsTrait;
+use PhpCfdi\CfdiCleaner\Internal\XmlConstants;
 use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
@@ -146,33 +148,31 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
 
     public function clean(DOMDocument $document): void
     {
-        $root = $document->documentElement;
-        if (null === $root) {
-            return;
-        }
+        $xpath = new DOMXPath($document);
+        $xpath->registerNamespace('xs', XmlConstants::NAMESPACE_XSI);
+        /** @var DOMNodeList<DOMAttr> $schemaLocationAttributes */
+        $schemaLocationAttributes = $xpath->query('//@xs:schemaLocation', null, false);
 
-        $xpath = Cfdi3XPath::createFromDocument($document);
-        $schemaLocationAttributes = $xpath->queryAttributes('//@xsi:schemaLocation');
         foreach ($schemaLocationAttributes as $schemaLocationAttribute) {
-            $schemaLocation = SchemaLocation::createFromValue($schemaLocationAttribute->nodeValue);
-            foreach ($schemaLocation->getPairs() as $namespace => $location) {
-                $version = $this->obtainVersionOfNamespace($document, $namespace);
-                $location = $this->obtainLocationForNamespace($namespace, $version, $location);
-                $schemaLocation->setPair($namespace, $location);
-            }
-            $schemaLocationAttribute->nodeValue = $schemaLocation->asValue();
+            $this->cleanNodeAttribute($document, $schemaLocationAttribute);
         }
+    }
+
+    private function cleanNodeAttribute(DOMDocument $document, DOMAttr $attribute): void
+    {
+        $schemaLocation = SchemaLocation::createFromValue($attribute->nodeValue);
+        foreach ($schemaLocation->getPairs() as $namespace => $location) {
+            $version = $this->obtainVersionOfNamespace($document, $namespace);
+            $location = $this->obtainLocationForNamespaceVersion($namespace, $version, $location);
+            $schemaLocation->setPair($namespace, $location);
+        }
+        $attribute->nodeValue = $schemaLocation->asValue();
     }
 
     private function obtainVersionOfNamespace(DOMDocument $document, string $namespace): string
     {
-        foreach (['Version', 'version'] as $attributeName) {
-            $value = $this->obtainAttributeValueFromFirstNodeOfNamespace($document, $namespace, $attributeName);
-            if ('' !== $value) {
-                return $value;
-            }
-        }
-        return '';
+        return $this->obtainAttributeValueFromFirstNodeOfNamespace($document, $namespace, 'Version')
+            ?: $this->obtainAttributeValueFromFirstNodeOfNamespace($document, $namespace, 'version');
     }
 
     private function obtainAttributeValueFromFirstNodeOfNamespace(
@@ -192,8 +192,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         return $nodes->item(0)->attributes->getNamedItem($attributeName)->nodeValue;
     }
 
-    private function obtainLocationForNamespace(string $namespace, string $version, string $defaultValue): string
+    private function obtainLocationForNamespaceVersion(string $namespace, string $version, string $default): string
     {
-        return self::KNOWN_NAMESPACES[$namespace . '#' . $version] ?? $defaultValue;
+        return self::KNOWN_NAMESPACES[$namespace . '#' . $version] ?? $default;
     }
 }

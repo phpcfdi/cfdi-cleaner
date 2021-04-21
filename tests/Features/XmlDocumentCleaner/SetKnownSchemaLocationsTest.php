@@ -1,4 +1,6 @@
-<?php /** @noinspection XmlPathReference */
+<?php
+
+/** @noinspection XmlPathReference */
 
 declare(strict_types=1);
 
