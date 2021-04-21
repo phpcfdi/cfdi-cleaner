@@ -13,7 +13,9 @@ final class RemoveNonSatNamespacesNodesTest extends TestCase
     {
         $document = $this->createDocument(<<< XML
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:x="url:remove:me" x:remove="me">
+            xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:x="url:remove:me" x:remove="me"
+            xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdv33.xsd"
+            >
             <cfdi:Emisor Rfc="COSC8001137NA"/>
             <cfdi:Addenda>
               <x:remove foo="foo"/>
@@ -28,7 +30,9 @@ final class RemoveNonSatNamespacesNodesTest extends TestCase
 
         $expected = $this->createDocument(<<< XML
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:x="url:remove:me">
+            xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:x="url:remove:me"
+            xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdv33.xsd"
+            >
             <cfdi:Emisor Rfc="COSC8001137NA"/>
             <cfdi:Addenda/>
             </cfdi:Comprobante> 
