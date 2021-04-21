@@ -44,7 +44,8 @@ trait XmlNamespaceMethodsTrait
         $reservedNameSpaces = [
             '',                             // empty
             XmlConstants::NAMESPACE_XML,    // xml
-            XmlConstants::NAMESPACE_XMLNS,   // xml namespace allocation
+            XmlConstants::NAMESPACE_XMLNS,  // xml namespace allocation
+            XmlConstants::NAMESPACE_XSI,    // xml schema instance
         ];
         return (in_array($namespace, $reservedNameSpaces, true));
     }
