@@ -10,8 +10,8 @@ class RemoveDuplicatedCfdi3Namespace implements XmlStringCleanerInterface
 {
     public function clean(string $xml): string
     {
-        if (false !== strpos($xml, 'xmlns="http://www.sat.gob.mx/cfd/3"')
-            && false !== strpos($xml, 'xmlns:cfdi="http://www.sat.gob.mx/cfd/3"')) {
+        if (str_contains($xml, 'xmlns="http://www.sat.gob.mx/cfd/3"')
+            && str_contains($xml, 'xmlns:cfdi="http://www.sat.gob.mx/cfd/3"')) {
             $xml = preg_replace('#\s*xmlns="http://www.sat.gob.mx/cfd/3"\s*#', ' ', $xml) ?? '';
         }
         return $xml;
