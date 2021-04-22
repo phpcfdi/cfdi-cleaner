@@ -11,15 +11,21 @@ final class RemoveUnusedNamespacesTest extends TestCase
 {
     public function testRemoveUnusedNamespacesOnRoot(): void
     {
-        $document = $this->createDocument(
-            '<r:root xmlns:b="http://tempuri/bar" xmlns:r="http://tempuri/root" xmlns:f="http://tempuri/foo" />'
+        $document = $this->createDocument(<<<XML
+            <r:root
+              xmlns:b="http://tempuri.org/bar"
+              xmlns:r="http://tempuri.org/root"
+              xmlns:f="http://tempuri.org/foo"
+            />
+            XML
         );
 
         $cleaner = new RemoveUnusedNamespaces();
         $cleaner->clean($document);
 
-        $expected = $this->createDocument(
-            '<r:root xmlns:r="http://tempuri/root" />'
+        $expected = $this->createDocument(<<<XML
+            <r:root xmlns:r="http://tempuri.org/root"/>
+            XML
         );
         $this->assertEquals($expected, $document);
     }
@@ -27,9 +33,9 @@ final class RemoveUnusedNamespacesTest extends TestCase
     public function testRemoveUnusedNamespacesOnChildren(): void
     {
         $document = $this->createDocument(<<<XML
-            <r:root xmlns:b="http://tempuri/bar" xmlns:r="http://tempuri/root" xmlns:f="http://tempuri/foo">
-              <a:child xmlns:a="http://tempuri/a">
-                <a:child xmlns:xee="http://tempuri/xee" f:foo="foo"/>
+            <r:root xmlns:b="http://tempuri.org/bar" xmlns:r="http://tempuri.org/root" xmlns:f="http://tempuri.org/foo">
+              <a:child xmlns:a="http://tempuri.org/a">
+                <a:child xmlns:xee="http://tempuri.org/xee" f:foo="foo"/>
               </a:child>
             </r:root>
             XML
@@ -39,8 +45,8 @@ final class RemoveUnusedNamespacesTest extends TestCase
         $cleaner->clean($document);
 
         $expected = $this->createDocument(<<<XML
-            <r:root xmlns:r="http://tempuri/root" xmlns:f="http://tempuri/foo">
-              <a:child xmlns:a="http://tempuri/a">
+            <r:root xmlns:r="http://tempuri.org/root" xmlns:f="http://tempuri.org/foo">
+              <a:child xmlns:a="http://tempuri.org/a">
                 <a:child f:foo="foo"/>
               </a:child>
             </r:root>

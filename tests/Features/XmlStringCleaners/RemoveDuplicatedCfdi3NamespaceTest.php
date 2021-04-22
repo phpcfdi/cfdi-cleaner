@@ -16,16 +16,16 @@ class RemoveDuplicatedCfdi3NamespaceTest extends TestCase
         $xmlns = 'xmlns="http://www.sat.gob.mx/cfd/3"';
         return [
             'at middle' => [
-                "<cfdi:Comprobante ${xmlnsCfdi}/>",
-                "<cfdi:Comprobante ${xmlns} ${xmlnsCfdi}/>",
+                "<cfdi:Comprobante $xmlnsCfdi/>",
+                "<cfdi:Comprobante $xmlns $xmlnsCfdi/>",
             ],
             'multiple spaces' => [
-                "<cfdi:Comprobante ${xmlnsCfdi}/>",
-                "<cfdi:Comprobante \t ${xmlns} \r\n ${xmlnsCfdi}/>",
+                "<cfdi:Comprobante $xmlnsCfdi/>",
+                "<cfdi:Comprobante \t $xmlns \r\n $xmlnsCfdi/>",
             ],
             'at end' => [
-                "<cfdi:Comprobante ${xmlnsCfdi} />", // is replaced to a single space
-                "<cfdi:Comprobante ${xmlnsCfdi} ${xmlns}/>",
+                "<cfdi:Comprobante $xmlnsCfdi />", // is replaced to a single space
+                "<cfdi:Comprobante $xmlnsCfdi $xmlns/>",
             ],
         ];
     }

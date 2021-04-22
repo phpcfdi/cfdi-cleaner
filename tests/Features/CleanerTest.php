@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection XmlPathReference */
+
 declare(strict_types=1);
 
 namespace PhpCfdi\CfdiCleaner\Tests\Features;
