@@ -31,16 +31,6 @@ class Cfdi3XPath
         return new self($xpath);
     }
 
-    public function queryFirstElement(string $xpathQuery): ?DOMElement
-    {
-        $elements = $this->queryElements($xpathQuery);
-        $element = $elements->item(0);
-        if ($element instanceof DOMElement) {
-            return $element;
-        }
-        return null;
-    }
-
     /**
      * @param string $xpathQuery
      * @return DOMNodeList<DOMElement>
