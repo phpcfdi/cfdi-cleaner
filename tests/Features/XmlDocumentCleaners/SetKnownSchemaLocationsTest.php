@@ -47,4 +47,44 @@ final class SetKnownSchemaLocationsTest extends TestCase
         );
         $this->assertEquals($expected, $document);
     }
+
+    public function testSetKnownSchemaLocationsWithoutVersion(): void
+    {
+        $document = $this->createDocument(<<<XML
+            <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdi.xsd"/>
+            XML
+        );
+
+        $cleaner = new SetKnownSchemaLocations();
+        $cleaner->clean($document);
+
+        $expected = $this->createDocument(<<<XML
+            <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdi.xsd"/>
+            XML
+        );
+        $this->assertEquals($expected, $document);
+    }
+
+    public function testSetKnownSchemaLocationsWithUnknownNamespace(): void
+    {
+        $document = $this->createDocument(<<<XML
+            <foo:Foo xmlns:foo="uri:foo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="uri:foo foo.xsd" />
+            XML
+        );
+
+        $cleaner = new SetKnownSchemaLocations();
+        $cleaner->clean($document);
+
+        $expected = $this->createDocument(<<<XML
+            <foo:Foo xmlns:foo="uri:foo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="uri:foo foo.xsd" />
+            XML
+        );
+        $this->assertEquals($expected, $document);
+    }
 }

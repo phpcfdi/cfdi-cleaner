@@ -24,9 +24,15 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
         }
     }
 
+    /**
+     * @param string $schemaLocationValue
+     * @return string
+     * @internal
+     */
     public function cleanSchemaLocationValue(string $schemaLocationValue): string
     {
-        $schemaLocation = new SchemaLocation($this->schemaLocationValueNamespaceXsdPairToArray($schemaLocationValue));
+        $pairs = $this->schemaLocationValueNamespaceXsdPairToArray($schemaLocationValue);
+        $schemaLocation = new SchemaLocation($pairs);
         return $schemaLocation->asValue();
     }
 
@@ -35,6 +41,7 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
      *
      * @param string $schemaLocationValue
      * @return array<string, string>
+     * @internal
      */
     public function schemaLocationValueNamespaceXsdPairToArray(string $schemaLocationValue): array
     {
