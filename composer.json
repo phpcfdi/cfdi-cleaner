@@ -1,14 +1,13 @@
 {
     "name": "phpcfdi/cfdi-cleaner",
-    "description": "Tool to clean up CFDI 3.3",
+    "description": "Clean up Mexican CFDI",
     "keywords": ["cfdi", "sat", "mexico"],
     "homepage": "https://github.com/phpcfdi/cfdi-cleaner",
     "license": "MIT",
     "authors": [
         {
             "name": "Carlos C Soto",
-            "email": "eclipxe13@gmail.com",
-            "homepage": "https://github.com/phpcfdi/cfdi-cleaner"
+            "email": "eclipxe13@gmail.com"
         }
     ],
     "require": {
