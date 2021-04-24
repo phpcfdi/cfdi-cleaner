@@ -22,7 +22,7 @@ class Cleaner
 
     public static function staticClean(string $xml): string
     {
-        return (new self())->cleanStringToDocument($xml)->saveXML() ?: '';
+        return (new self())->cleanStringToString($xml);
     }
 
     public function cleanString(string $xml): string
@@ -41,6 +41,11 @@ class Cleaner
         $document = $this->createDocument($xml);
         $this->cleanDocument($document);
         return $document;
+    }
+
+    public function cleanStringToString(string $xml): string
+    {
+        return $this->cleanStringToDocument($xml)->saveXML() ?: '';
     }
 
     protected function createDocument(string $xml): DOMDocument
