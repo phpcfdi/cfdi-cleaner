@@ -11,6 +11,9 @@ use DOMNodeList;
 use DOMXPath;
 use Generator;
 
+/**
+ * @internal
+ */
 trait XmlNamespaceMethodsTrait
 {
     /**
@@ -50,7 +53,7 @@ trait XmlNamespaceMethodsTrait
         return (in_array($namespace, $reservedNameSpaces, true));
     }
 
-    public function isNamespaceRelatedToSat(string $namespace): bool
+    private function isNamespaceRelatedToSat(string $namespace): bool
     {
         return str_starts_with($namespace, 'http://www.sat.gob.mx/');
     }
