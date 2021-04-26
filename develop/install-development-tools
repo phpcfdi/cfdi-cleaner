@@ -80,5 +80,3 @@ install_upgrade FriendsOfPHP/PHP-CS-Fixer php-cs-fixer.phar "${TOOLS_DIR}/php-cs
 install_upgrade squizlabs/PHP_CodeSniffer phpcbf.phar "${TOOLS_DIR}/phpcbf"
 install_upgrade squizlabs/PHP_CodeSniffer phpcs.phar "${TOOLS_DIR}/phpcs"
 install_upgrade phpstan/phpstan phpstan.phar "${TOOLS_DIR}/phpstan"
-# install_upgrade vimeo/psalm psalm.phar "${TOOLS_DIR}/psalm"
-# install_upgrade infection/infection infection.phar "${TOOLS_DIR}/infection"
