@@ -10,8 +10,9 @@ build:
     override:
       - composer upgrade --no-interaction --prefer-dist
   nodes:
-    analysis: # see https://scrutinizer-ci.com/docs/tools/php/php-scrutinizer/ 
-      project_setup: {override: true}
+    analysis: # see https://scrutinizer-ci.com/docs/tools/php/php-scrutinizer/
+      project_setup:
+        override: true
       tests:
         override:
           - php-scrutinizer-run --enable-security-analysis
