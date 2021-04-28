@@ -15,9 +15,9 @@ final class MoveSchemaLocationsToRootTest extends TestCase
     {
         $document = $this->createDocument(<<<XML
             <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="uri:root root.xsd uri:bar bar.xsd">
-              <foo xsi:schemaLocation="uri:foo foo.xsd">
-                <bar xsi:schemaLocation="uri:foo foo.xsd uri:bar bar.xsd"/>
+              xsi:schemaLocation="http://tempuri.org/root root.xsd http://tempuri.org/bar bar.xsd">
+              <foo xsi:schemaLocation="http://tempuri.org/foo foo.xsd">
+                <bar xsi:schemaLocation="http://tempuri.org/foo foo.xsd http://tempuri.org/bar bar.xsd"/>
               </foo>
             </root>
             XML
@@ -26,9 +26,14 @@ final class MoveSchemaLocationsToRootTest extends TestCase
         $cleaner = new MoveSchemaLocationsToRoot();
         $cleaner->clean($document);
 
+        $expectedLocations = implode(' ', [
+            'http://tempuri.org/root root.xsd',
+            'http://tempuri.org/bar bar.xsd',
+            'http://tempuri.org/foo foo.xsd',
+        ]);
         $expected = $this->createDocument(<<<XML
             <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="uri:root root.xsd uri:bar bar.xsd uri:foo foo.xsd">
+              xsi:schemaLocation="$expectedLocations">
               <foo>
                 <bar />
               </foo>
@@ -42,8 +47,8 @@ final class MoveSchemaLocationsToRootTest extends TestCase
     {
         $document = $this->createDocument(<<<XML
             <root xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
-              xs:schemaLocation="uri:root root.xsd">
-              <foo xs:schemaLocation="uri:foo foo.xsd"/>
+              xs:schemaLocation="http://tempuri.org/root root.xsd">
+              <foo xs:schemaLocation="http://tempuri.org/foo foo.xsd"/>
             </root>
             XML
         );
@@ -53,7 +58,7 @@ final class MoveSchemaLocationsToRootTest extends TestCase
 
         $expected = $this->createDocument(<<<XML
             <root xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
-              xs:schemaLocation="uri:root root.xsd uri:foo foo.xsd">
+              xs:schemaLocation="http://tempuri.org/root root.xsd http://tempuri.org/foo foo.xsd">
               <foo/>
             </root>
             XML
@@ -65,7 +70,8 @@ final class MoveSchemaLocationsToRootTest extends TestCase
     {
         $document = $this->createDocument(<<<XML
             <root>
-              <foo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="uri:foo foo.xsd"/>
+              <foo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://tempuri.org/foo foo.xsd"/>
             </root>
             XML
         );
@@ -74,7 +80,8 @@ final class MoveSchemaLocationsToRootTest extends TestCase
         $cleaner->clean($document);
 
         $expected = $this->createDocument(<<<XML
-            <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="uri:foo foo.xsd">
+            <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://tempuri.org/foo foo.xsd">
               <foo/>
             </root>
             XML

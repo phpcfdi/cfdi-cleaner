@@ -12,9 +12,9 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
     public function testMoveNamespaceDeclarationToRoot(): void
     {
         $document = $this->createDocument(<<<XML
-            <r:root xmlns:r="uri:root">
-              <foo:foo xmlns:foo="uri:foo"/>
-              <bar:bar xmlns:bar="uri:bar"/>
+            <r:root xmlns:r="http://tempuri.org/root">
+              <foo:foo xmlns:foo="http://tempuri.org/foo"/>
+              <bar:bar xmlns:bar="http://tempuri.org/bar"/>
               <xee/>
             </r:root>
             XML
@@ -24,7 +24,8 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
         $cleaner->clean($document);
 
         $expected = $this->createDocument(<<<XML
-            <r:root xmlns:r="uri:root" xmlns:foo="uri:foo" xmlns:bar="uri:bar">
+            <r:root xmlns:r="http://tempuri.org/root"
+              xmlns:foo="http://tempuri.org/foo" xmlns:bar="http://tempuri.org/bar">
               <foo:foo/>
               <bar:bar/>
               <xee/>
