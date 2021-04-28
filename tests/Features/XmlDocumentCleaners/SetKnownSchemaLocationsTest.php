@@ -72,8 +72,8 @@ final class SetKnownSchemaLocationsTest extends TestCase
     public function testSetKnownSchemaLocationsWithUnknownNamespace(): void
     {
         $document = $this->createDocument(<<<XML
-            <foo:Foo xmlns:foo="uri:foo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="uri:foo foo.xsd" />
+            <foo:Foo xmlns:foo="http://tempuri.org/foo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://tempuri.org/foo foo.xsd" />
             XML
         );
 
@@ -81,8 +81,8 @@ final class SetKnownSchemaLocationsTest extends TestCase
         $cleaner->clean($document);
 
         $expected = $this->createDocument(<<<XML
-            <foo:Foo xmlns:foo="uri:foo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="uri:foo foo.xsd" />
+            <foo:Foo xmlns:foo="http://tempuri.org/foo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://tempuri.org/foo foo.xsd" />
             XML
         );
         $this->assertEquals($expected, $document);
