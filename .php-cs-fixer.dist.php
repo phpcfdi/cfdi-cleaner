@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setCacheFile(__DIR__ . '/build/php_cs.cache')
     ->setRules([
@@ -12,6 +12,8 @@ return PhpCsFixer\Config::create()
         '@PHP71Migration' => true,
         '@PHP71Migration:risky' => true,
         '@PHP73Migration' => true,
+        // PHP73Migration
+        'method_argument_space' => ['on_multiline' => 'ignore'],
         // symfony
         'class_attributes_separation' => true,
         'whitespace_after_comma_in_array' => true,
@@ -19,7 +21,7 @@ return PhpCsFixer\Config::create()
         'no_extra_blank_lines' => true,
         'function_typehint_space' => true,
         'no_alias_functions' => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline' => ['elements' => ['arrays', 'arguments']],
         'new_with_braces' => true,
         'no_blank_lines_after_class_opening' => true,
         'no_blank_lines_after_phpdoc' => true,
@@ -46,6 +48,6 @@ return PhpCsFixer\Config::create()
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->in(__DIR__)
-            ->exclude(['vendor', 'build'])
+            ->exclude(['vendor', 'tools', 'build'])
     )
 ;
