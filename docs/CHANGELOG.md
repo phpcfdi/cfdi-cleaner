@@ -12,6 +12,8 @@ Los cambios no liberados se integran a la rama principal, pero no requieren de l
 
 **2021-05-18**: Se corrigieron las extensiones usadas por la acción `build.yml/setup-php`.
 
+**2021-05-18**: Se actualiza la configuración de PHPUnit con la ubicación del caché.
+
 **2021-04-28**: Las pruebas no funcionaban correctamente con `LibXML < 2.9.10`.
 Presumiblemente por la canonicalización y recarga realizada por PHPUnit `sebastian/comparator`.
 Esto provocaba que los test no pasaran en sistemas con estas versiones, por ejemplo, Scrutinizer.
