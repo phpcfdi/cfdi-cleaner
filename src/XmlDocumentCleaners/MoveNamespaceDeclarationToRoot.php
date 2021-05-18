@@ -40,7 +40,7 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
         $rootElement->setAttributeNS(
             XmlConstants::NAMESPACE_XMLNS,
             $namespacesNode->nodeName,
-            $namespacesNode->nodeValue
+            $namespacesNode->nodeValue,
         );
 
         $this->removeNamespaceNodeAttribute($namespacesNode);

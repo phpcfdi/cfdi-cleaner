@@ -26,7 +26,7 @@ final class RemoveAddendaTest extends TestCase
         $this->assertCount(
             0,
             $document->getElementsByTagNameNS('http://www.sat.gob.mx/cfd/3', 'Addenda'),
-            'Addenda element should not exists after cleaning'
+            'Addenda element should not exists after cleaning',
         );
     }
 }
