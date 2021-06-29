@@ -7,7 +7,7 @@ namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlStringCleaners\AppendXmlDeclaration;
 
-class AddXmlDeclarationTest extends TestCase
+class AppendXmlDeclarationTest extends TestCase
 {
     /** @return array<string, array{string, string}> */
     public function providerInputCases(): array
