@@ -92,6 +92,10 @@ objeto documento XML no se pueda crear.
 
 Elimina todo contenido antes del primer caracter `<` y posterior al último `>`.
 
+#### `SplitXmlDeclarationFromDocument`
+
+Separa por un `LF` (`"\n"`) la declaración XML `<?xml version="1.0"?>` del cuerpo XML.
+
 #### `AppendXmlDeclaration`
 
 Agrega `<?xml version="1.0"?>` al inicio del archivo si no existe, es muy útil porque
