@@ -4,20 +4,20 @@
     bootstrap="tests/bootstrap.php"
     cacheResultFile="build/phpunit.cache/test-results"
     executionOrder="depends,defects"
-    failOnRisky="true"
+    failOnEmptyTestSuite="true"
+    failOnIncomplete="true"
     failOnWarning="true"
-    verbose="true"
     colors="true">
 
     <testsuites>
         <testsuite name="default">
-            <directory suffix="Test.php">./tests/</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
     <coverage cacheDirectory="build/phpunit.cache/code-coverage" processUncoveredFiles="true">
         <include>
-            <directory suffix=".php">./src/</directory>
+            <directory suffix=".php">src</directory>
         </include>
     </coverage>
 </phpunit>
