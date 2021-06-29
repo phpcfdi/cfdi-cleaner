@@ -8,7 +8,7 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
-## Version 1.1.0
+## Versión 1.1.0
 
 Se agrega el limpiador de texto XML `SplitXmlDeclarationFromDocument` que separa la declaración XML del resto del
 documento XML utilizando uno y solo un caracter `LF`. Por ejemplo:
