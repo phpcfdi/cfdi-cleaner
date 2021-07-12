@@ -55,4 +55,21 @@ final class CleanerTest extends TestCase
         );
         $this->assertEquals($expected, $document);
     }
+
+    /**
+     * @param string $filename
+     * @testWith ["cfdi32-real.xml"]
+     *           ["cfdi33-real.xml"]
+     */
+    public function testCleanKnownFiles(string $filename): void
+    {
+        $contents = $this->fileContents($filename);
+        $document = $this->createDocument($contents);
+
+        $cleaner = new Cleaner();
+        $cleaner->cleanDocument($document);
+        $cleanDocument = $cleaner->cleanStringToDocument($contents);
+
+        $this->assertEquals($document, $cleanDocument);
+    }
 }
