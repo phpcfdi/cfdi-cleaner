@@ -22,6 +22,9 @@ class RemoveNonXmlStringsTest extends TestCase
             'ltgt lead and trail' => ['<>', '_<>_'],
             'out of order string' => ['', '_>_<_'],
             'no xml' => ['< b && b >', 'a < b && b > c'],
+            'without lt or gt' => ['', 'a b c'],
+            'without gt ' => ['', 'a < b c'],
+            'without lt ' => ['', 'a b > c'],
         ];
     }
 
