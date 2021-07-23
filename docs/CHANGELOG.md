@@ -8,6 +8,18 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.1.2
+
+Se encontró un error interno en el que, después de eliminar espacios de nombres no usados, se caía en un error
+al momento de volver a iterar sobre los nodos de espacios de nombre. Lo que terminaba en una excepción.
+
+Es importante actualizar si se está observando un error parecido a este:
+
+```
+TypeError: Argument 1 passed to PhpCfdi\CfdiCleaner\XmlDocumentCleaners\MoveNamespaceDeclarationToRoot::isNamespaceReserved()
+must be of the type string, null given, called in .../vendor/phpcfdi/cfdi-cleaner/src/Internal/XmlNamespaceMethodsTrait.php on line 28
+```
+
 ## Versión 1.1.1
 
 En algunos casos, el limpiador de cadena de caracteres `RemoveNonXmlStrings` regresaba una cadena de caracteres vacía,

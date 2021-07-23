@@ -25,9 +25,17 @@ trait XmlNamespaceMethodsTrait
         $xpath = new DOMXPath($document);
         $namespaceNodes = $xpath->query('//namespace::*') ?: new DOMNodeList();
         foreach ($namespaceNodes as $namespaceNode) {
-            if (! $this->isNamespaceReserved($namespaceNode->nodeValue)) {
-                yield $namespaceNode;
+            // discard removed namespaces they could be returned by XPath
+            if (null === $namespaceNode->nodeValue) {
+                continue;
             }
+
+            // discard reserved (internal xml) namespaces
+            if ($this->isNamespaceReserved($namespaceNode->nodeValue)) {
+                continue;
+            }
+
+            yield $namespaceNode;
         }
     }
 
