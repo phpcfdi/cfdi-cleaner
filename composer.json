@@ -13,6 +13,7 @@
     "require": {
         "php": ">=7.3",
         "ext-dom": "*",
+        "ext-libxml": "*",
         "symfony/polyfill-php80": "^1.22"
     },
     "require-dev": {

@@ -15,6 +15,7 @@ use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 class MoveSchemaLocationsToRoot implements XmlDocumentCleanerInterface
 {
     use XmlNamespaceMethodsTrait;
+
     use XmlAttributeMethodsTrait;
 
     public function clean(DOMDocument $document): void

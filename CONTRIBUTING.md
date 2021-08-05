@@ -79,6 +79,16 @@ composer dev:test
 composer dev:build
 ```
 
+## Ejecutar GitHub Actions localmente
+
+Puedes utilizar la herramienta [`act`](https://github.com/nektos/act) para ejecutar las GitHub Actions localmente.
+Según [`actions/setup-php-action`](https://github.com/marketplace/actions/setup-php-action#local-testing-setup)
+puedes ejecutar el siguiente comando para revisar los flujos de trabajo localmente:
+
+```shell
+act -P ubuntu-latest=shivammathur/node:latest
+```
+
 [phpCfdi]:      https://github.com/phpcfdi/
 [project]:      https://github.com/phpcfdi/cfdi-cleaner
 [contributors]: https://github.com/phpcfdi/cfdi-cleaner/graphs/contributors

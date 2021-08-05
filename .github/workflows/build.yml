@@ -1,11 +1,9 @@
 name: build
 on:
   pull_request:
-    branches:
-      - "main"
+    branches: [ "main" ]
   push:
-    branches:
-      - "main"
+    branches: [ "main" ]
   schedule:
     - cron: '0 16 * * 0' # sunday 16:00
 
@@ -28,7 +26,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: dom
+          extensions: dom, libxml
           coverage: none
           tools: composer:v2, cs2pr, phpcs, php-cs-fixer, phpstan
         env:
