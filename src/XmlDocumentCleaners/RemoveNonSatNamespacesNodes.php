@@ -17,7 +17,9 @@ use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 class RemoveNonSatNamespacesNodes implements XmlDocumentCleanerInterface
 {
     use XmlAttributeMethodsTrait;
+
     use XmlElementMethodsTrait;
+
     use XmlNamespaceMethodsTrait;
 
     public function clean(DOMDocument $document): void
