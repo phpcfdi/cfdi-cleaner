@@ -152,6 +152,35 @@ Mueve todas las declaraciones de espacios de nombres al nodo raíz.
 Por lo regular el SAT pide en la documentación técnica que los espacios de nombres se definan en el nodo raíz,
 sin embargo es frecuente que se definan en el nodo que los implementa.
 
+Hay casos extremos de CFDI que siguen las reglas de XML, pero que no siguen las reglas de CFDI y generan prefijos
+que se superponen. En este caso, se moverán solamente los espacios de nombres que no se superponen, por ejemplo:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+  <cfdi:Complemento>
+    <cfdi:Otro xmlns:cfdi="http://www.sat.gob.mx/otro" />
+    <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" />
+  </cfdi:Complemento>
+</cfdi:Comprobante>
+```
+
+Genera el siguiente resultado:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital">
+  <cfdi:Complemento>
+    <cfdi:Otro xmlns:cfdi="http://www.sat.gob.mx/otro" />
+    <tfd:TimbreFiscalDigital />
+  </cfdi:Complemento>
+</cfdi:Comprobante>
+```
+
+Ante un caso como el anterior, no se están siguiendo las reglas establecidas en el Anexo 20 y en el complemento.
+Es mejor que siempre considere ese caso como un CFDI inválido, aun cuando se haya firmado, y solicite la
+sustitución por un CFDI que sí contenga los prefijos de los espacios de nombres correctos.
+
 #### `MoveSchemaLocationsToRoot`
 
 Mueve todas las declaraciones de ubicaciones de archivos de esquema al nodo principal.

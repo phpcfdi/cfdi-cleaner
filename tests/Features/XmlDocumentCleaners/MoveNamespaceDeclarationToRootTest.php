@@ -34,4 +34,33 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
         );
         $this->assertEquals($expected, $document);
     }
+
+    public function testMoveNamespaceDeclarationToRootWithOverlappedNamespaces(): void
+    {
+        $document = $this->createDocument(<<<XML
+            <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+            <cfdi:Complemento>
+              <cfdi:Otro xmlns:cfdi="http://www.sat.gob.mx/otro" />
+              <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" />
+            </cfdi:Complemento>
+            </cfdi:Comprobante>
+            XML
+        );
+
+        $cleaner = new MoveNamespaceDeclarationToRoot();
+        $cleaner->clean($document);
+
+        $expected = $this->createDocument(<<<XML
+            <cfdi:Comprobante
+            xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital">
+            <cfdi:Complemento>
+              <cfdi:Otro xmlns:cfdi="http://www.sat.gob.mx/otro" />
+              <tfd:TimbreFiscalDigital />
+            </cfdi:Complemento>
+            </cfdi:Comprobante>
+            XML
+        );
+        $this->assertEquals($expected, $document);
+    }
 }

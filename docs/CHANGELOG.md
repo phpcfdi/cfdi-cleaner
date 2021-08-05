@@ -8,6 +8,19 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.1.3
+
+### Error al tratar espacios de nombres predefinidos
+
+Se encontraron casos en los que el CFDI firmado por un PAC tiene severos errores de espacios de nombres XML,
+específicamente al redefinir un prefijo en uso por otro espacio de nombres. Si bien esto es correcto en XML,
+no es correcto en un CFDI.
+
+En este caso el limpiador `MoveNamespaceDeclarationToRoot` estaba generando una salida de XML no válida.
+
+Se corrigió `MoveNamespaceDeclarationToRoot` para que utilice una estrategia alternativa en el caso de encontrar
+espacios de nombres con prefijos sobrepuestos y entregue una salida correcta.
+
 ## Versión 1.1.2
 
 Se encontró un error interno en el que, después de eliminar espacios de nombres no usados, se caía en un error
