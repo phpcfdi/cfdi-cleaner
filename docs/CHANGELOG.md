@@ -21,6 +21,10 @@ En este caso el limpiador `MoveNamespaceDeclarationToRoot` estaba generando una 
 Se corrigió `MoveNamespaceDeclarationToRoot` para que utilice una estrategia alternativa en el caso de encontrar
 espacios de nombres con prefijos sobrepuestos y entregue una salida correcta.
 
+### `tests/clean.php`
+
+Se agregó el archivo `tests/clean.php` para limpiar un archivo CFDI y entregar la respuesta en la salida estándar.
+
 ## Versión 1.1.2
 
 Se encontró un error interno en el que, después de eliminar espacios de nombres no usados, se caía en un error
