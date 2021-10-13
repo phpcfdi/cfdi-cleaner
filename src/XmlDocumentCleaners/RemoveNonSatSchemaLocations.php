@@ -14,7 +14,6 @@ use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 class RemoveNonSatSchemaLocations implements XmlDocumentCleanerInterface
 {
     use XmlAttributeMethodsTrait;
-
     use XmlNamespaceMethodsTrait;
 
     public function clean(DOMDocument $document): void
