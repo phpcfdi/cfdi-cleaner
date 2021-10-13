@@ -144,7 +144,6 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
     ];
 
     use XmlNamespaceMethodsTrait;
-
     use XmlAttributeMethodsTrait;
 
     public function clean(DOMDocument $document): void
