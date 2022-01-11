@@ -35,7 +35,7 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
         $this->assertEquals($expected, $document);
     }
 
-    public function testMoveNamespaceDeclarationToRootWithOverlappedNamespaces(): void
+    public function testMoveNamespaceDeclarationToRootWithOverlappedNamespacesDifferent(): void
     {
         $document = $this->createDocument(<<<XML
             <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
@@ -58,6 +58,36 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
               <cfdi:Otro xmlns:cfdi="http://www.sat.gob.mx/otro" />
               <tfd:TimbreFiscalDigital />
             </cfdi:Complemento>
+            </cfdi:Comprobante>
+            XML
+        );
+        $this->assertEquals($expected, $document);
+    }
+
+    public function testMoveNamespaceDeclarationToRootWithOverlappedNamespacesEqual(): void
+    {
+        $document = $this->createDocument(<<<XML
+            <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+              <cfdi:Complemento xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+                <otro:Otro xmlns:otro="http://www.sat.gob.mx/otro" />
+                <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" />
+              </cfdi:Complemento>
+            </cfdi:Comprobante>
+            XML
+        );
+
+        $cleaner = new MoveNamespaceDeclarationToRoot();
+        $cleaner->clean($document);
+
+        $expected = $this->createDocument(<<<XML
+            <cfdi:Comprobante
+            xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+            xmlns:otro="http://www.sat.gob.mx/otro"
+            xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital">
+              <cfdi:Complemento>
+                <otro:Otro />
+                <tfd:TimbreFiscalDigital />
+              </cfdi:Complemento>
             </cfdi:Comprobante>
             XML
         );
