@@ -8,6 +8,30 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.1.4
+
+### Error al tratar espacios de nombres duplicados
+
+Se encontraron casos en los que el CFDI firmado por un PAC tiene errores de espacios de nombres XML,
+específicamente al duplicar un prefijo en uso en uno de los hijos. Si bien esto es correcto en XML,
+no es correcto en un CFDI.
+
+En este caso el limpiador `MoveNamespaceDeclarationToRoot` estaba generando una salida de XML no válida,
+cambiando el prefijo, por ejemplo de `<cfdi:Complemento xmlns:cfdi="http://www.sat.gob.mx/cfd/3">`
+a `<default:Complemento>`.
+
+Se corrigió `MoveNamespaceDeclarationToRoot` para que utilice la misma estrategia alternativa de
+espacios de nombres con prefijos sobrepuestos y entregue una salida correcta.
+
+### Mantenimiento
+
+- Se actualiza el año de licencia. ¡Feliz 2022!.
+- Se corrigió el nombre de archivo de configuración de PHPStan y ahora usa el nombre correcto en `.gitattributes`,
+de esta forma es correctamente excluido del paquete de distribución.
+- Se cambia el flujo de integración continua de pasos en el trabajo a trabajos separados.
+- Se corrige el nombre del grupo de mantenedores de código de PhpCfdi.
+- Se cambia de `develop/install-development-tools` a `phive` para instalar las herramientas de desarrollo.
+
 ## Versión 1.1.3
 
 ### Error al tratar espacios de nombres predefinidos
