@@ -32,11 +32,20 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
     {
         $prefixes = [];
         foreach ($this->iterateNonReservedNamespaces($document) as $namespaceNode) {
+            /**
+             * $namespaceNode->nodeName => xmlns:cfdi
+             * $namespaceNode->nodeValue => http://www.sat.gob.mx/cfd/3
+             * $namespaceNode->parentNode => DOMElement where namespace definition is
+             */
+            $currentDefinition = [
+                'namespace' => $namespaceNode->nodeValue,
+                'owner' => $namespaceNode->parentNode,
+            ];
             if (! isset($prefixes[$namespaceNode->nodeName])) {
-                $prefixes[$namespaceNode->nodeName] = $namespaceNode->nodeValue;
+                $prefixes[$namespaceNode->nodeName] = $currentDefinition;
                 continue;
             }
-            if ($prefixes[$namespaceNode->nodeName] !== $namespaceNode->nodeValue) {
+            if ($prefixes[$namespaceNode->nodeName] !== $currentDefinition) {
                 return true;
             }
         }
