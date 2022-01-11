@@ -25,7 +25,8 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
 
         $expected = $this->createDocument(<<<XML
             <r:root xmlns:r="http://tempuri.org/root"
-              xmlns:foo="http://tempuri.org/foo" xmlns:bar="http://tempuri.org/bar">
+            xmlns:foo="http://tempuri.org/foo"
+            xmlns:bar="http://tempuri.org/bar">
               <foo:foo/>
               <bar:bar/>
               <xee/>

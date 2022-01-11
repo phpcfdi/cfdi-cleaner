@@ -31,7 +31,10 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
     private function documentHasOverlappedNamespaces(DOMDocument $document): bool
     {
         $prefixes = [];
+        /** $namespaceNode is a DOMNameSpaceNode, parentNode always exists */
         foreach ($this->iterateNonReservedNamespaces($document) as $namespaceNode) {
+            /** @var DOMElement $ownerElement */
+            $ownerElement = $namespaceNode->parentNode;
             /**
              * $namespaceNode->nodeName => xmlns:cfdi
              * $namespaceNode->nodeValue => http://www.sat.gob.mx/cfd/3
@@ -39,13 +42,14 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
              */
             $currentDefinition = [
                 'namespace' => $namespaceNode->nodeValue,
-                'owner' => $namespaceNode->parentNode,
+                'owner' => $ownerElement,
             ];
             if (! isset($prefixes[$namespaceNode->nodeName])) {
                 $prefixes[$namespaceNode->nodeName] = $currentDefinition;
                 continue;
             }
-            if ($prefixes[$namespaceNode->nodeName] !== $currentDefinition) {
+            if ($ownerElement->hasAttribute($namespaceNode->nodeName)
+                && $prefixes[$namespaceNode->nodeName] !== $currentDefinition) {
                 return true;
             }
         }
