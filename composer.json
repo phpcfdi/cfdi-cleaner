@@ -30,9 +30,6 @@
         }
     },
     "scripts": {
-        "dev:install": [
-            "bash develop/install-development-tools"
-        ],
         "dev:build": ["@dev:fix-style", "@dev:test"],
         "dev:check-style": [
             "@php tools/php-cs-fixer fix --dry-run --verbose",
@@ -52,7 +49,6 @@
         ]
     },
     "scripts-descriptions": {
-        "dev:install": "DEV: install development tools into tools/",
         "dev:build": "DEV: run dev:fix-style and dev:tests, run before pull request",
         "dev:check-style": "DEV: search for code style errors using php-cs-fixer and phpcs",
         "dev:fix-style": "DEV: fix code style errors using php-cs-fixer and phpcbf",

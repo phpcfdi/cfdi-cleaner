@@ -8,6 +8,7 @@
 
 # Do not put this files on a distribution package
 /.github/                   export-ignore
+/.phive/                    export-ignore
 /build/                     export-ignore
 /develop/                   export-ignore
 /tests/                     export-ignore
@@ -16,5 +17,5 @@
 /.php-cs-fixer.dist.php     export-ignore
 /.scrutinizer.yml           export-ignore
 /phpcs.xml.dist             export-ignore
-/phpstan.neon.dist           export-ignore
+/phpstan.neon.dist          export-ignore
 /phpunit.xml.dist           export-ignore
