@@ -86,7 +86,7 @@ Según [`actions/setup-php-action`](https://github.com/marketplace/actions/setup
 puedes ejecutar el siguiente comando para revisar los flujos de trabajo localmente:
 
 ```shell
-act -P ubuntu-latest=shivammathur/node:latest
+act -P ubuntu-latest=shivammathur/node:latest -W .github/workflows/build.yml
 ```
 
 [phpCfdi]:      https://github.com/phpcfdi/
