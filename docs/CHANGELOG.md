@@ -8,6 +8,10 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+### Integración continua
+
+Se agrega PHP 8.1 a la matriz de pruebas.
+
 ## Versión 1.1.4
 
 ### Error al tratar espacios de nombres duplicados
