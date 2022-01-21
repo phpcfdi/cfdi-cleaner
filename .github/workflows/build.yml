@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: '0 16 * * 0' # sunday 16:00
 
+# Actions
+# shivammathur/setup-php@v2 https://github.com/marketplace/actions/setup-php-action
+
 jobs:
 
   phpcs:
@@ -16,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2 # see https://github.com/marketplace/actions/setup-php-action
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
           coverage: none
@@ -33,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2 # see https://github.com/marketplace/actions/setup-php-action
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
           coverage: none
@@ -50,7 +53,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2 # see https://github.com/marketplace/actions/setup-php-action
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
           coverage: none
@@ -76,7 +79,7 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.0']
+        php-versions: ['7.3', '7.4', '8.0', '8.1']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
