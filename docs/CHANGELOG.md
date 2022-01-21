@@ -25,7 +25,10 @@ se mantiene actualizada.
 
 ### Integración continua
 
-Se agrega PHP 8.1 a la matriz de pruebas.
+- Se agrega PHP 8.1 a la matriz de pruebas.
+- Se configura [SonarCloud](https://sonarcloud.io/project/overview?id=phpcfdi_cfdi-cleaner).
+- Se remueve Scrutinizer CI. Gracias por todo.
+- Se actualizan los *badges* del proyecto.
 
 ## Versión 1.1.4
 
