@@ -17,7 +17,8 @@
         "symfony/polyfill-php80": "^1.22"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.3"
+        "phpunit/phpunit": "^9.3",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {

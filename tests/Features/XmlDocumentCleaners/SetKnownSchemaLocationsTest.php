@@ -87,4 +87,34 @@ final class SetKnownSchemaLocationsTest extends TestCase
         );
         $this->assertEquals($expected, $document);
     }
+
+    /** @noinspection PhpUnhandledExceptionInspection */
+    public function testKnowAllLocationsFromSatNsRegistry(): void
+    {
+        // obtain the list of known locations from phpcfdi/sat-ns-registry
+        $satNsRegistryUrl = 'https://raw.githubusercontent.com/phpcfdi/sat-ns-registry/master/complementos_v1.json';
+        /** @var array<array{namespace: ?string, version: ?string, xsd: ?string}> $registry */
+        $registry = json_decode(file_get_contents($satNsRegistryUrl) ?: '[]', true, 512, JSON_THROW_ON_ERROR);
+
+        // re-create the known list of namespace#version => xsd-location
+        $expected = [];
+        foreach ($registry as $entry) {
+            $namespace = $entry['namespace'] ?? '';
+            $version = $entry['version'] ?? '';
+            $xsd = $entry['xsd'] ?? '';
+            if ($namespace && $xsd) {
+                $expected[$namespace . '#' . $version] = $xsd;
+            }
+        }
+        asort($expected);
+
+        $knownLocations = SetKnownSchemaLocations::getKnownNamespaces();
+        asort($knownLocations);
+
+        $this->assertSame(
+            $expected,
+            $knownLocations,
+            'The list of known namespace#version => xsd-location is different from phpcfdi/sat-ns-registry',
+        );
+    }
 }

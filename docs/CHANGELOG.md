@@ -8,9 +8,27 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.1.5
+
+### Espacios de nombres conocidos
+
+Se actualiza la lista de espacios de nombres conocidos para:
+
+- CFDI 4.0.
+- CFDI de retenciones e información de pagos 2.0.
+- Complemento de pagos 2.0.
+- Complemento de carta porte 1.0.
+- Complemento de carta porte 2.0.
+
+Además, se agrega una prueba que usa <https://github.com/phpcfdi/sat-ns-registry> para verificar que la lista
+se mantiene actualizada.
+
 ### Integración continua
 
-Se agrega PHP 8.1 a la matriz de pruebas.
+- Se agrega PHP 8.1 a la matriz de pruebas.
+- Se configura [SonarCloud](https://sonarcloud.io/project/overview?id=phpcfdi_cfdi-cleaner).
+- Se remueve Scrutinizer CI. Gracias por todo.
+- Se actualizan los *badges* del proyecto.
 
 ## Versión 1.1.4
 
