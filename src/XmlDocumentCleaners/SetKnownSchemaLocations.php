@@ -23,6 +23,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
      * @var array<string, string>
      */
     private const KNOWN_NAMESPACES = [
+        'http://www.sat.gob.mx/cfd/4#4.0'
+        => 'http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd',
         'http://www.sat.gob.mx/cfd/3#3.3'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd',
         'http://www.sat.gob.mx/cfd/3#3.2'
@@ -188,7 +190,7 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
             return '';
         }
 
-        // @phpstan-ignore-next-line PHPStan is fine, it just report an impossible scenario considering the query
+        // @phpstan-ignore-next-line PHPStan is fine, it just reports an impossible scenario considering the query
         return $nodes->item(0)->attributes->getNamedItem($attributeName)->nodeValue;
     }
 
