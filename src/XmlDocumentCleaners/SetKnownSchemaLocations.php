@@ -35,6 +35,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         => 'http://www.sat.gob.mx/sitio_internet/cfd/2/cfdv22.xsd',
         'http://www.sat.gob.mx/cfd/2#2.0'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/2/cfdv2.xsd',
+        'http://www.sat.gob.mx/esquemas/retencionpago/2#2.0'
+        => 'http://www.sat.gob.mx/esquemas/retencionpago/2/retencionpagov2.xsd',
         'http://www.sat.gob.mx/esquemas/retencionpago/1#1.0'
         => 'http://www.sat.gob.mx/esquemas/retencionpago/1/retencionpagov1.xsd',
         'http://www.sat.gob.mx/TimbreFiscalDigital#1.0'
@@ -106,6 +108,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         => 'http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior/ComercioExterior10.xsd',
         'http://www.sat.gob.mx/Pagos#1.0'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos10.xsd',
+        'http://www.sat.gob.mx/Pagos20#2.0'
+        => 'http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd',
         'http://www.sat.gob.mx/GastosHidrocarburos10#1.0'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/GastosHidrocarburos10/GastosHidrocarburos10.xsd',
         'http://www.sat.gob.mx/iedu#1.0'
@@ -118,6 +122,10 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         => 'http://www.sat.gob.mx/sitio_internet/cfd/terceros/terceros11.xsd',
         'http://www.sat.gob.mx/acreditamiento#1.0'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/acreditamiento/AcreditamientoIEPS10.xsd',
+        'http://www.sat.gob.mx/CartaPorte#1.0'
+        => 'http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte.xsd',
+        'http://www.sat.gob.mx/CartaPorte20#2.0'
+        => 'http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte20.xsd',
         'http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso#1.0'
         => 'http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso/arrendamientoenfideicomiso.xsd',
         'http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos#1.0'
@@ -197,5 +205,16 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
     private function obtainLocationForNamespaceVersion(string $namespace, string $version, string $default): string
     {
         return self::KNOWN_NAMESPACES[$namespace . '#' . $version] ?? $default;
+    }
+
+    /**
+     * Pairs of key-value of namespace and version to XSD locations
+     * Key: namespace#version
+     * Value: location
+     * @return array<string, string>
+     */
+    public static function getKnownNamespaces(): array
+    {
+        return self::KNOWN_NAMESPACES;
     }
 }
