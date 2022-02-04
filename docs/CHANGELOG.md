@@ -8,6 +8,16 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## UNRELEASED
+
+### Mejoras al manejo interno de definiciones de espacios de nombres XML
+
+Se modificó el *trait* `XmlNamespaceMethodsTrait` para que detectara si un elemento de espacios de nombres
+`DOMNameSpaceNode` está eliminado revisando si la propiedad `namespaceURI` es `NULL`.
+Antes se validaba contra la propiedad `nodeValue`, pero esta propiedad puede ser vacía, por ejemplo en `xmlns=""`.
+
+Al momento de verificar si un espacio de nombres es reservado, ya no se excluye cuando el espacio de nombres es vacío.
+
 ## Versión 1.1.5
 
 ### Espacios de nombres conocidos

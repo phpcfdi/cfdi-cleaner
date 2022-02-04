@@ -28,12 +28,12 @@ trait XmlNamespaceMethodsTrait
         $namespaceNodes = $xpath->query('//namespace::*') ?: new DOMNodeList();
         foreach ($namespaceNodes as $namespaceNode) {
             // discard removed namespaces they could be returned by XPath
-            if (null === $namespaceNode->nodeValue) {
+            if (null === $namespaceNode->namespaceURI) {
                 continue;
             }
 
             // discard reserved (internal xml) namespaces
-            if ($this->isNamespaceReserved($namespaceNode->nodeValue)) {
+            if ($this->isNamespaceReserved($namespaceNode->namespaceURI)) {
                 continue;
             }
 
@@ -55,7 +55,6 @@ trait XmlNamespaceMethodsTrait
     private function isNamespaceReserved(string $namespace): bool
     {
         $reservedNameSpaces = [
-            '',                             // empty
             XmlConstants::NAMESPACE_XML,    // xml
             XmlConstants::NAMESPACE_XMLNS,  // xml namespace allocation
             XmlConstants::NAMESPACE_XSI,    // xml schema instance
