@@ -18,6 +18,11 @@ Antes se validaba contra la propiedad `nodeValue`, pero esta propiedad puede ser
 
 Al momento de verificar si un espacio de nombres es reservado, ya no se excluye cuando el espacio de nombres es vacío.
 
+### Eliminación de definición de espacio de nombres sin prefijo
+
+Se modificó el *trait* `XmlNamespaceMethodsTrait` para que pueda eliminar un espacio de nombres sin prefijo,
+por ejemplo `xmlns="http://tempuri.org/root"` o `xmlns=""`. 
+
 ## Versión 1.1.5
 
 ### Espacios de nombres conocidos
