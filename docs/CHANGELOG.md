@@ -8,7 +8,7 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
-## UNRELEASED
+## Versión 1.2.0
 
 ### Definición de XML namespace duplicado y sin prefijo
 
