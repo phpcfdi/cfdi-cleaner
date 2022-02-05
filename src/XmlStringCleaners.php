@@ -16,13 +16,12 @@ class XmlStringCleaners implements XmlStringCleanerInterface
 
     public static function createDefault(): self
     {
-        return new self(...[
+        return new self(
             new XmlStringCleaners\RemoveNonXmlStrings(),
             new XmlStringCleaners\SplitXmlDeclarationFromDocument(),
             new XmlStringCleaners\AppendXmlDeclaration(),
             new XmlStringCleaners\XmlNsSchemaLocation(),
-            // new XmlStringCleaners\RemoveDuplicatedCfdi3Namespace(),
-        ]);
+        );
     }
 
     public function clean(string $xml): string
