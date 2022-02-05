@@ -24,6 +24,7 @@ class XmlDocumentCleaners implements XmlDocumentCleanerInterface
             new XmlDocumentCleaners\RemoveNonSatNamespacesNodes(),
             new XmlDocumentCleaners\RemoveNonSatSchemaLocations(),
             new XmlDocumentCleaners\RemoveUnusedNamespaces(),
+            new XmlDocumentCleaners\RenameElementAddPrefix(),
             new XmlDocumentCleaners\MoveNamespaceDeclarationToRoot(),
             new XmlDocumentCleaners\MoveSchemaLocationsToRoot(),
             new XmlDocumentCleaners\SetKnownSchemaLocations(),

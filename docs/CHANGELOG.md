@@ -10,6 +10,37 @@ Los cambios no liberados se integran a la rama principal, pero no requieren de l
 
 ## UNRELEASED
 
+### Definición de XML namespace duplicado y sin prefijo
+
+Se han encontrado casos donde hay CFDI *sucios*, pero válidos, donde la definición de los nodos
+no cuenta con un prefijo. En estos casos el limpiador está produciendo un CFDI inválido después de limpiar.
+
+Para corregir este problema:
+
+- Se elimina de la lista de limpiadores de texto por defecto a `RemoveDuplicatedCfdi3Namespace`.
+- Se quita la funcionalidad de `RemoveDuplicatedCfdi3Namespace` y se emite un `E_USER_DEPRECATED`.
+- Se crea un nuevo limpiador `RenameElementAddPrefix` que agrega el prefijo al nodo que no lo tiene por estar
+  utilizando la definición simple `xmlns`. Además elimina los namespace superfluos y las 
+  definiciones `xmlns` redundantes.
+
+Ejemplo de CFDI sucio:
+
+```xml
+<cfdi:Comprobante xmlns="http://www.sat.gob.mx/cfd/4" xmlns:cfdi="http://www.sat.gob.mx/cfd/4">
+  <Emisor xmlns="http://www.sat.gob.mx/cfd/4" />
+  <cfdi:Receptor xmlns:cfdi="http://www.sat.gob.mx/cfd/4" />
+</cfdi:Comprobante>
+```
+
+Ejemplo de CFDI limpio:
+
+```xml
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4">
+  <cfdi:Emisor />
+  <cfdi:Receptor />
+</cfdi:Comprobante>
+```
+
 ### El limpiador `RemoveDuplicatedCfdi3Namespace` ha sido deprecado
 
 El limpiador `RemoveDuplicatedCfdi3Namespace` ha sido deprecado porque existen casos con un XML válido,
