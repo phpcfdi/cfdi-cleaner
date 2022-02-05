@@ -10,6 +10,28 @@ Los cambios no liberados se integran a la rama principal, pero no requieren de l
 
 ## UNRELEASED
 
+### El limpiador `RemoveDuplicatedCfdi3Namespace` ha sido deprecado
+
+El limpiador `RemoveDuplicatedCfdi3Namespace` ha sido deprecado porque existen casos con un XML válido,
+pero sucio, y el limpiador convierte el CFDI en inválido. La funcionalidad será absorvida por otro limpiador.
+
+CFDI con XML correcto, pero sucio:
+
+```xml
+<cfdi:Comprobante xmlns="http://www.sat.gob.mx/cfd/3" xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+  <Emisor xmlns="http://www.sat.gob.mx/cfd/3" />
+</cfdi:Comprobante>
+```
+
+Resultado del limpiador, donde `Emisor` ahora no pertenece al espacio de nombres `http://www.sat.gob.mx/cfd/3`.
+El XML es correcto, pero como CFDI ya no lo es:
+
+```xml
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+  <Emisor />
+</cfdi:Comprobante>
+```
+
 ### Mejoras al manejo interno de definiciones de espacios de nombres XML
 
 Se modificó el *trait* `XmlNamespaceMethodsTrait` para que detectara si un elemento de espacios de nombres

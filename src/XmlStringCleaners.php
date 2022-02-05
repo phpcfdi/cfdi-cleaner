@@ -21,7 +21,7 @@ class XmlStringCleaners implements XmlStringCleanerInterface
             new XmlStringCleaners\SplitXmlDeclarationFromDocument(),
             new XmlStringCleaners\AppendXmlDeclaration(),
             new XmlStringCleaners\XmlNsSchemaLocation(),
-            new XmlStringCleaners\RemoveDuplicatedCfdi3Namespace(),
+            // new XmlStringCleaners\RemoveDuplicatedCfdi3Namespace(),
         ]);
     }
 

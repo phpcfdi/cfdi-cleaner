@@ -110,11 +110,6 @@ las herramientas de detección de `MIME` no reconocen un archivo XML si no trae 
 Elimina un error frecuentemente encontrado en los CFDI emitidos por el SAT donde dice `xmlns:schemaLocation`
 en lugar de `xsi:schemaLocation`.
 
-#### `RemoveDuplicatedCfdi3Namespace`
-
-Elimina la declaración del espacio de nombres de CFDI 3 sin prefijo `xmlns="http://www.sat.gob.mx/cfd/3"`
-siempre y cuando también exista la declaración `xmlns:cfdi="http://www.sat.gob.mx/cfd/3"`.
-
 ### Limpiezas sobre el documento XML (`DOMDocument`)
 
 Estas limpiezas se realizan sobre el documento XML.

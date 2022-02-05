@@ -38,8 +38,9 @@ class RemoveDuplicatedCfdi3NamespaceTest extends TestCase
     public function testClean(string $expected, string $input): void
     {
         $cleaner = new RemoveDuplicatedCfdi3Namespace();
+        $this->expectDeprecation();
         $clean = $cleaner->clean($input);
 
-        $this->assertEquals($expected, $clean);
+        $this->assertEquals($input, $clean);
     }
 }
