@@ -18,7 +18,7 @@ final class CleanerTest extends TestCase
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdi33.xsd"
-            Version="3.3"/>        
+            Version="3.3"/>
             XML;
 
         $xmlClean = Cleaner::staticClean($xmlDirty);
@@ -39,7 +39,7 @@ final class CleanerTest extends TestCase
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdi33.xsd"
-            Version="3.3"/>        
+            Version="3.3"/>
             XML
         );
 
@@ -50,7 +50,7 @@ final class CleanerTest extends TestCase
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd"
-            Version="3.3"/>        
+            Version="3.3"/>
             XML
         );
         $this->assertEquals($expected, $document);
@@ -63,7 +63,7 @@ final class CleanerTest extends TestCase
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 cfdi40.xsd"
-            Version="4.0"/>        
+            Version="4.0"/>
             XML;
 
         $xmlClean = Cleaner::staticClean($xmlDirty);
@@ -84,7 +84,7 @@ final class CleanerTest extends TestCase
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 cfdi44.xsd"
-            Version="4.0"/>        
+            Version="4.0"/>
             XML
         );
 
@@ -95,7 +95,7 @@ final class CleanerTest extends TestCase
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
-            Version="4.0"/>        
+            Version="4.0"/>
             XML
         );
         $this->assertEquals($expected, $document);

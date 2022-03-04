@@ -16,6 +16,9 @@ use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
 class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
 {
+    use XmlNamespaceMethodsTrait;
+    use XmlAttributeMethodsTrait;
+
     /**
      * List of known namespace # version xsd locations as key value map
      * @see https://github.com/phpcfdi/sat-ns-registry
@@ -152,9 +155,6 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         => 'http://www.sat.gob.mx/esquemas/retencionpago/1/'
             . 'PlataformasTecnologicas10/ServiciosPlataformasTecnologicas10.xsd',
     ];
-
-    use XmlNamespaceMethodsTrait;
-    use XmlAttributeMethodsTrait;
 
     public function clean(DOMDocument $document): void
     {

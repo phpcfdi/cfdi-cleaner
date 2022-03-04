@@ -13,7 +13,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
 {
     public function testIterateOnRemovedNamespaces(): void
     {
-        $specimen = new class() {
+        $specimen = new class () {
             use XmlNamespaceMethodsTrait;
 
             /**
@@ -125,7 +125,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
     /** @dataProvider providerRemoveNamespaceNodeAttribute */
     public function testRemoveNamespaceNodeAttribute(string $target, string $xmlInput, string $xmlExpected): void
     {
-        $specimen = new class() {
+        $specimen = new class () {
             use XmlNamespaceMethodsTrait {
                 iterateNonReservedNamespaces as public;
                 removeNamespaceNodeAttribute as public;

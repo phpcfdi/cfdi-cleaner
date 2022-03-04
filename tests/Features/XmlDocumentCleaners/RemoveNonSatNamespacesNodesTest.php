@@ -23,7 +23,7 @@ final class RemoveNonSatNamespacesNodesTest extends TestCase
               <x:remove foo="foo"/>
               <y:remove-me-too xmlns:y="lorem"/>
             </cfdi:Addenda>
-            </cfdi:Comprobante> 
+            </cfdi:Comprobante>
             XML
         );
 
@@ -37,7 +37,7 @@ final class RemoveNonSatNamespacesNodesTest extends TestCase
             >
             <cfdi:Emisor Rfc="COSC8001137NA"/>
             <cfdi:Addenda/>
-            </cfdi:Comprobante> 
+            </cfdi:Comprobante>
             XML
         );
         $this->assertEquals($expected, $document);
