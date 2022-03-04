@@ -28,7 +28,7 @@ final class RemoveNonSatSchemaLocationsTest extends TestCase
             <cfdi:Addenda>
               <foo:foo xmlns:foo="http://tempuri.org/foo" xsi:schemaLocation="http://tempuri.org/foo foo.xsd"/>
             </cfdi:Addenda>
-            </cfdi:Comprobante> 
+            </cfdi:Comprobante>
             XML
         );
 
@@ -46,7 +46,7 @@ final class RemoveNonSatSchemaLocationsTest extends TestCase
             <cfdi:Addenda>
               <foo:foo xmlns:foo="http://tempuri.org/foo"/>
             </cfdi:Addenda>
-            </cfdi:Comprobante> 
+            </cfdi:Comprobante>
             XML
         );
         $this->assertEquals($expected, $document);

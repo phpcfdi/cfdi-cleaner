@@ -4,6 +4,7 @@
     bootstrap="tests/bootstrap.php"
     cacheResultFile="build/phpunit.cache/test-results"
     executionOrder="depends,defects"
+    convertDeprecationsToExceptions="true"
     failOnEmptyTestSuite="true"
     failOnIncomplete="true"
     failOnWarning="true"

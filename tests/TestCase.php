@@ -23,7 +23,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         $document = new DOMDocument('1.0', 'UTF-8');
         $document->preserveWhiteSpace = false;
         $document->formatOutput = true;
-        $document->loadXML($xml);
+        $document->loadXML($xml, LIBXML_NSCLEAN | LIBXML_PARSEHUGE);
         return $document;
     }
 }

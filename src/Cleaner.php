@@ -53,7 +53,7 @@ class Cleaner
         $document = new DOMDocument();
         $document->preserveWhiteSpace = false;
         $document->formatOutput = true;
-        $document->loadXML($xml);
+        $document->loadXML($xml, LIBXML_NSCLEAN | LIBXML_PARSEHUGE);
         return $document;
     }
 }

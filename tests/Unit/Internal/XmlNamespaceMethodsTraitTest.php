@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\CfdiCleaner\Tests\Unit\Internal;
 
 use DOMDocument;
+use DOMElement;
 use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 
@@ -12,7 +13,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
 {
     public function testIterateOnRemovedNamespaces(): void
     {
-        $specimen = new class() {
+        $specimen = new class () {
             use XmlNamespaceMethodsTrait;
 
             /**
@@ -73,5 +74,79 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
             XML
         );
         $this->assertEquals($expected, $document);
+    }
+
+    /** @return array<string, array{string, string}> */
+    public function providerRemoveNamespaceNodeAttribute(): array
+    {
+        return [
+            'unused' => [
+                'xmlns:unused',
+                <<<XML
+                    <r:root xmlns:r="http://tempuri.org/root">
+                      <r:test xmlns:unused="http://tempuri.org/root"/>
+                    </r:root>
+                    XML,
+                <<<XML
+                    <r:root xmlns:r="http://tempuri.org/root">
+                      <r:test/>
+                    </r:root>
+                    XML,
+            ],
+            'no prefix' => [
+                'xmlns',
+                <<<XML
+                    <r:root xmlns:r="http://tempuri.org/root">
+                      <r:test xmlns="http://tempuri.org/root"/>
+                    </r:root>
+                    XML,
+                <<<XML
+                    <r:root xmlns:r="http://tempuri.org/root">
+                      <r:test/>
+                    </r:root>
+                    XML,
+            ],
+            'no prefix no content' => [
+                'xmlns',
+                <<<XML
+                    <r:root xmlns:r="http://tempuri.org/root">
+                      <r:test xmlns=""/>
+                    </r:root>
+                    XML,
+                <<<XML
+                    <r:root xmlns:r="http://tempuri.org/root">
+                      <r:test/>
+                    </r:root>
+                    XML,
+            ],
+        ];
+    }
+
+    /** @dataProvider providerRemoveNamespaceNodeAttribute */
+    public function testRemoveNamespaceNodeAttribute(string $target, string $xmlInput, string $xmlExpected): void
+    {
+        $specimen = new class () {
+            use XmlNamespaceMethodsTrait {
+                iterateNonReservedNamespaces as public;
+                removeNamespaceNodeAttribute as public;
+            }
+        };
+
+        $document = $this->createDocument($xmlInput);
+
+        /** @var DOMElement $testElement */
+        $testElement = $document->getElementsByTagName('test')->item(0);
+
+        // find and remove unused "xmlns:unsused"
+        foreach ($specimen->iterateNonReservedNamespaces($document) as $namespaceNode) {
+            if ($testElement === $namespaceNode->parentNode && $target === $namespaceNode->nodeName) {
+                $specimen->removeNamespaceNodeAttribute($namespaceNode);
+            }
+        }
+
+        $expected = $this->createDocument($xmlExpected);
+
+        $this->assertEquals($expected, $document);
+        $this->assertSame($expected->saveXML(), $document->saveXML(), 'Expected XML is not identical');
     }
 }

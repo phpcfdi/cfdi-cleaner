@@ -4,16 +4,21 @@ declare(strict_types=1);
 
 namespace PhpCfdi\CfdiCleaner\XmlStringCleaners;
 
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RenameElementAddPrefix;
 use PhpCfdi\CfdiCleaner\XmlStringCleanerInterface;
 
+/**
+ * @deprecated 1.2.0:2.0.0
+ * @see RenameElementAddPrefix
+ */
 class RemoveDuplicatedCfdi3Namespace implements XmlStringCleanerInterface
 {
     public function clean(string $xml): string
     {
-        if (str_contains($xml, 'xmlns="http://www.sat.gob.mx/cfd/3"')
-            && str_contains($xml, 'xmlns:cfdi="http://www.sat.gob.mx/cfd/3"')) {
-            $xml = preg_replace('#\s*xmlns="http://www.sat.gob.mx/cfd/3"\s*#', ' ', $xml) ?? '';
-        }
+        trigger_error(
+            sprintf('Class %s is deprecated, use %s', self::class, RenameElementAddPrefix::class),
+            E_USER_DEPRECATED,
+        );
         return $xml;
     }
 }

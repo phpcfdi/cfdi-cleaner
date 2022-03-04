@@ -54,4 +54,30 @@ final class RemoveUnusedNamespacesTest extends TestCase
         );
         $this->assertEquals($expected, $document);
     }
+
+    public function testRemoveDuplicatedNamespacesPrefixes(): void
+    {
+        $document = $this->createDocument(<<<XML
+            <root:root
+              xmlns:wrong="http://tempuri.org/namespace"
+              xmlns:root="http://tempuri.org/root"
+              xmlns:attr="http://tempuri.org/attributes">
+              <fine:child xmlns:fine="http://tempuri.org/namespace" attr:x="y"/>
+            </root:root>
+            XML
+        );
+
+        $cleaner = new RemoveUnusedNamespaces();
+        $cleaner->clean($document);
+
+        $expected = $this->createDocument(<<<XML
+            <root:root
+              xmlns:root="http://tempuri.org/root"
+              xmlns:attr="http://tempuri.org/attributes">
+              <fine:child xmlns:fine="http://tempuri.org/namespace" attr:x="y"/>
+            </root:root>
+            XML
+        );
+        $this->assertEquals($expected, $document);
+    }
 }

@@ -27,7 +27,7 @@ jobs:
         env:
           fail-fast: true
       - name: Code style (phpcs)
-        run: phpcs -q --report=checkstyle src/ tests/ | cs2pr
+        run: phpcs -q --report=checkstyle | cs2pr
 
   php-cs-fixer:
     name: Code style (php-cs-fixer)
@@ -57,7 +57,7 @@ jobs:
         with:
           php-version: '8.0'
           coverage: none
-          tools: composer:v2, cs2pr, phpstan
+          tools: composer:v2, phpstan:1.4.6
         env:
           fail-fast: true
       - name: Get composer cache directory
@@ -84,7 +84,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2 # see https://github.com/marketplace/actions/setup-php-action
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
           coverage: none

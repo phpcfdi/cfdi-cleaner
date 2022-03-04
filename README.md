@@ -110,11 +110,6 @@ las herramientas de detección de `MIME` no reconocen un archivo XML si no trae 
 Elimina un error frecuentemente encontrado en los CFDI emitidos por el SAT donde dice `xmlns:schemaLocation`
 en lugar de `xsi:schemaLocation`.
 
-#### `RemoveDuplicatedCfdi3Namespace`
-
-Elimina la declaración del espacio de nombres de CFDI 3 sin prefijo `xmlns="http://www.sat.gob.mx/cfd/3"`
-siempre y cuando también exista la declaración `xmlns:cfdi="http://www.sat.gob.mx/cfd/3"`.
-
 ### Limpiezas sobre el documento XML (`DOMDocument`)
 
 Estas limpiezas se realizan sobre el documento XML.
@@ -146,8 +141,30 @@ correspondan a la URI `http://www.sat.gob.mx/**`.
 
 #### `RemoveUnusedNamespaces`
 
-Remueve todas las declaraciones de espacios de nombres cuando no correspondan a la URI `http://www.sat.gob.mx/**`,
-por ejemplo `xmlns:foo="http://tempuri.org/foo"`.
+Remueve todas las declaraciones de espacios de nombres (junto con su prefijo) que no estén en uso.
+
+#### `RenameElementAddPrefix`
+
+Agrega el prefijo al nodo que no lo tiene por estar utilizando la definición simple `xmlns`.
+Además elimina los namespace superfluos y las definiciones `xmlns` redundantes.
+
+Ejemplo de CFDI sucio:
+
+```xml
+<cfdi:Comprobante xmlns="http://www.sat.gob.mx/cfd/4" xmlns:cfdi="http://www.sat.gob.mx/cfd/4">
+  <Emisor xmlns="http://www.sat.gob.mx/cfd/4" />
+  <cfdi:Receptor xmlns:cfdi="http://www.sat.gob.mx/cfd/4" />
+</cfdi:Comprobante>
+```
+
+Ejemplo de CFDI limpio:
+
+```xml
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4">
+  <cfdi:Emisor />
+  <cfdi:Receptor />
+</cfdi:Comprobante>
+```
 
 #### `MoveNamespaceDeclarationToRoot`
 

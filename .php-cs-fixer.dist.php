@@ -1,15 +1,20 @@
 <?php
 
+/**
+ * @noinspection PhpUndefinedClassInspection
+ * @noinspection PhpUndefinedNamespaceInspection
+ * @see https://cs.symfony.com/doc/ruleSets/
+ * @see https://cs.symfony.com/doc/rules/
+ */
+
 declare(strict_types=1);
 
 return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
-    ->setCacheFile(__DIR__ . '/build/php_cs.cache')
+    ->setCacheFile(__DIR__ . '/build/php-cs-fixer.cache')
     ->setRules([
-        '@PSR2' => true,
-        '@PHP70Migration' => true,
-        '@PHP70Migration:risky' => true,
-        '@PHP71Migration' => true,
+        '@PSR12' => true,
+        '@PSR12:risky' => true,
         '@PHP71Migration:risky' => true,
         '@PHP73Migration' => true,
         // PHP73Migration
@@ -20,7 +25,6 @@ return (new PhpCsFixer\Config())
         'no_empty_statement' => true,
         'no_extra_blank_lines' => true,
         'function_typehint_space' => true,
-        'no_alias_functions' => true,
         'trailing_comma_in_multiline' => ['elements' => ['arrays', 'arguments']],
         'new_with_braces' => true,
         'no_blank_lines_after_class_opening' => true,
@@ -28,7 +32,6 @@ return (new PhpCsFixer\Config())
         'object_operator_without_whitespace' => true,
         'binary_operator_spaces' => true,
         'phpdoc_scalar' => true,
-        'self_accessor' => true,
         'no_trailing_comma_in_singleline_array' => true,
         'single_quote' => true,
         'no_singleline_whitespace_before_semicolons' => true,
@@ -36,11 +39,14 @@ return (new PhpCsFixer\Config())
         'no_whitespace_in_blank_line' => true,
         'yoda_style' => ['equal' => true, 'identical' => true, 'less_and_greater' => null],
         'standardize_not_equals' => true,
-        // contrib
         'concat_space' => ['spacing' => 'one'],
+        'linebreak_after_opening_tag' => true,
+        // symfony:risky
+        'no_alias_functions' => true,
+        'self_accessor' => true,
+        // contrib
         'not_operator_with_successor_space' => true,
         'single_blank_line_before_namespace' => true,
-        'linebreak_after_opening_tag' => true,
         'blank_line_after_opening_tag' => true,
         'ordered_imports' => true,
         'array_syntax' => ['syntax' => 'short'],
@@ -48,6 +54,7 @@ return (new PhpCsFixer\Config())
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->in(__DIR__)
-            ->exclude(['vendor', 'tools', 'build'])
+            ->append([__FILE__])
+            ->exclude(['vendor', 'tools', 'build']),
     )
 ;
