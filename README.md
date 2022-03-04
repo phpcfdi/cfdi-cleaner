@@ -141,8 +141,7 @@ correspondan a la URI `http://www.sat.gob.mx/**`.
 
 #### `RemoveUnusedNamespaces`
 
-Remueve todas las declaraciones de espacios de nombres cuando no correspondan a la URI `http://www.sat.gob.mx/**`,
-por ejemplo `xmlns:foo="http://tempuri.org/foo"`.
+Remueve todas las declaraciones de espacios de nombres (junto con su prefijo) que no estén en uso.
 
 #### `RenameElementAddPrefix`
 

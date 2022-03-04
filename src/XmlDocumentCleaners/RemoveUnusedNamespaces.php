@@ -29,24 +29,37 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
     private function checkNamespaceNode(DOMXPath $xpath, $namespaceNode): void
     {
         $namespace = $namespaceNode->nodeValue;
-        if ($this->hasElementsOnNamespace($xpath, $namespace)) {
-            return;
+        $prefix = ('' !== strval($namespaceNode->prefix)) ? $namespaceNode->prefix . ':' : '';
+
+        if (! $this->isPrefixedNamespaceOnUse($xpath, $namespace, $prefix)) {
+            $this->removeNamespaceNodeAttribute($namespaceNode);
         }
-        if ($this->hasAttributesOnNamespace($xpath, $namespace)) {
-            return;
-        }
-        $this->removeNamespaceNodeAttribute($namespaceNode);
     }
 
-    private function hasElementsOnNamespace(DOMXPath $xpath, string $namespace): bool
+    private function isPrefixedNamespaceOnUse(DOMXPath $xpath, string $namespace, string $prefix): bool
     {
-        $elements = $xpath->query(sprintf('//*[namespace-uri()="%1$s"]', $namespace));
+        if ($this->hasElementsOnNamespace($xpath, $namespace, $prefix)) {
+            return true;
+        }
+        if ($this->hasAttributesOnNamespace($xpath, $namespace, $prefix)) {
+            return true;
+        }
+        return false;
+    }
+
+    private function hasElementsOnNamespace(DOMXPath $xpath, string $namespace, string $prefix): bool
+    {
+        $elements = $xpath->query(
+            sprintf('//*[namespace-uri()="%1$s" and name()=concat("%2$s", local-name())]', $namespace, $prefix),
+        );
         return (false !== $elements && $elements->length > 0);
     }
 
-    private function hasAttributesOnNamespace(DOMXPath $xpath, string $namespace): bool
+    private function hasAttributesOnNamespace(DOMXPath $xpath, string $namespace, string $prefix): bool
     {
-        $attributes = $xpath->query(sprintf('//@*[namespace-uri()="%1$s"]', $namespace));
-        return (false !== $attributes && $attributes->length > 0);
+        $elements = $xpath->query(
+            sprintf('//@*[namespace-uri()="%1$s" and name()=concat("%2$s", local-name())]', $namespace, $prefix),
+        );
+        return (false !== $elements && $elements->length > 0);
     }
 }

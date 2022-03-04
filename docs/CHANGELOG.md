@@ -10,6 +10,31 @@ Los cambios no liberados se integran a la rama principal, pero no requieren de l
 
 ## Versión 1.2.0
 
+### Definición de XML namespace duplicado pero sin uso
+
+Se han encontrado casos donde hay CFDI que incluyen un namespace que está en uso pero con un prefijo sin uso.
+
+En el siguiente ejemplo, el espacio de nombres `http://www.sat.gob.mx/TimbreFiscalDigital` está declarado con el
+prefijo `nsx` y `tfd`, donde el primer prefijo no está en uso y el segundo sí.
+
+```xml
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+        xmlns:nsx="http://www.sat.gob.mx/TimbreFiscalDigital"
+        xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital">
+  <tfd:TimbreFiscalDigital UUID="X"/>
+</cfdi:Comprobante>
+```
+
+Se ha modificado el limpiador `RemoveUnusedNamespaces` para que cuando detecta si un espacio de nombres está
+en uso detecte también el prefijo. Con este cambio, el resultado de la limpieza sería:
+
+```xml
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+        xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital">
+  <tfd:TimbreFiscalDigital UUID="X"/>
+</cfdi:Comprobante>
+```
+
 ### Definición de XML namespace duplicado y sin prefijo
 
 Se han encontrado casos donde hay CFDI *sucios*, pero válidos, donde la definición de los nodos
