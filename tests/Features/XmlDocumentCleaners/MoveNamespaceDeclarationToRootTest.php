@@ -17,8 +17,7 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
               <bar:bar xmlns:bar="http://tempuri.org/bar"/>
               <xee/>
             </r:root>
-            XML
-        );
+            XML);
 
         $cleaner = new MoveNamespaceDeclarationToRoot();
         $cleaner->clean($document);
@@ -31,8 +30,7 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
               <bar:bar/>
               <xee/>
             </r:root>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -45,8 +43,7 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
               <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" />
             </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
 
         $cleaner = new MoveNamespaceDeclarationToRoot();
         $cleaner->clean($document);
@@ -60,8 +57,7 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
               <tfd:TimbreFiscalDigital />
             </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -74,8 +70,7 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
                 <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" />
               </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
 
         $cleaner = new MoveNamespaceDeclarationToRoot();
         $cleaner->clean($document);
@@ -90,8 +85,7 @@ final class MoveNamespaceDeclarationToRootTest extends TestCase
                 <tfd:TimbreFiscalDigital />
               </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 }

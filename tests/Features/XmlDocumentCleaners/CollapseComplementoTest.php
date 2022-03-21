@@ -11,7 +11,7 @@ class CollapseComplementoTest extends TestCase
 {
     public function testCleanNonCfdiNotAlterDocument(): void
     {
-        $document = $this->createDocument(<<< XML
+        $document = $this->createDocument(<<<XML
             <cfdi:Comprobante xmlns:cfdi="http://tempuri.org/cfd">
               <cfdi:Complemento>
                 <foo:Foo id="first" xmlns:foo="http://tempuri.org/foo">
@@ -24,8 +24,7 @@ class CollapseComplementoTest extends TestCase
                 </foo:Foo>
               </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
         /** @var string $xmlBeforeClean */
         $xmlBeforeClean = $document->saveXML();
 
@@ -37,7 +36,7 @@ class CollapseComplementoTest extends TestCase
 
     public function testCleanCfdiWithJustOneComplemento(): void
     {
-        $document = $this->createDocument(<<< XML
+        $document = $this->createDocument(<<<XML
             <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
               <cfdi:Complemento>
                 <foo:Foo id="first" xmlns:foo="http://tempuri.org/foo">
@@ -48,8 +47,7 @@ class CollapseComplementoTest extends TestCase
                 </foo:Foo>
               </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
         /** @var string $xmlBeforeClean */
         $xmlBeforeClean = $document->saveXML();
 
@@ -61,7 +59,7 @@ class CollapseComplementoTest extends TestCase
 
     public function testCleanCfdiWithThreeComplementos(): void
     {
-        $document = $this->createDocument(<<< XML
+        $document = $this->createDocument(<<<XML
             <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
               <cfdi:Complemento>
                 <foo:Foo id="first" xmlns:foo="http://tempuri.org/foo">
@@ -81,10 +79,9 @@ class CollapseComplementoTest extends TestCase
                 </foo:Foo>
               </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
 
-        $expected = $this->createDocument(<<< XML
+        $expected = $this->createDocument(<<<XML
             <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
               <cfdi:Complemento>
                 <foo:Foo id="first" xmlns:foo="http://tempuri.org/foo">
@@ -98,8 +95,7 @@ class CollapseComplementoTest extends TestCase
                 </foo:Foo>
               </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
 
         $cleaner = new CollapseComplemento();
         $cleaner->clean($document);

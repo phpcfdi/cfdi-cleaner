@@ -40,8 +40,7 @@ final class CleanerTest extends TestCase
             xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdi33.xsd"
             Version="3.3"/>
-            XML
-        );
+            XML);
 
         $cleaner = new Cleaner();
         $cleaner->cleanDocument($document);
@@ -51,8 +50,7 @@ final class CleanerTest extends TestCase
             xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd"
             Version="3.3"/>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -85,8 +83,7 @@ final class CleanerTest extends TestCase
             xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 cfdi44.xsd"
             Version="4.0"/>
-            XML
-        );
+            XML);
 
         $cleaner = new Cleaner();
         $cleaner->cleanDocument($document);
@@ -96,8 +93,7 @@ final class CleanerTest extends TestCase
             xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
             xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
             Version="4.0"/>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 

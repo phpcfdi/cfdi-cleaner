@@ -13,7 +13,7 @@ final class RemoveNonSatSchemaLocationsTest extends TestCase
 {
     public function testClean(): void
     {
-        $document = $this->createDocument(<<< XML
+        $document = $this->createDocument(<<<XML
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
             xmlns:extra="http://www.sat.gob.mx/extra"
@@ -29,13 +29,12 @@ final class RemoveNonSatSchemaLocationsTest extends TestCase
               <foo:foo xmlns:foo="http://tempuri.org/foo" xsi:schemaLocation="http://tempuri.org/foo foo.xsd"/>
             </cfdi:Addenda>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
 
         $cleaner = new RemoveNonSatSchemaLocations();
         $cleaner->clean($document);
 
-        $expected = $this->createDocument(<<< XML
+        $expected = $this->createDocument(<<<XML
             <cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
             xmlns:extra="http://www.sat.gob.mx/extra"
@@ -47,8 +46,7 @@ final class RemoveNonSatSchemaLocationsTest extends TestCase
               <foo:foo xmlns:foo="http://tempuri.org/foo"/>
             </cfdi:Addenda>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 }

@@ -20,8 +20,7 @@ final class MoveSchemaLocationsToRootTest extends TestCase
                 <bar xsi:schemaLocation="http://tempuri.org/foo foo.xsd http://tempuri.org/bar bar.xsd"/>
               </foo>
             </root>
-            XML
-        );
+            XML);
 
         $cleaner = new MoveSchemaLocationsToRoot();
         $cleaner->clean($document);
@@ -38,8 +37,7 @@ final class MoveSchemaLocationsToRootTest extends TestCase
                 <bar />
               </foo>
             </root>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -50,8 +48,7 @@ final class MoveSchemaLocationsToRootTest extends TestCase
               xs:schemaLocation="http://tempuri.org/root root.xsd">
               <foo xs:schemaLocation="http://tempuri.org/foo foo.xsd"/>
             </root>
-            XML
-        );
+            XML);
 
         $cleaner = new MoveSchemaLocationsToRoot();
         $cleaner->clean($document);
@@ -61,8 +58,7 @@ final class MoveSchemaLocationsToRootTest extends TestCase
               xs:schemaLocation="http://tempuri.org/root root.xsd http://tempuri.org/foo foo.xsd">
               <foo/>
             </root>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -73,8 +69,7 @@ final class MoveSchemaLocationsToRootTest extends TestCase
               <foo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://tempuri.org/foo foo.xsd"/>
             </root>
-            XML
-        );
+            XML);
 
         $cleaner = new MoveSchemaLocationsToRoot();
         $cleaner->clean($document);
@@ -84,8 +79,7 @@ final class MoveSchemaLocationsToRootTest extends TestCase
               xsi:schemaLocation="http://tempuri.org/foo foo.xsd">
               <foo/>
             </root>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 }
