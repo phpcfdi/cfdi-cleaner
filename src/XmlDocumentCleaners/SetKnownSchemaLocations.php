@@ -115,6 +115,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         => 'http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd',
         'http://www.sat.gob.mx/GastosHidrocarburos10#1.0'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/GastosHidrocarburos10/GastosHidrocarburos10.xsd',
+        'http://www.sat.gob.mx/IngresosHidrocarburos10#1.0'
+        => 'http://www.sat.gob.mx/sitio_internet/cfd/IngresosHidrocarburos10/IngresosHidrocarburos.xsd',
         'http://www.sat.gob.mx/iedu#1.0'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xsd',
         'http://www.sat.gob.mx/ventavehiculos#1.1'
