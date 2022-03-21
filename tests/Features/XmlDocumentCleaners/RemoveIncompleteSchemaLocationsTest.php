@@ -14,18 +14,16 @@ class RemoveIncompleteSchemaLocationsTest extends TestCase
     public function testCleanSchemaLocationsWithIncompletePairsOnlyOnRoot(): void
     {
         // content has incomplete schema location "foo"
-        $document = $this->createDocument(<<< XML
+        $document = $this->createDocument(<<<XML
             <r xmlns="http://tempuri.org/r" xmlns:x="http://www.w3.org/2001/XMLSchema-instance"
             x:schemaLocation="http://tempuri.org/r r.xsd http://tempuri.org/foo http://tempuri.org/bar bar.xsd"
             />
-            XML
-        );
-        $expected = $this->createDocument(<<< XML
+            XML);
+        $expected = $this->createDocument(<<<XML
             <r xmlns="http://tempuri.org/r" xmlns:x="http://www.w3.org/2001/XMLSchema-instance"
             x:schemaLocation="http://tempuri.org/r r.xsd http://tempuri.org/bar bar.xsd"
             />
-            XML
-        );
+            XML);
 
         $cleaner = new RemoveIncompleteSchemaLocations();
         $cleaner->clean($document);
@@ -36,7 +34,7 @@ class RemoveIncompleteSchemaLocationsTest extends TestCase
     public function testCleanSchemaLocationsWithIncompletePairsOnlyOnChildren(): void
     {
         // content has incomplete schema location "foo"
-        $document = $this->createDocument(<<< XML
+        $document = $this->createDocument(<<<XML
             <root>
             <child xmlns="http://tempuri.org/r" xmlns:x="http://www.w3.org/2001/XMLSchema-instance"
             x:schemaLocation="
@@ -47,15 +45,13 @@ class RemoveIncompleteSchemaLocationsTest extends TestCase
              http://tempuri.org/remove-ns      http://tempuri.org/remove-non-xsd  "
              />
             </root>
-            XML
-        );
-        $expected = $this->createDocument(<<< XML
+            XML);
+        $expected = $this->createDocument(<<<XML
             <root>
             <child xmlns="http://tempuri.org/r" xmlns:x="http://www.w3.org/2001/XMLSchema-instance"
             x:schemaLocation="http://tempuri.org/foo foo.xsd http://tempuri.org/bar bar.xsd"/>
             </root>
-            XML
-        );
+            XML);
 
         $cleaner = new RemoveIncompleteSchemaLocations();
         $cleaner->clean($document);

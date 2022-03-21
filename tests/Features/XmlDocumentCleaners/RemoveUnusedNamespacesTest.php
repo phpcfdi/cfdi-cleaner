@@ -17,16 +17,14 @@ final class RemoveUnusedNamespacesTest extends TestCase
               xmlns:r="http://tempuri.org/root"
               xmlns:f="http://tempuri.org/foo"
             />
-            XML
-        );
+            XML);
 
         $cleaner = new RemoveUnusedNamespaces();
         $cleaner->clean($document);
 
         $expected = $this->createDocument(<<<XML
             <r:root xmlns:r="http://tempuri.org/root"/>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -38,8 +36,7 @@ final class RemoveUnusedNamespacesTest extends TestCase
                 <a:child xmlns:xee="http://tempuri.org/xee" f:foo="foo"/>
               </a:child>
             </r:root>
-            XML
-        );
+            XML);
 
         $cleaner = new RemoveUnusedNamespaces();
         $cleaner->clean($document);
@@ -50,8 +47,7 @@ final class RemoveUnusedNamespacesTest extends TestCase
                 <a:child f:foo="foo"/>
               </a:child>
             </r:root>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -64,8 +60,7 @@ final class RemoveUnusedNamespacesTest extends TestCase
               xmlns:attr="http://tempuri.org/attributes">
               <fine:child xmlns:fine="http://tempuri.org/namespace" attr:x="y"/>
             </root:root>
-            XML
-        );
+            XML);
 
         $cleaner = new RemoveUnusedNamespaces();
         $cleaner->clean($document);
@@ -76,8 +71,7 @@ final class RemoveUnusedNamespacesTest extends TestCase
               xmlns:attr="http://tempuri.org/attributes">
               <fine:child xmlns:fine="http://tempuri.org/namespace" attr:x="y"/>
             </root:root>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 }

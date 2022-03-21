@@ -24,8 +24,7 @@ final class SetKnownSchemaLocationsTest extends TestCase
               />
             </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
 
         $cleaner = new SetKnownSchemaLocations();
         $cleaner->clean($document);
@@ -43,8 +42,7 @@ final class SetKnownSchemaLocationsTest extends TestCase
               />
             </cfdi:Complemento>
             </cfdi:Comprobante>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -54,8 +52,7 @@ final class SetKnownSchemaLocationsTest extends TestCase
             <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdi.xsd"/>
-            XML
-        );
+            XML);
 
         $cleaner = new SetKnownSchemaLocations();
         $cleaner->clean($document);
@@ -64,8 +61,7 @@ final class SetKnownSchemaLocationsTest extends TestCase
             <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 cfdi.xsd"/>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 
@@ -74,8 +70,7 @@ final class SetKnownSchemaLocationsTest extends TestCase
         $document = $this->createDocument(<<<XML
             <foo:Foo xmlns:foo="http://tempuri.org/foo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://tempuri.org/foo foo.xsd" />
-            XML
-        );
+            XML);
 
         $cleaner = new SetKnownSchemaLocations();
         $cleaner->clean($document);
@@ -83,8 +78,7 @@ final class SetKnownSchemaLocationsTest extends TestCase
         $expected = $this->createDocument(<<<XML
             <foo:Foo xmlns:foo="http://tempuri.org/foo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://tempuri.org/foo foo.xsd" />
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 

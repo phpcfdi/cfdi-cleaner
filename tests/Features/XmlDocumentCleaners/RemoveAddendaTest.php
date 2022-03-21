@@ -11,14 +11,13 @@ final class RemoveAddendaTest extends TestCase
 {
     public function testCleanDocumentWithAddenda(): void
     {
-        $document = $this->createDocument(<<< XML
+        $document = $this->createDocument(<<<XML
             <x:Comprobante xmlns:x="http://www.sat.gob.mx/cfd/3">
             <x:Addenda>
                 <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar" />
             </x:Addenda>
             </x:Comprobante>
-            XML
-        );
+            XML);
 
         $cleaner = new RemoveAddenda();
         $cleaner->clean($document);

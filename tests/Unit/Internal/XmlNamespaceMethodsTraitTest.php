@@ -55,8 +55,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
             <root:root xmlns:root="http://tempuri.org/root" xmlns:unused="http://tempuri.org/unused">
               <foo:foo xmlns:foo="http://tempuri.org/foo"/>
             </root:root>
-            XML
-        );
+            XML);
 
         $this->assertSame($namespaces, $specimen->obtainNamespaces($document));
 
@@ -71,8 +70,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
             <root:root xmlns:root="http://tempuri.org/root">
               <foo:foo xmlns:foo="http://tempuri.org/foo"/>
             </root:root>
-            XML
-        );
+            XML);
         $this->assertEquals($expected, $document);
     }
 

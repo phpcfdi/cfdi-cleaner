@@ -8,6 +8,16 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.2.1
+
+Se agrega la definición del espacio de nombres de *Ingresos de Hidrocarburos 1.0* a `SetKnownSchemaLocations`.
+Con esta actualización se corrige el proceso de integración continua.
+
+Se corrige el estilo de código:
+
+- Se modifican los textos HEREDOC usados como argumentos de funciones.
+- Se actualiza `php-cs-fixer` de `3.6.0` a `3.8.0`.
+
 ## Versión 1.2.0
 
 ### Definición de XML namespace duplicado pero sin uso

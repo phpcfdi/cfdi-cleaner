@@ -22,8 +22,7 @@ final class RenameElementAddPrefixTest extends TestCase
               <r:second xmlns:r="http://tempuri.org/root" id="2" />
               <r:third xmlns="http://tempuri.org/root" id="3" />
             </r:root>
-            XML
-        );
+            XML);
 
         $cleaner = new RenameElementAddPrefix();
         $cleaner->clean($document);
@@ -34,8 +33,7 @@ final class RenameElementAddPrefixTest extends TestCase
               <r:second id="2" />
               <r:third id="3" />
             </r:root>
-            XML
-        );
+            XML);
         $this->assertEquals($expected->saveXML(), $document->saveXML());
     }
 
@@ -43,16 +41,14 @@ final class RenameElementAddPrefixTest extends TestCase
     {
         $document = $this->createDocument(<<<XML
             <r:root xmlns:r="http://tempuri.org/root" xmlns="http://www.sat.gob.mx/cfd/3"/>
-            XML
-        );
+            XML);
 
         $cleaner = new RenameElementAddPrefix();
         $cleaner->clean($document);
 
         $expected = $this->createDocument(<<<XML
             <r:root xmlns:r="http://tempuri.org/root"/>
-            XML
-        );
+            XML);
         $this->assertEquals($expected->saveXML(), $document->saveXML());
     }
 
@@ -60,16 +56,14 @@ final class RenameElementAddPrefixTest extends TestCase
     {
         $document = $this->createDocument(<<<XML
             <r:root xmlns:r="http://tempuri.org/root" xmlns=""/>
-            XML
-        );
+            XML);
 
         $cleaner = new RenameElementAddPrefix();
         $cleaner->clean($document);
 
         $expected = $this->createDocument(<<<XML
             <r:root xmlns:r="http://tempuri.org/root"/>
-            XML
-        );
+            XML);
         $this->assertEquals($expected->saveXML(), $document->saveXML());
     }
 }
