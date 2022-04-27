@@ -8,6 +8,13 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.2.2
+
+Se modifica el limpiador `XmlNsSchemaLocation` para que la limpieza se realice a nivel elemento XML.
+Si no existe un atributo `xsi:schemaLocation` entonces el atributo `xmlns:schemaLocation` es renombrado.
+Si ya existe un atributo `xsi:schemaLocation` entonces el atributo `xmlns:schemaLocation` es eliminado.
+Esta modificación cierra el *issue* #13.
+
 ## Versión 1.2.1
 
 Se agrega la definición del espacio de nombres de *Ingresos de Hidrocarburos 1.0* a `SetKnownSchemaLocations`.

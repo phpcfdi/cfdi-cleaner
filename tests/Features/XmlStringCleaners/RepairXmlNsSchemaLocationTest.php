@@ -9,7 +9,7 @@ use PhpCfdi\CfdiCleaner\XmlStringCleaners\XmlNsSchemaLocation;
 
 class RepairXmlNsSchemaLocationTest extends TestCase
 {
-    /** @return array<array{string, string}> */
+    /** @return array<string, array{string, string}> */
     public function providerInputCases(): array
     {
         return [
@@ -24,6 +24,32 @@ class RepairXmlNsSchemaLocationTest extends TestCase
             'line feed' => [
                 "<root\nxsi:schemaLocation=\"http://localhost/a http://localhost/a.xsd\"/>",
                 "<root\nxmlns:schemaLocation=\"http://localhost/a http://localhost/a.xsd\"/>",
+            ],
+            'first xsi then xmlns' => [
+                <<< EOT
+                    <root foo="bar"
+                          xsi:schemaLocation="http://localhost/a http://localhost/a.xsd">
+                    </root>
+                    EOT,
+                <<< EOT
+                    <root foo="bar"
+                          xsi:schemaLocation="http://localhost/a http://localhost/a.xsd"
+                          xmlns:schemaLocation="foo bar">
+                    </root>
+                    EOT,
+            ],
+            'first xmlns then xsi' => [
+                <<< EOT
+                    <root foo="bar"
+                          xsi:schemaLocation="http://localhost/a http://localhost/a.xsd">
+                    </root>
+                    EOT,
+                <<< EOT
+                    <root foo="bar"
+                          xmlns:schemaLocation="foo bar"
+                          xsi:schemaLocation="http://localhost/a http://localhost/a.xsd">
+                    </root>
+                    EOT,
             ],
         ];
     }

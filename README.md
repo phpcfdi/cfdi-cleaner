@@ -108,7 +108,7 @@ las herramientas de detección de `MIME` no reconocen un archivo XML si no trae 
 #### `XmlNsSchemaLocation`
 
 Elimina un error frecuentemente encontrado en los CFDI emitidos por el SAT donde dice `xmlns:schemaLocation`
-en lugar de `xsi:schemaLocation`.
+en lugar de `xsi:schemaLocation`. En caso de que existan ambos, el único que se mantiene es `xsi:schemaLocation`.
 
 ### Limpiezas sobre el documento XML (`DOMDocument`)
 
