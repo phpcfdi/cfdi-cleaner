@@ -8,6 +8,14 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.2.3
+
+La limpieza de CFDI grandes tardaba mucho tiempo en el limpiador `RemoveUnusedNamespaces`.
+Se optimizó para que el resultado de la llamada al método privado `isPrefixedNamespaceOnUse` (*puro*) 
+fuera almacenado en *caché* y así evitar hacer consultas XPath innecesarias.
+Después de la optimización, la ejecución de limpieza en un CFDI con más de 2500 conceptos pasó de 
+180 segundos a menos de 0.5 segundos.
+
 ## Versión 1.2.2
 
 Se modifica el limpiador `XmlNsSchemaLocation` para que la limpieza se realice a nivel elemento XML.
