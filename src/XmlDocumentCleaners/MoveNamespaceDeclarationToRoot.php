@@ -48,8 +48,10 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
                 $prefixes[$namespaceNode->nodeName] = $currentDefinition;
                 continue;
             }
-            if ($ownerElement->hasAttribute($namespaceNode->nodeName)
-                && $prefixes[$namespaceNode->nodeName] !== $currentDefinition) {
+            if (
+                $ownerElement->hasAttribute($namespaceNode->nodeName)
+                && $prefixes[$namespaceNode->nodeName] !== $currentDefinition
+            ) {
                 return true;
             }
         }
