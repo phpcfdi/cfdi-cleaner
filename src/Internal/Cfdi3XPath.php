@@ -37,7 +37,9 @@ class Cfdi3XPath
      */
     public function queryElements(string $xpathQuery): DOMNodeList
     {
-        return $this->xpath->query($xpathQuery, null, false) ?: new DOMNodeList();
+        /** @var DOMNodeList<DOMElement> $list PHPStan does not detect empry DOMNodeList subtype */
+        $list = $this->xpath->query($xpathQuery, null, false) ?: new DOMNodeList();
+        return $list;
     }
 
     /**
@@ -46,6 +48,8 @@ class Cfdi3XPath
      */
     public function queryAttributes(string $xpathQuery): DOMNodeList
     {
-        return $this->xpath->query($xpathQuery, null, false) ?: new DOMNodeList();
+        /** @var DOMNodeList<DOMAttr> $list PHPStan does not detect empry DOMNodeList subtype */
+        $list = $this->xpath->query($xpathQuery, null, false) ?: new DOMNodeList();
+        return $list;
     }
 }

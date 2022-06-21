@@ -37,7 +37,7 @@ class RemoveNonSatNamespacesNodes implements XmlDocumentCleanerInterface
     {
         $namespaces = [];
         foreach ($this->iterateNonReservedNamespaces($document) as $namespaceNode) {
-            $namespaces[] = $namespaceNode->nodeValue;
+            $namespaces[] = (string) $namespaceNode->nodeValue;
         }
         return array_unique($namespaces);
     }

@@ -172,7 +172,7 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
 
     private function cleanNodeAttribute(DOMDocument $document, DOMAttr $attribute): void
     {
-        $schemaLocation = SchemaLocation::createFromValue($attribute->nodeValue);
+        $schemaLocation = SchemaLocation::createFromValue((string) $attribute->nodeValue);
         foreach ($schemaLocation->getPairs() as $namespace => $location) {
             $version = $this->obtainVersionOfNamespace($document, $namespace);
             $location = $this->obtainLocationForNamespaceVersion($namespace, $version, $location);

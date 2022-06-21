@@ -41,6 +41,9 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
     private function checkNamespaceNode($namespaceNode): void
     {
         $namespace = $namespaceNode->nodeValue;
+        if (null === $namespace) {
+            return;
+        }
         $prefix = ('' !== strval($namespaceNode->prefix)) ? $namespaceNode->prefix . ':' : '';
 
         if (! $this->isPrefixedNamespaceOnUseCached($namespace, $prefix)) {

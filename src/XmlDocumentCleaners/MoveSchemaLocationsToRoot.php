@@ -28,7 +28,7 @@ class MoveSchemaLocationsToRoot implements XmlDocumentCleanerInterface
             $root->setAttributeNS(XmlConstants::NAMESPACE_XSI, 'xsi:schemaLocation', '');
         }
         $rootAttribute = $root->getAttributeNodeNS(XmlConstants::NAMESPACE_XSI, 'schemaLocation');
-        $schemaLocation = SchemaLocation::createFromValue($rootAttribute->nodeValue);
+        $schemaLocation = SchemaLocation::createFromValue((string) $rootAttribute->nodeValue);
 
         $xpath = Cfdi3XPath::createFromDocument($document);
         $schemaLocationAttributes = $xpath->queryAttributes('//@xsi:schemaLocation');
@@ -37,7 +37,7 @@ class MoveSchemaLocationsToRoot implements XmlDocumentCleanerInterface
                 continue;
             }
 
-            $currentSchemaLocation = SchemaLocation::createFromValue($schemaLocationAttribute->nodeValue);
+            $currentSchemaLocation = SchemaLocation::createFromValue((string) $schemaLocationAttribute->nodeValue);
             $schemaLocation->import($currentSchemaLocation);
             $this->attributeRemove($schemaLocationAttribute);
         }

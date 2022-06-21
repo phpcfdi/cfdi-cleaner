@@ -48,7 +48,7 @@ trait XmlNamespaceMethodsTrait
     {
         $ownerElement = $namespaceNode->parentNode;
         if ($ownerElement instanceof DOMElement) {
-            $localName = ('xmlns' === $namespaceNode->localName) ? '' : $namespaceNode->localName;
+            $localName = ('xmlns' === $namespaceNode->localName) ? '' : (string) $namespaceNode->localName;
             if ($ownerElement->hasAttributeNS(XmlConstants::NAMESPACE_XMLNS, $localName)) {
                 $ownerElement->removeAttributeNS((string) $namespaceNode->nodeValue, $localName);
             }
