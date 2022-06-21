@@ -13,8 +13,13 @@ use DOMXPath;
 /**
  * @internal
  */
-class Cfdi3XPath
+class CfdiXPath
 {
+    public const ALLOWED_NAMESPACES = [
+        'http://www.sat.gob.mx/cfd/3',
+        'http://www.sat.gob.mx/cfd/4',
+    ];
+
     /** @var DOMXPath */
     private $xpath;
 
@@ -26,7 +31,11 @@ class Cfdi3XPath
     public static function createFromDocument(DOMDocument $document): self
     {
         $xpath = new DOMXPath($document);
-        $xpath->registerNamespace('cfdi', 'http://www.sat.gob.mx/cfd/3');
+        $rootNamespace = $document->documentElement->namespaceURI ?? '';
+        if (! in_array($rootNamespace, self::ALLOWED_NAMESPACES)) {
+            $rootNamespace = '';
+        }
+        $xpath->registerNamespace('cfdi', $rootNamespace);
         $xpath->registerNamespace('xsi', XmlConstants::NAMESPACE_XSI);
         return new self($xpath);
     }

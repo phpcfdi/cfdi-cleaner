@@ -60,7 +60,7 @@ class CollapseComplementoTest extends TestCase
     public function testCleanCfdiWithThreeComplementos(): void
     {
         $document = $this->createDocument(<<<XML
-            <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+            <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4">
               <cfdi:Complemento>
                 <foo:Foo id="first" xmlns:foo="http://tempuri.org/foo">
                   <foo:Child/>
@@ -82,7 +82,7 @@ class CollapseComplementoTest extends TestCase
             XML);
 
         $expected = $this->createDocument(<<<XML
-            <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+            <cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4">
               <cfdi:Complemento>
                 <foo:Foo id="first" xmlns:foo="http://tempuri.org/foo">
                   <foo:Child/>

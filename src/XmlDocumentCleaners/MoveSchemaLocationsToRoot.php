@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaners;
 
 use DOMDocument;
-use PhpCfdi\CfdiCleaner\Internal\Cfdi3XPath;
+use PhpCfdi\CfdiCleaner\Internal\CfdiXPath;
 use PhpCfdi\CfdiCleaner\Internal\SchemaLocation;
 use PhpCfdi\CfdiCleaner\Internal\XmlAttributeMethodsTrait;
 use PhpCfdi\CfdiCleaner\Internal\XmlConstants;
@@ -30,7 +30,7 @@ class MoveSchemaLocationsToRoot implements XmlDocumentCleanerInterface
         $rootAttribute = $root->getAttributeNodeNS(XmlConstants::NAMESPACE_XSI, 'schemaLocation');
         $schemaLocation = SchemaLocation::createFromValue((string) $rootAttribute->nodeValue);
 
-        $xpath = Cfdi3XPath::createFromDocument($document);
+        $xpath = CfdiXPath::createFromDocument($document);
         $schemaLocationAttributes = $xpath->queryAttributes('//@xsi:schemaLocation');
         foreach ($schemaLocationAttributes as $schemaLocationAttribute) {
             if ($rootAttribute === $schemaLocationAttribute) {

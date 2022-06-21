@@ -6,7 +6,7 @@ namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaners;
 
 use DOMDocument;
 use DOMElement;
-use PhpCfdi\CfdiCleaner\Internal\Cfdi3XPath;
+use PhpCfdi\CfdiCleaner\Internal\CfdiXPath;
 use PhpCfdi\CfdiCleaner\Internal\XmlElementMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
@@ -16,7 +16,7 @@ class CollapseComplemento implements XmlDocumentCleanerInterface
 
     public function clean(DOMDocument $document): void
     {
-        $xpath3 = Cfdi3XPath::createFromDocument($document);
+        $xpath3 = CfdiXPath::createFromDocument($document);
 
         $complementos = $xpath3->queryElements('/cfdi:Comprobante/cfdi:Complemento');
         if ($complementos->length < 2) {
