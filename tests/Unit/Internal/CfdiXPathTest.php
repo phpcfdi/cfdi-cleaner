@@ -76,7 +76,7 @@ final class CfdiXPathTest extends TestCase
         }
         $this->assertSame(['leyendasFisc:LeyendasFiscales', 'tfd:TimbreFiscalDigital'], $elements);
 
-        $this->assertCount(3, iterator_to_array($xpath->queryAttributes('//@xsi:schemaLocation')));
+        $this->assertCount(3, iterator_to_array($xpath->querySchemaLocations()));
 
         $this->assertSame([], iterator_to_array($xpath->queryAttributes('//@FOOBAR')));
         $this->assertSame([], iterator_to_array($xpath->queryElements('//FOOBAR')));

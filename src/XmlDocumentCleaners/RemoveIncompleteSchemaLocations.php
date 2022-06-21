@@ -17,7 +17,7 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
     public function clean(DOMDocument $document): void
     {
         $xpath = CfdiXPath::createFromDocument($document);
-        $schemaLocations = $xpath->queryAttributes('//@xsi:schemaLocation');
+        $schemaLocations = $xpath->querySchemaLocations();
         foreach ($schemaLocations as $schemaLocation) {
             $value = $this->cleanSchemaLocationValue($schemaLocation->value);
             $this->attributeSetValueOrRemoveIfEmpty($schemaLocation, $value);

@@ -31,7 +31,7 @@ class MoveSchemaLocationsToRoot implements XmlDocumentCleanerInterface
         $schemaLocation = SchemaLocation::createFromValue((string) $rootAttribute->nodeValue);
 
         $xpath = CfdiXPath::createFromDocument($document);
-        $schemaLocationAttributes = $xpath->queryAttributes('//@xsi:schemaLocation');
+        $schemaLocationAttributes = $xpath->querySchemaLocations();
         foreach ($schemaLocationAttributes as $schemaLocationAttribute) {
             if ($rootAttribute === $schemaLocationAttribute) {
                 continue;

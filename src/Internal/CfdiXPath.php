@@ -46,9 +46,19 @@ class CfdiXPath
      */
     public function queryElements(string $xpathQuery): DOMNodeList
     {
-        /** @var DOMNodeList<DOMElement> $list PHPStan does not detect empry DOMNodeList subtype */
+        /** @var DOMNodeList<DOMElement> $list PHPStan does not detect empty DOMNodeList subtype */
         $list = $this->xpath->query($xpathQuery, null, false) ?: new DOMNodeList();
         return $list;
+    }
+
+    /**
+     * Get all XMLSchema instance attributes schemaLocation
+     *
+     * @return DOMNodeList<DOMAttr>
+     */
+    public function querySchemaLocations(): DOMNodeList
+    {
+        return $this->queryAttributes('//@xsi:schemaLocation');
     }
 
     /**
@@ -57,7 +67,7 @@ class CfdiXPath
      */
     public function queryAttributes(string $xpathQuery): DOMNodeList
     {
-        /** @var DOMNodeList<DOMAttr> $list PHPStan does not detect empry DOMNodeList subtype */
+        /** @var DOMNodeList<DOMAttr> $list PHPStan does not detect empty DOMNodeList subtype */
         $list = $this->xpath->query($xpathQuery, null, false) ?: new DOMNodeList();
         return $list;
     }

@@ -160,7 +160,7 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
     public function clean(DOMDocument $document): void
     {
         $xpath = CfdiXPath::createFromDocument($document);
-        $schemaLocationAttributes = $xpath->queryAttributes('//@xsi:schemaLocation');
+        $schemaLocationAttributes = $xpath->querySchemaLocations();
         foreach ($schemaLocationAttributes as $schemaLocationAttribute) {
             $this->cleanNodeAttribute($document, $schemaLocationAttribute);
         }
