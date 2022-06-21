@@ -9,22 +9,44 @@ use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RemoveAddenda;
 
 final class RemoveAddendaTest extends TestCase
 {
-    public function testCleanDocumentWithAddenda(): void
+    /** @return array<string, array{string, string}> */
+    public function providerCleanDocumentWithAddenda(): array
     {
-        $document = $this->createDocument(<<<XML
-            <x:Comprobante xmlns:x="http://www.sat.gob.mx/cfd/3">
-            <x:Addenda>
-                <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar" />
-            </x:Addenda>
-            </x:Comprobante>
-            XML);
+        return [
+            'CFDI 3.3' => [
+                'http://www.sat.gob.mx/cfd/3',
+                <<<XML
+                    <x:Comprobante xmlns:x="http://www.sat.gob.mx/cfd/3">
+                    <x:Addenda>
+                        <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar" />
+                    </x:Addenda>
+                    </x:Comprobante>
+                    XML,
+            ],
+            'CFDI 4.0' => [
+                'http://www.sat.gob.mx/cfd/4',
+                <<<XML
+                    <x:Comprobante xmlns:x="http://www.sat.gob.mx/cfd/4">
+                    <x:Addenda>
+                        <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar" />
+                    </x:Addenda>
+                    </x:Comprobante>
+                    XML,
+            ],
+        ];
+    }
+
+    /** @dataProvider providerCleanDocumentWithAddenda */
+    public function testCleanDocumentWithAddenda(string $namespace, string $source): void
+    {
+        $document = $this->createDocument($source);
 
         $cleaner = new RemoveAddenda();
         $cleaner->clean($document);
 
         $this->assertCount(
             0,
-            $document->getElementsByTagNameNS('http://www.sat.gob.mx/cfd/3', 'Addenda'),
+            $document->getElementsByTagNameNS($namespace, 'Addenda'),
             'Addenda element should not exists after cleaning',
         );
     }
