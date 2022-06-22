@@ -13,7 +13,10 @@ trait XmlAttributeMethodsTrait
 {
     private function attributeRemove(DOMAttr $attribute): void
     {
-        $attribute->ownerElement->removeAttribute($attribute->nodeName);
+        $ownerElement = $attribute->ownerElement;
+        if (null !== $ownerElement) {
+            $ownerElement->removeAttribute($attribute->nodeName);
+        }
     }
 
     private function attributeSetValueOrRemoveIfEmpty(DOMAttr $attribute, string $value): void
