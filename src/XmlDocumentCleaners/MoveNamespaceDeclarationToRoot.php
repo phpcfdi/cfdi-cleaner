@@ -48,8 +48,10 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
                 $prefixes[$namespaceNode->nodeName] = $currentDefinition;
                 continue;
             }
-            if ($ownerElement->hasAttribute($namespaceNode->nodeName)
-                && $prefixes[$namespaceNode->nodeName] !== $currentDefinition) {
+            if (
+                $ownerElement->hasAttribute($namespaceNode->nodeName)
+                && $prefixes[$namespaceNode->nodeName] !== $currentDefinition
+            ) {
                 return true;
             }
         }
@@ -63,16 +65,16 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
             if ($rootElement === $namespaceNode->parentNode) {
                 continue; // already on root
             }
-            $nsPrefix = $namespaceNode->nodeName;
-            $nsLocation = $namespaceNode->nodeValue;
+            $nsPrefix = (string) $namespaceNode->nodeName;
+            $nsLocation = (string) $namespaceNode->nodeValue;
             $namespaces[$nsPrefix] = $namespaces[$nsPrefix] ?? $nsLocation;
             // do not iterate on overlapped
             if ($namespaces[$nsPrefix] !== $nsLocation) {
                 continue;
             }
             // soft-write the xml namespace declaration if it does not exist yet
-            if (! $rootElement->hasAttribute($namespaceNode->nodeName)) {
-                $rootElement->setAttribute($namespaceNode->nodeName, $namespaceNode->nodeValue);
+            if (! $rootElement->hasAttribute($nsPrefix)) {
+                $rootElement->setAttribute($nsPrefix, $nsLocation);
             }
         }
         // ditry hack to remove child namespace declaration
@@ -86,12 +88,10 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
                 continue;
             }
 
-            if (! $rootElement->hasAttribute($namespaceNode->nodeName)) {
-                $rootElement->setAttributeNS(
-                    XmlConstants::NAMESPACE_XMLNS,
-                    $namespaceNode->nodeName,
-                    $namespaceNode->nodeValue,
-                );
+            $nsNodeName = $namespaceNode->nodeName;
+            $nsNodeValue = $namespaceNode->nodeValue;
+            if ($nsNodeValue && ! $rootElement->hasAttribute($nsNodeName)) {
+                $rootElement->setAttributeNS(XmlConstants::NAMESPACE_XMLNS, $nsNodeName, $nsNodeValue);
             }
 
             $this->removeNamespaceNodeAttribute($namespaceNode);

@@ -24,7 +24,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
             {
                 $namespaces = [];
                 foreach ($this->iterateNonReservedNamespaces($document) as $namespaceNode) {
-                    $namespaces[$namespaceNode->prefix] = $namespaceNode->nodeValue;
+                    $namespaces[$namespaceNode->prefix] = (string) $namespaceNode->nodeValue;
                 }
                 asort($namespaces);
                 return $namespaces;

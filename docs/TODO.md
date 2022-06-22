@@ -6,5 +6,4 @@
 
 ## Actualizaciones
 
-- Actualizar PHPStan a una versión mayor de 1.4.6. 
-  A partir de la versión 1.4.7 parece que el tipo de `DOMNodeList<T>` no se reconoce.
+*Listar aquí las tareas pendientes*.

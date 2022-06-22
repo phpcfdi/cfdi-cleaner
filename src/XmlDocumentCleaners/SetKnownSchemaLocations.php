@@ -6,11 +6,10 @@ namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaners;
 
 use DOMAttr;
 use DOMDocument;
-use DOMNodeList;
 use DOMXPath;
+use PhpCfdi\CfdiCleaner\Internal\CfdiXPath;
 use PhpCfdi\CfdiCleaner\Internal\SchemaLocation;
 use PhpCfdi\CfdiCleaner\Internal\XmlAttributeMethodsTrait;
-use PhpCfdi\CfdiCleaner\Internal\XmlConstants;
 use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
 
@@ -160,11 +159,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
 
     public function clean(DOMDocument $document): void
     {
-        $xpath = new DOMXPath($document);
-        $xpath->registerNamespace('xs', XmlConstants::NAMESPACE_XSI);
-        /** @var DOMNodeList<DOMAttr> $schemaLocationAttributes */
-        $schemaLocationAttributes = $xpath->query('//@xs:schemaLocation', null, false);
-
+        $xpath = CfdiXPath::createFromDocument($document);
+        $schemaLocationAttributes = $xpath->querySchemaLocations();
         foreach ($schemaLocationAttributes as $schemaLocationAttribute) {
             $this->cleanNodeAttribute($document, $schemaLocationAttribute);
         }
@@ -172,7 +168,7 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
 
     private function cleanNodeAttribute(DOMDocument $document, DOMAttr $attribute): void
     {
-        $schemaLocation = SchemaLocation::createFromValue($attribute->nodeValue);
+        $schemaLocation = SchemaLocation::createFromValue((string) $attribute->nodeValue);
         foreach ($schemaLocation->getPairs() as $namespace => $location) {
             $version = $this->obtainVersionOfNamespace($document, $namespace);
             $location = $this->obtainLocationForNamespaceVersion($namespace, $version, $location);

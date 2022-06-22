@@ -8,6 +8,23 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.2.4
+
+Se corrigen los limpiadores `RemoveAddenda` y `CollapseComplemento` porque no estaban actuando sobre CFDI 4.0.
+Gracias `@luffynando`.
+
+El problema de fondo es que la clase `Cfdi3XPath` solo actuaba sobre el XML namespace `http://www.sat.gob.mx/cfd/3` 
+y nunca sobre `http://www.sat.gob.mx/cfd/4`. En la corrección se renombra la clase interna `Cfdi3XPath` a `CfdiXPath` 
+y esta clase actúa sobre el XML namespace del nodo principal siempre que sea `http://www.sat.gob.mx/cfd/3` 
+y `http://www.sat.gob.mx/cfd/4`.
+
+Se refactoriza internamente la clase `CfdiXPath` y ahora incluye un método `querySchemaLocations`.
+
+Se actualizan las librerías de desarrollo y el estilo de código. Siendo lo más importante la actualización de
+PHPStan 1.7.15 que lleva a múltiples definiciones de tipos.
+
+Se actualizan los flujos de trabajo de GitHub para usar PHP 8.1 y las acciones de GitHub en versión 3.
+
 ## Versión 1.2.3
 
 La limpieza de CFDI grandes tardaba mucho tiempo en el limpiador `RemoveUnusedNamespaces`.

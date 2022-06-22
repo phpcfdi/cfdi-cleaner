@@ -15,7 +15,6 @@ final class RenameElementAddPrefix implements XmlDocumentCleanerInterface
 
     public function clean(DOMDocument $document): void
     {
-        /** @var DOMElement|null $rootElement */
         $rootElement = $document->documentElement;
         if (null === $rootElement) {
             return;
