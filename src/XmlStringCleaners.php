@@ -31,4 +31,10 @@ class XmlStringCleaners implements XmlStringCleanerInterface
         }
         return $xml;
     }
+
+    public function withOutCleaners(ExcludeList $excludeList): self
+    {
+        $cleaners = $excludeList->filterObjects(...$this->cleaners);
+        return new self(...$cleaners);
+    }
 }
