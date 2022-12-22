@@ -8,6 +8,21 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.3.0
+
+Se agrega la opción de excluir limpiadores específicos por nombre de clase.
+En futuras versiones se implementará una mejor manera de manejar estas exclusiones.
+La implementación actual no genera cambios que rompan la compatibilidad y requieran una versión mayor.
+
+### Cambios de mantenimiento
+
+- Se aplicó en los flujos de trabajo:
+  - Incluir PHP 8.2 a la matriz de pruebas.
+  - Ejecutar todo en PHP 8.2 excepto el trabajo `php-cs-fixer`.
+  - Sustituir la instrucción `::set-output` con el uso del archivo `$GITHUB_OUTPUT`.
+- Se corrigió la insignia `badge-build`.
+- Se actualizaron los archivos de estilo de código a las reglas utilizadas en los últimos proyectos.
+
 ## Versión 1.2.4
 
 Se corrigen los limpiadores `RemoveAddenda` y `CollapseComplemento` porque no estaban actuando sobre CFDI 4.0.
