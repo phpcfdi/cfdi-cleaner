@@ -38,4 +38,10 @@ class XmlDocumentCleaners implements XmlDocumentCleanerInterface
             $cleaner->clean($document);
         }
     }
+
+    public function withOutCleaners(ExcludeList $excludeList): self
+    {
+        $cleaners = $excludeList->filterObjects(...$this->cleaners);
+        return new self(...$cleaners);
+    }
 }
