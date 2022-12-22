@@ -20,6 +20,7 @@ La implementación actual no genera cambios que rompan la compatibilidad y requi
   - Incluir PHP 8.2 a la matriz de pruebas.
   - Ejecutar todo en PHP 8.2 excepto el trabajo `php-cs-fixer`.
   - Sustituir la instrucción `::set-output` con el uso del archivo `$GITHUB_OUTPUT`.
+  - Se removió la restricción de versión fija de PHPStan.
 - Se corrigió la insignia `badge-build`.
 - Se actualizaron los archivos de estilo de código a las reglas utilizadas en los últimos proyectos.
 
