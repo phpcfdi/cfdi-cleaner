@@ -146,7 +146,7 @@ Remueve todas las declaraciones de espacios de nombres (junto con su prefijo) qu
 #### `RenameElementAddPrefix`
 
 Agrega el prefijo al nodo que no lo tiene por estar utilizando la definición simple `xmlns`.
-Además elimina los namespace superfluos y las definiciones `xmlns` redundantes.
+Además, elimina los namespace superfluos y las definiciones `xmlns` redundantes.
 
 Ejemplo de CFDI sucio:
 
@@ -171,7 +171,7 @@ Ejemplo de CFDI limpio:
 Mueve todas las declaraciones de espacios de nombres al nodo raíz.
 
 Por lo regular el SAT pide en la documentación técnica que los espacios de nombres se definan en el nodo raíz,
-sin embargo es frecuente que se definan en el nodo que los implementa.
+sin embargo, es frecuente que se definan en el nodo que los implementa.
 
 Hay casos extremos de CFDI que siguen las reglas de XML, pero que no siguen las reglas de CFDI y generan prefijos
 que se superponen. En este caso, se moverán solamente los espacios de nombres que no se superponen, por ejemplo:
@@ -207,14 +207,14 @@ sustitución por un CFDI que sí contenga los prefijos de los espacios de nombre
 Mueve todas las declaraciones de ubicaciones de archivos de esquema al nodo principal.
 
 Por lo regular el SAT pide en la documentación técnica que las ubicaciones de archivos de esquema se definan en
-el nodo principal, sin embargo es frecuente que se definan en el nodo que los implementa.
+el nodo principal, sin embargo, es frecuente que se definan en el nodo que los implementa.
 
 #### `SetKnownSchemaLocations`
 
 Verifica que las ubicaciones de los esquemas de espacios de nombres conocidos sean exactamente las direcciones conocidas,
 en caso de no serlo las modifican.
 
-Anteriormente el SAT permitía que las ubicaciones de los esquemas de espacios de nombres estuvieran escritos sin
+Anteriormente, el SAT permitía que las ubicaciones de los esquemas de espacios de nombres estuvieran escritos sin
 sensibilidad a mayúsculas o minúsculas, incluso tenía varias ubicaciones para obtener estos archivos. Sin embargo,
 recientemente ha eliminado la tolerancia a estas ubicaciones y solo permite las definiciones oficiales.
 
