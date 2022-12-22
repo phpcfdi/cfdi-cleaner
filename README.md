@@ -233,6 +233,39 @@ Sin embargo, en el archivo de validación XSD permite que existan más de uno.
 
 Con esta limpieza, se deja un solo `cfdi:Complemento` con todos los complementos en él.
 
+### Exclusión de limpiadores
+
+Para no tener que modificar la creación del objeto limpiador y permitir la exclusión de limpiadores específicos,
+y de esta forma ser compatibles con nuevas actualizaciones de la librería, se puede crear el limpiador estándar
+y luego aplicar exclusiones.
+
+El siguiente ejemplo muestra cómo excluir los limpiadores que afectan a una *Addenda*.
+
+```php
+<?php
+
+use PhpCfdi\CfdiCleaner\Cleaner;
+use PhpCfdi\CfdiCleaner\ExcludeList;
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RemoveAddenda,
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RemoveNonSatNamespacesNodes,
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RemoveNonSatSchemaLocations,
+
+/**
+ * @var string $contents El contenido XML sucio.
+ */
+
+$exclude = new ExcludeList(
+    RemoveAddenda::class,
+    RemoveNonSatNamespacesNodes::class,
+    RemoveNonSatSchemaLocations::class,
+);
+
+$cleaner = new Cleaner();
+$cleaner->exclude($exclude);
+
+$contents = $cleaner->cleanStringToString($contents);
+```
+
 ## Soporte
 
 Puedes obtener soporte abriendo un ticket en Github.

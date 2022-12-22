@@ -20,6 +20,12 @@ class Cleaner
         $this->xmlCleaners = $xmlCleaners ?? XmlDocumentCleaners::createDefault();
     }
 
+    public function exclude(ExcludeList $excludeList): void
+    {
+        $this->stringCleaners = $this->stringCleaners->withOutCleaners($excludeList);
+        $this->xmlCleaners = $this->xmlCleaners->withOutCleaners($excludeList);
+    }
+
     public static function staticClean(string $xml): string
     {
         return (new self())->cleanStringToString($xml);
