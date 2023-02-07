@@ -4,9 +4,15 @@
 
 Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
-## Cambios en la rama principal sin liberación de nueva versión.
+## Cambios en la rama principal sin liberación de nueva versión
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
+
+### Mantenimiento 2023-02-07
+
+- Se refactoriza una prueba porque en PHPUnit 9.6.3 se deprecó el método `expectDeprecation()`.
+- Se actualiza el año de la licencia. Feliz 2023.
+- Se actualizan las herramientas de desarrollo.
 
 ## Versión 1.3.0
 
@@ -103,7 +109,7 @@ Para corregir este problema:
 - Se elimina de la lista de limpiadores de texto por defecto a `RemoveDuplicatedCfdi3Namespace`.
 - Se quita la funcionalidad de `RemoveDuplicatedCfdi3Namespace` y se emite un `E_USER_DEPRECATED`.
 - Se crea un nuevo limpiador `RenameElementAddPrefix` que agrega el prefijo al nodo que no lo tiene por estar
-  utilizando la definición simple `xmlns`. Además elimina los namespace superfluos y las 
+  utilizando la definición simple `xmlns`. Además, elimina los namespace superfluos y las 
   definiciones `xmlns` redundantes.
 
 Ejemplo de CFDI sucio:
