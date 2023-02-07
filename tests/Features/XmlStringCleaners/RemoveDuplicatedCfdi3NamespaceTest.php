@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
+use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RenameElementAddPrefix;
 use PhpCfdi\CfdiCleaner\XmlStringCleaners\RemoveDuplicatedCfdi3Namespace;
 
 class RemoveDuplicatedCfdi3NamespaceTest extends TestCase
@@ -38,8 +39,18 @@ class RemoveDuplicatedCfdi3NamespaceTest extends TestCase
     public function testClean(string $expected, string $input): void
     {
         $cleaner = new RemoveDuplicatedCfdi3Namespace();
-        $this->expectDeprecation();
-        $clean = $cleaner->clean($input);
+
+        $clean = @$cleaner->clean($input);
+        $error = error_get_last() ?? [];
+
+        $expectedErrorMessage = sprintf(
+            'Class %s is deprecated, use %s',
+            RemoveDuplicatedCfdi3Namespace::class,
+            RenameElementAddPrefix::class
+        );
+
+        $this->assertSame(E_USER_DEPRECATED, intval($error['type'] ?? 0));
+        $this->assertSame($expectedErrorMessage, strval($error['message'] ?? ''));
 
         $this->assertEquals($input, $clean);
     }
