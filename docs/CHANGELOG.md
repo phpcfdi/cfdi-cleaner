@@ -8,6 +8,16 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.3.1
+
+- Se agrega *Carta Porte 3.0* a la lista de espacio de nombres conocidos.
+
+### Mantenimiento 2023-10-22
+
+- Se corrige la configuración de *PHP-CS-Fixer*.
+- Se corrigen las exclusiones de archivos para *SonarCloud*.
+- Se actualizan las herramientas de desarrollo.
+
 ### Mantenimiento 2023-02-07
 
 - Se refactoriza una prueba porque en PHPUnit 9.6.3 se deprecó el método `expectDeprecation()`.
