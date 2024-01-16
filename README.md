@@ -219,7 +219,7 @@ sensibilidad a mayúsculas o minúsculas, incluso tenía varias ubicaciones para
 recientemente ha eliminado la tolerancia a estas ubicaciones y solo permite las definiciones oficiales.
 
 Este limpiador tiene la información de espacio de nombres, versión a la que aplica y ubicación conocida con base en
-el proyecto [hpcfdi/sat-ns-registry](https://github.com/phpcfdi/sat-ns-registry).
+el proyecto [phpcfdi/sat-ns-registry](https://github.com/phpcfdi/sat-ns-registry).
 
 En caso de que no se encuentre la ruta conocida para un espacio de nombres entonces no aplicará ninguna corrección
 y dejará el valor tal como estaba.
