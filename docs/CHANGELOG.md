@@ -8,6 +8,17 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.3.2
+
+- Se agrega *Comercio Exterior 2.0* a la lista de espacio de nombres conocidos.
+- Se actualiza el año de licencia.
+- Se corrige la liga al proyecto en el archivo `CONTRIBUTING.md`.
+- Se corrige el correo de comunicación en `CODE_OF_CONDUCT.md`.
+- Se aplicó en los flujos de trabajo:
+  - Se incluye PHP 8.3 a la matriz de pruebas.
+  - Ejecutar todo en PHP 8.3.
+- Se actualizan las herramientas de desarrollo.
+
 ## Versión 1.3.1
 
 - Se agrega *Carta Porte 3.0* a la lista de espacio de nombres conocidos.

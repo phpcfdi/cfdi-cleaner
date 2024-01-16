@@ -106,6 +106,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         => 'http://www.sat.gob.mx/sitio_internet/cfd/ine/ine10.xsd',
         'http://www.sat.gob.mx/ComercioExterior11#1.1'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior11/ComercioExterior11.xsd',
+        'http://www.sat.gob.mx/ComercioExterior20#2.0'
+        => 'http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd',
         'http://www.sat.gob.mx/ComercioExterior#1.0'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior/ComercioExterior10.xsd',
         'http://www.sat.gob.mx/Pagos#1.0'
