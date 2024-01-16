@@ -80,7 +80,7 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
         $elements = $this->xpath->query(
             sprintf('(//*[namespace-uri()="%1$s" and name()=concat("%2$s", local-name())])[1]', $namespace, $prefix),
         );
-        return (false !== $elements && $elements->length > 0);
+        return false !== $elements && $elements->length > 0;
     }
 
     private function hasAttributesOnNamespace(string $namespace, string $prefix): bool
@@ -88,6 +88,6 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
         $elements = $this->xpath->query(
             sprintf('(//@*[namespace-uri()="%1$s" and name()=concat("%2$s", local-name())])[1]', $namespace, $prefix),
         );
-        return (false !== $elements && $elements->length > 0);
+        return false !== $elements && $elements->length > 0;
     }
 }
