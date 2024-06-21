@@ -134,6 +134,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         => 'http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte20.xsd',
         'http://www.sat.gob.mx/CartaPorte30#3.0'
         => 'http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte30.xsd',
+        'http://www.sat.gob.mx/CartaPorte31#3.1'
+        => 'http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte31.xsd',
         'http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso#1.0'
         => 'http://www.sat.gob.mx/esquemas/retencionpago/1/arrendamientoenfideicomiso/arrendamientoenfideicomiso.xsd',
         'http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos#1.0'
