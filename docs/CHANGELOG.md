@@ -8,6 +8,22 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.3.3
+
+- Se agrega *Complemento de Carta Porte 3.1* a la lista de espacio de nombres conocidos.
+
+Se hacen los siguientes cambios al entorno de desarrollo:
+
+- Se agrega a las herramientas de desarrollo `composer-normalize`:
+  - Se agrega a los scripts de desarrollo de `composer` en `dev:check-style` y `dev:fix-style`.
+  - Se agrega al flujo de trabajo de integración contínua.
+  - Se normaliza el archivo `composer.json`.
+- Se aplicó en los flujos de trabajo:
+  - Se actualizan las acciones de GitHub a la versión 4.
+  - Se permite la ejecución de los flujos de trabajo manualmente.
+- Se excluye `test/_files` de la detección de lenguajes de GitHub.
+- Se actualizan las herramientas de desarrollo.
+
 ## Versión 1.3.2
 
 - Se agrega *Comercio Exterior 2.0* a la lista de espacio de nombres conocidos.
