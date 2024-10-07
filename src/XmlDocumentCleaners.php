@@ -19,6 +19,7 @@ class XmlDocumentCleaners implements XmlDocumentCleanerInterface
     public static function createDefault(): self
     {
         return new self(
+            new XmlDocumentCleaners\RebuildDocument(),
             new XmlDocumentCleaners\RemoveAddenda(),
             new XmlDocumentCleaners\RemoveIncompleteSchemaLocations(),
             new XmlDocumentCleaners\RemoveNonSatNamespacesNodes(),
