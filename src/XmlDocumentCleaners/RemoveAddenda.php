@@ -16,6 +16,8 @@ class RemoveAddenda implements XmlDocumentCleanerInterface
     {
         $this->removeAddendas($document, 'http://www.sat.gob.mx/cfd/3');
         $this->removeAddendas($document, 'http://www.sat.gob.mx/cfd/4');
+        $this->removeAddendas($document, 'http://www.sat.gob.mx/esquemas/retencionpago/2');
+        $this->removeAddendas($document, 'http://www.sat.gob.mx/esquemas/retencionpago/1');
     }
 
     private function removeAddendas(DOMDocument $document, string $namespace): void
