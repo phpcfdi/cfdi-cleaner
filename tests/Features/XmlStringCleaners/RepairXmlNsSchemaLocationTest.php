@@ -34,7 +34,8 @@ class RepairXmlNsSchemaLocationTest extends TestCase
                 <<< EOT
                     <root foo="bar"
                           xsi:schemaLocation="http://localhost/a http://localhost/a.xsd"
-                          xmlns:schemaLocation="foo bar">
+                          xmlns:schemaLocation="with line terminators
+                          ">
                     </root>
                     EOT,
             ],
@@ -46,7 +47,8 @@ class RepairXmlNsSchemaLocationTest extends TestCase
                     EOT,
                 <<< EOT
                     <root foo="bar"
-                          xmlns:schemaLocation="foo bar"
+                          xmlns:schemaLocation="with line terminators
+                          "
                           xsi:schemaLocation="http://localhost/a http://localhost/a.xsd">
                     </root>
                     EOT,
