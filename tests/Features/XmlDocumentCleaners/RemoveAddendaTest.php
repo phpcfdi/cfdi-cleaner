@@ -33,6 +33,26 @@ final class RemoveAddendaTest extends TestCase
                     </x:Comprobante>
                     XML,
             ],
+            'RET 2.0' => [
+                'http://www.sat.gob.mx/esquemas/retencionpago/2',
+                <<<XML
+                    <x:Retenciones xmlns:x="http://www.sat.gob.mx/esquemas/retencionpago/2">
+                    <x:Addenda>
+                        <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar" />
+                    </x:Addenda>
+                    </x:Retenciones>
+                    XML,
+            ],
+            'RET 1.0' => [
+                'http://www.sat.gob.mx/esquemas/retencionpago/1',
+                <<<XML
+                    <x:Retenciones xmlns:x="http://www.sat.gob.mx/esquemas/retencionpago/1">
+                    <x:Addenda>
+                        <o:OtherData xmlns:o="http://tempuri.org/other" foo="bar" />
+                    </x:Addenda>
+                    </x:Retenciones>
+                    XML,
+            ],
         ];
     }
 
