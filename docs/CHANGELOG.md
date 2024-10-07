@@ -8,6 +8,14 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.4.0
+
+Se hacen agrega una nueva característica:
+
+- Se agrega un nuevo limpiador `RebuildDocument` que reconstruye el documento a partir de uno original,
+  especificando de forma correcta el prefijo de los espacios de nombres registrados en el SAT y el
+  espacio de nombres `http://www.w3.org/2001/XMLSchema-instance`.
+
 ## Versión 1.3.4
 
 Se hacen las siguientes correcciones:
