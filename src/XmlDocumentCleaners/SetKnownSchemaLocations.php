@@ -141,6 +141,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         'http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos#1.0'
         => 'http://www.sat.gob.mx/esquemas/retencionpago/1/dividendos/dividendos.xsd',
         'http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaciondeacciones#1.0'
+        => 'http://www.sat.gob.mx/esquemas/retencionpago/1/enajenaciondeacciones/enajenaciondeacciones.xsd',
+        'http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros#1.0'
         => 'http://www.sat.gob.mx/esquemas/retencionpago/1/pagosaextranjeros/pagosaextranjeros.xsd',
         'http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial#1.0'
         => 'http://www.sat.gob.mx/esquemas/retencionpago/1/fideicomisonoempresarial/fideicomisonoempresarial.xsd',
