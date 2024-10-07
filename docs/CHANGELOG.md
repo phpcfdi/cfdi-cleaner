@@ -8,6 +8,20 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.3.4
+
+Se hacen las siguientes correcciones:
+
+- Se corrige la ubicación del XSD del complemento "Enajenaciones de acciones" para Retenciones e información de pagos.
+- Se corrige la el espacio de nombres del complemento "Pagos a extranjeros" para Retenciones e información de pagos.
+- El limpiador de *Addenda* incluye también los CFDI de Retenciones e información de pagos.
+
+Se hacen los siguientes cambios al entorno de desarrollo:
+
+- En el flujo de trabajo `build` en el trabajo `tests` se usa la variable `php-version` en singular.
+- En el flujo de trabajo `coverage` en el trabajo `test-coverage` se usa mejora el título.
+- Se actualizan las herramientas de desarrollo.
+
 ## Versión 1.3.3
 
 - Se agrega *Complemento de Carta Porte 3.1* a la lista de espacio de nombres conocidos.
