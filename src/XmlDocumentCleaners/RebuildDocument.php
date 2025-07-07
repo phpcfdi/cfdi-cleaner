@@ -9,6 +9,7 @@ use DOMCdataSection;
 use DOMComment;
 use DOMDocument;
 use DOMElement;
+use DOMNamedNodeMap;
 use DOMNode;
 use DOMText;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
@@ -125,8 +126,10 @@ final class RebuildDocument implements XmlDocumentCleanerInterface
         $parent->appendChild($element);
 
         // Add attributes (not included in childNodes)
+        /** @phpstan-var DOMNamedNodeMap<DOMAttr> $sourceAttributes */
+        $sourceAttributes = $source->attributes;
         /** @var DOMAttr $attr */
-        foreach ($source->attributes as $attr) {
+        foreach ($sourceAttributes as $attr) {
             $element->setAttributeNS($attr->namespaceURI, $this->obtainNameWithPrefix($attr), $attr->value);
         }
         // Add children nodes
