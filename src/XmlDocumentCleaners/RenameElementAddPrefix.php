@@ -53,13 +53,16 @@ final class RenameElementAddPrefix implements XmlDocumentCleanerInterface
     {
         $elementPrefix = (string) $element->prefix;
         if ('' !== $elementPrefix) {
-            return;
+            return; // do nothing if element has a prefix
         }
 
         $targetPrefix = $this->queryPrefix($element);
-        if ('' !== $targetPrefix && $elementPrefix !== $targetPrefix) {
-            $element->prefix = $targetPrefix;
+        if ('' === $targetPrefix) {
+            return; // do nothing if there is no registered prefix
         }
+
+        // set the correct prefix
+        $element->prefix = $targetPrefix;
     }
 
     private function queryPrefix(DOMElement $element): string
