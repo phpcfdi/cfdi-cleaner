@@ -267,7 +267,7 @@ Después de hacer la limpieza:
   xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
   >
   <cfdi:Complemento>
-    <cfdi:TimbreFiscalDigital xmlns:t="http://www.sat.gob.mx/TimbreFiscalDigital" attr="foo-tfd" />
+    <cfdi:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" attr="foo-tfd" />
   </cfdi:Complemento>
 </cfdi:Comprobante>
 ```
