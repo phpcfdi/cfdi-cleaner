@@ -12,8 +12,6 @@ jobs:
 
   sonarqube-cloud:
     name: SonarCloud Scan and Report
-    needs: [ "sonarcloud-secrets" ]
-    if: ${{ needs.sonarcloud-secrets.outputs.sonar == 'yes' }}
     runs-on: "ubuntu-latest"
     steps:
       - name: Check SONAR_TOKEN secret
