@@ -6,4 +6,5 @@
 
 ## Actualizaciones
 
-*Listar aquí las tareas pendientes*.
+- Actualizar la versión menor soportada de PHP.
+- Reorganizar el objeto cleaner principal para poder mejorar la forma de excluir limpiadores o seleccionar solo algunos.
