@@ -35,7 +35,7 @@ final class RenameElementAddPrefix implements XmlDocumentCleanerInterface
 
         // Remove redundant namespace declarations
         // We are using saveXML and loadXML because normalizeDocument method doesn't seem to reset the namespaces;
-        $document->loadXML($document->saveXML() ?: '', LIBXML_NSCLEAN | LIBXML_PARSEHUGE);
+        $document->loadXML((string) $document->saveXML(), LIBXML_NSCLEAN | LIBXML_PARSEHUGE);
     }
 
     private function cleanElement(DOMElement $element): void
@@ -53,13 +53,16 @@ final class RenameElementAddPrefix implements XmlDocumentCleanerInterface
     {
         $elementPrefix = (string) $element->prefix;
         if ('' !== $elementPrefix) {
-            return;
+            return; // do nothing if element has a prefix
         }
 
         $targetPrefix = $this->queryPrefix($element);
-        if ('' !== $targetPrefix && $elementPrefix !== $targetPrefix) {
-            $element->prefix = $targetPrefix;
+        if ('' === $targetPrefix) {
+            return; // do nothing if there is no registered prefix
         }
+
+        // set the correct prefix
+        $element->prefix = $targetPrefix;
     }
 
     private function queryPrefix(DOMElement $element): string

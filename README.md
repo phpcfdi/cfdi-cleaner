@@ -233,6 +233,45 @@ Sin embargo, en el archivo de validación XSD permite que existan más de uno.
 
 Con esta limpieza, se deja un solo `cfdi:Complemento` con todos los complementos en él.
 
+#### `RebuildDocument`
+
+Este limpiador se crea para establecer los prefijos de espacios de nombres del SAT.
+
+Lamentablemente, algunos PAC timbran (o han timbrado) sin seguir las instrucciones marcadas en la documentación
+técnica del comprobante o de algún complemento, donde se establece el prefijo que se debe usar para el
+espacio de nombres. Esto lleva a problemas de lectura.
+
+Con esta limpieza, el archivo CFDI es leído y nodo por nodo se vuelve a construir, comprobando para cada atributo
+y cada elemento hijo si corresponde a un espacio de nombres reservado por el SAT y establece el prefijo correcto.
+Hay que tomar en cuenta que este limpiador puede llegar a consumir muchos recursos, debido a que mientras está
+en ejecución cargará el archivo original en memoria y al recrearlo duplicará el consumo de la misma.
+
+Los nodos que son recreados son: elementos, atributos, textos, *CDATA* y comentarios.
+
+Ejemplo de archivo origen:
+
+```xml
+<x:Comprobante xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:x="http://www.sat.gob.mx/cfd/4"
+  i:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  >
+  <x:Complemento>
+    <t:TimbreFiscalDigital xmlns:t="http://www.sat.gob.mx/TimbreFiscalDigital" attr="foo-tfd" />
+  </x:Complemento>
+</x:Comprobante>
+```
+
+Después de hacer la limpieza:
+
+```xml
+<cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  >
+  <cfdi:Complemento>
+    <cfdi:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" attr="foo-tfd" />
+  </cfdi:Complemento>
+</cfdi:Comprobante>
+```
+
 ### Exclusión de limpiadores
 
 Para no tener que modificar la creación del objeto limpiador y permitir la exclusión de limpiadores específicos,
@@ -315,6 +354,6 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [badge-build]: https://img.shields.io/github/actions/workflow/status/phpcfdi/cfdi-cleaner/build.yml?branch=main&logo=github-actions
 [badge-reliability]: https://sonarcloud.io/api/project_badges/measure?project=phpcfdi_cfdi-cleaner&metric=reliability_rating
 [badge-maintainability]: https://sonarcloud.io/api/project_badges/measure?project=phpcfdi_cfdi-cleaner&metric=sqale_rating
-[badge-coverage]: https://img.shields.io/sonar/coverage/phpcfdi_cfdi-cleaner/main?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io
-[badge-violations]: https://img.shields.io/sonar/violations/phpcfdi_cfdi-cleaner/main?format=long&logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io
+[badge-coverage]: https://img.shields.io/sonar/coverage/phpcfdi_cfdi-cleaner/main?logo=sonarqubecloud&server=https%3A%2F%2Fsonarcloud.io
+[badge-violations]: https://img.shields.io/sonar/violations/phpcfdi_cfdi-cleaner/main?format=long&logo=sonarqubecloud&server=https%3A%2F%2Fsonarcloud.io
 [badge-downloads]: https://img.shields.io/packagist/dt/phpcfdi/cfdi-cleaner?logo=packagist

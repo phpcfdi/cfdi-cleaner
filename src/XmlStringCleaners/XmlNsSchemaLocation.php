@@ -16,7 +16,7 @@ class XmlNsSchemaLocation implements XmlStringCleanerInterface
         }
 
         preg_match_all('/<(?>\s|.)*?>/u', $xml, $matches);
-        /** @var array<int, string> $parts */
+        /** @phpstan-var list<string> $parts */
         $parts = preg_split('/<(?>\s|.)*?>/u', $xml);
 
         $buffer = [$parts[0]];
