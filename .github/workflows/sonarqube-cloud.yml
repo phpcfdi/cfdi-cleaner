@@ -10,28 +10,18 @@ on:
 
 jobs:
 
-  sonarcloud-secrets:
-    name: SonarCloud check secrets are present
-    runs-on: ubuntu-latest
-    outputs:
-      sonar: ${{ steps.check-secrets.outputs.sonar }}
-    steps:
-      - name: Check secrets are present
-        id: check-secrets
-        run: |
-          if [ -n "${{ secrets.SONAR_TOKEN }}" ]; then
-            echo "sonar=yes" >> $GITHUB_OUTPUT
-          else
-            echo "sonar=no" >> $GITHUB_OUTPUT
-            echo "::warning ::SONAR_TOKEN non set"
-          fi
-
-  sonarcloud:
+  sonarqube-cloud:
     name: SonarCloud Scan and Report
-    needs: [ "tests-coverage", "sonarcloud-secrets" ]
+    needs: [ "sonarcloud-secrets" ]
     if: ${{ needs.sonarcloud-secrets.outputs.sonar == 'yes' }}
     runs-on: "ubuntu-latest"
     steps:
+      - name: Check SONAR_TOKEN secret
+        run: |
+          if [ -z "${{ secrets.SONAR_TOKEN }}" ]; then
+            echo "::warning ::SONAR_TOKEN non set"
+            exit 1
+          fi
       - name: Checkout
         uses: actions/checkout@v4
       - name: Unshallow clone to provide blame information
