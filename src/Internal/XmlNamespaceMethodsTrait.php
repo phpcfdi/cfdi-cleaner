@@ -20,12 +20,13 @@ trait XmlNamespaceMethodsTrait
      * @param DOMDocument $document
      * @return Generator&iterable<DOMNode>
      * @phpstan-impure
-     * @internal The actual returned class is Generator<DOMNameSpaceNode> (undocumented)
+     * @internal The actual returned class is Generator<DOMNameSpaceNode> (undocumented until PHP 8.1)
      */
     private function iterateNonReservedNamespaces(DOMDocument $document): Generator
     {
         $xpath = new DOMXPath($document);
         $namespaceNodes = $xpath->query('//namespace::*') ?: new DOMNodeList();
+        /** @phpstan-var DOMNode $namespaceNode */
         foreach ($namespaceNodes as $namespaceNode) {
             // discard removed namespaces they could be returned by XPath
             if (null === $namespaceNode->namespaceURI) {
@@ -43,6 +44,7 @@ trait XmlNamespaceMethodsTrait
 
     /**
      * @param DOMNode&object $namespaceNode
+     * @internal The actual class is DOMNameSpaceNode (undocumented until PHP 8.1)
      */
     private function removeNamespaceNodeAttribute($namespaceNode): void
     {

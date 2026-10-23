@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This script read a given CFDI file and output the clean version
+ * @phpstan-var non-empty-list<string> $argv
+ */
+
 declare(strict_types=1);
 
 use PhpCfdi\CfdiCleaner\Cleaner;
