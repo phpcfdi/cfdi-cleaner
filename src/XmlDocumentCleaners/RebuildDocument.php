@@ -85,6 +85,7 @@ final class RebuildDocument implements XmlDocumentCleanerInterface
         'http://www.sat.gob.mx/esquemas/retencionpago/1/premios' => 'premios',
         'http://www.sat.gob.mx/esquemas/retencionpago/1/sectorfinanciero' => 'sectorfinanciero',
         'http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10' => 'plataformasTecnologicas',
+        'http://www.sat.gob.mx/hidrocarburospetroliferos' => 'hidrocarburospetroliferos',
     ];
 
     /** @return array<string, string> */
