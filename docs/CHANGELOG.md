@@ -10,7 +10,7 @@ Los cambios no liberados se integran a la rama principal, pero no requieren de l
 
 ## Versión 1.5.0
 
-Por mantenimiento se elimina la compatiblidad de PHP 7.3, PHP 7.4, PHP 8.0 y PHP 8.2.
+Por mantenimiento se elimina la compatibilidad de PHP 7.3, PHP 7.4, PHP 8.0 y PHP 8.1.
 Gracias especiales a [`rector`](https://getrector.com/) por ayudar enormemente a este proceso.
 
 Adicionalmente, se incrementa el entorno de pruebas a PHPUnit 11.
