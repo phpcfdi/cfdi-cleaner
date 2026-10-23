@@ -20,7 +20,7 @@ class CfdiXPath
         'http://www.sat.gob.mx/cfd/4',
     ];
 
-    public function __construct(private DOMXPath $xpath)
+    public function __construct(private readonly DOMXPath $xpath)
     {
     }
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaners;
 
 use DOMDocument;
-use DOMNode;
+use DOMNameSpaceNode;
 use DOMXPath;
 use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
@@ -34,10 +34,7 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
         }
     }
 
-    /**
-     * @param DOMNode&object $namespaceNode
-     */
-    private function checkNamespaceNode($namespaceNode): void
+    private function checkNamespaceNode(DOMNameSpaceNode $namespaceNode): void
     {
         $namespace = $namespaceNode->nodeValue;
         if (null === $namespace) {

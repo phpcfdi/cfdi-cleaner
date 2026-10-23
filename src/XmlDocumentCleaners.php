@@ -9,7 +9,7 @@ use DOMDocument;
 class XmlDocumentCleaners implements XmlDocumentCleanerInterface
 {
     /** @var list<XmlDocumentCleanerInterface> */
-    private array $cleaners;
+    private readonly array $cleaners;
 
     public function __construct(XmlDocumentCleanerInterface ...$cleaners)
     {

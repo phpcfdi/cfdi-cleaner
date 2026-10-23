@@ -16,7 +16,7 @@ use Traversable;
 final class ExcludeList implements IteratorAggregate
 {
     /** @var list<class-string> */
-    private array $classNames;
+    private readonly array $classNames;
 
     /** @param class-string ...$classNames */
     public function __construct(string ...$classNames)

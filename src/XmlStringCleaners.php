@@ -7,7 +7,7 @@ namespace PhpCfdi\CfdiCleaner;
 class XmlStringCleaners implements XmlStringCleanerInterface
 {
     /** @var list<XmlStringCleanerInterface> */
-    private array $cleaners;
+    private readonly array $cleaners;
 
     public function __construct(XmlStringCleanerInterface ...$cleaners)
     {
