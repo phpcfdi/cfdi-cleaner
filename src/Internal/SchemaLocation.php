@@ -30,7 +30,6 @@ final class SchemaLocation
     }
 
     /**
-     * @param string $schemaLocationValue
      * @return string[]
      */
     public static function valueToComponents(string $schemaLocationValue): array
@@ -40,7 +39,6 @@ final class SchemaLocation
 
     /**
      * @param string[] $components
-     * @return self
      */
     public static function createFromComponents(array $components): self
     {

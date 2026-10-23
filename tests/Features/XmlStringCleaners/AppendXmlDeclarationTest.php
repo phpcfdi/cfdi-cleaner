@@ -29,8 +29,6 @@ class AppendXmlDeclarationTest extends TestCase
     }
 
     /**
-     * @param string $expected
-     * @param string $input
      * @dataProvider providerInputCases
      */
     public function testClean(string $expected, string $input): void

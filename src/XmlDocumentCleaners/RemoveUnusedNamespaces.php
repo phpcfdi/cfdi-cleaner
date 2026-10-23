@@ -66,13 +66,8 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
 
     private function isPrefixedNamespaceOnUse(string $namespace, string $prefix): bool
     {
-        if ($this->hasElementsOnNamespace($namespace, $prefix)) {
-            return true;
-        }
-        if ($this->hasAttributesOnNamespace($namespace, $prefix)) {
-            return true;
-        }
-        return false;
+        return $this->hasElementsOnNamespace($namespace, $prefix)
+            || $this->hasAttributesOnNamespace($namespace, $prefix);
     }
 
     private function hasElementsOnNamespace(string $namespace, string $prefix): bool

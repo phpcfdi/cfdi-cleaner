@@ -10,9 +10,10 @@ class AppendXmlDeclaration implements XmlStringCleanerInterface
 {
     public function clean(string $xml): string
     {
-        if (! str_starts_with($xml, '<?xml ')) {
-            $xml = '<?xml version="1.0"?>' . "\n" . $xml;
+        if (str_starts_with($xml, '<?xml ')) {
+            return $xml;
         }
-        return $xml;
+
+        return '<?xml version="1.0"?>' . "\n" . $xml;
     }
 }

@@ -57,8 +57,6 @@ class RepairXmlNsSchemaLocationTest extends TestCase
     }
 
     /**
-     * @param string $expected
-     * @param string $input
      * @dataProvider providerInputCases
      */
     public function testCleaning(string $expected, string $input): void

@@ -10,7 +10,7 @@ use Throwable;
 trait UseSatNsRegistryTrait
 {
     /** @var array<object{namespace: ?string, prefix: ?string, version: ?string, xsd: ?string}>|null */
-    private $satNsRegistry = null;
+    private $satNsRegistry;
 
     /** @return array<object{namespace: ?string, prefix: ?string, version: ?string, xsd: ?string}> */
     protected function getSatNsRegistry(): array

@@ -108,8 +108,6 @@ final class RebuildDocument implements XmlDocumentCleanerInterface
 
     /**
      * @param DOMDocument|DOMElement $parent
-     * @param DOMElement $source
-     * @return void
      * @noinspection PhpUnhandledExceptionInspection
      * @noinspection PhpDocMissingThrowsInspection
      */

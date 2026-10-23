@@ -17,7 +17,6 @@ use Generator;
 trait XmlNamespaceMethodsTrait
 {
     /**
-     * @param DOMDocument $document
      * @return Generator&iterable<DOMNode>
      * @phpstan-impure
      * @internal The actual returned class is Generator<DOMNameSpaceNode> (undocumented until PHP 8.1)

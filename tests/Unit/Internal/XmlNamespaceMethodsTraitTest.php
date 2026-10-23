@@ -17,7 +17,6 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
             use XmlNamespaceMethodsTrait;
 
             /**
-             * @param DOMDocument $document
              * @return array<string, string>
              */
             public function obtainNamespaces(DOMDocument $document): array
@@ -30,10 +29,6 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
                 return $namespaces;
             }
 
-            /**
-             * @param DOMDocument $document
-             * @param string $namespace
-             */
             public function removeNamespaceNodesWithNamespace(DOMDocument $document, string $namespace): void
             {
                 foreach ($this->iterateNonReservedNamespaces($document) as $namespaceNode) {

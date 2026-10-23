@@ -98,7 +98,6 @@ final class CleanerTest extends TestCase
     }
 
     /**
-     * @param string $filename
      * @testWith ["cfdi32-real.xml"]
      *           ["cfdi33-real.xml"]
      */

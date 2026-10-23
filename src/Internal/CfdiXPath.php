@@ -41,7 +41,6 @@ class CfdiXPath
     }
 
     /**
-     * @param string $xpathQuery
      * @return DOMNodeList<DOMElement>
      */
     public function queryElements(string $xpathQuery): DOMNodeList
@@ -62,7 +61,6 @@ class CfdiXPath
     }
 
     /**
-     * @param string $xpathQuery
      * @return DOMNodeList<DOMAttr>
      */
     public function queryAttributes(string $xpathQuery): DOMNodeList
