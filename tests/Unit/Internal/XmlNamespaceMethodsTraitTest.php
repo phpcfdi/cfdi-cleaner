@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMElement;
 use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class XmlNamespaceMethodsTraitTest extends TestCase
 {
@@ -17,7 +18,6 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
             use XmlNamespaceMethodsTrait;
 
             /**
-             * @param DOMDocument $document
              * @return array<string, string>
              */
             public function obtainNamespaces(DOMDocument $document): array
@@ -30,10 +30,6 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
                 return $namespaces;
             }
 
-            /**
-             * @param DOMDocument $document
-             * @param string $namespace
-             */
             public function removeNamespaceNodesWithNamespace(DOMDocument $document, string $namespace): void
             {
                 foreach ($this->iterateNonReservedNamespaces($document) as $namespaceNode) {
@@ -75,7 +71,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
     }
 
     /** @return array<string, array{string, string}> */
-    public function providerRemoveNamespaceNodeAttribute(): array
+    public static function providerRemoveNamespaceNodeAttribute(): array
     {
         return [
             'unused' => [
@@ -120,7 +116,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerRemoveNamespaceNodeAttribute */
+    #[DataProvider('providerRemoveNamespaceNodeAttribute')]
     public function testRemoveNamespaceNodeAttribute(string $target, string $xmlInput, string $xmlExpected): void
     {
         $specimen = new class () {

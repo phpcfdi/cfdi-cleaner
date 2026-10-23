@@ -51,7 +51,7 @@ final class RenameElementAddPrefix implements XmlDocumentCleanerInterface
 
     private function cleanElementPrefix(DOMElement $element): void
     {
-        $elementPrefix = (string) $element->prefix;
+        $elementPrefix = $element->prefix;
         if ('' !== $elementPrefix) {
             return; // do nothing if element has a prefix
         }

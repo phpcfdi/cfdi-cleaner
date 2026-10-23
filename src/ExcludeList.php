@@ -13,10 +13,10 @@ use Traversable;
  * @see Cleaner::exclude()
  * @implements IteratorAggregate<int, class-string>
  */
-final class ExcludeList implements IteratorAggregate
+final readonly class ExcludeList implements IteratorAggregate
 {
     /** @var list<class-string> */
-    private $classNames;
+    private array $classNames;
 
     /** @param class-string ...$classNames */
     public function __construct(string ...$classNames)
@@ -49,9 +49,7 @@ final class ExcludeList implements IteratorAggregate
     {
         return array_filter(
             $objects,
-            function (object $object): bool {
-                return ! $this->match($object);
-            }
+            fn (object $object): bool => ! $this->match($object)
         );
     }
 

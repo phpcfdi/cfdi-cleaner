@@ -30,9 +30,7 @@ class RemoveNonSatSchemaLocations implements XmlDocumentCleanerInterface
     {
         $schemaLocation = SchemaLocation::createFromValue($schemaLocationValue);
         $schemaLocation->filterUsingNamespace(
-            function (string $namespace): bool {
-                return $this->isNamespaceRelatedToSat($namespace);
-            },
+            fn (string $namespace): bool => $this->isNamespaceRelatedToSat($namespace),
         );
         return $schemaLocation->asValue();
     }

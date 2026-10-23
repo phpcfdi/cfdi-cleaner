@@ -6,11 +6,12 @@ namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlStringCleaners\AppendXmlDeclaration;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class AppendXmlDeclarationTest extends TestCase
 {
     /** @return array<string, array{string, string}> */
-    public function providerInputCases(): array
+    public static function providerInputCases(): array
     {
         return [
             'skip xml with header' => [
@@ -28,11 +29,7 @@ class AppendXmlDeclarationTest extends TestCase
         ];
     }
 
-    /**
-     * @param string $expected
-     * @param string $input
-     * @dataProvider providerInputCases
-     */
+    #[DataProvider('providerInputCases')]
     public function testClean(string $expected, string $input): void
     {
         $cleaner = new AppendXmlDeclaration();

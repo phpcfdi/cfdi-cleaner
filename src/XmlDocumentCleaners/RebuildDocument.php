@@ -107,13 +107,10 @@ final class RebuildDocument implements XmlDocumentCleanerInterface
     }
 
     /**
-     * @param DOMDocument|DOMElement $parent
-     * @param DOMElement $source
-     * @return void
      * @noinspection PhpUnhandledExceptionInspection
      * @noinspection PhpDocMissingThrowsInspection
      */
-    private function rebuildNode($parent, DOMElement $source): void
+    private function rebuildNode(DOMDocument|DOMElement $parent, DOMElement $source): void
     {
         /** @phpstan-var DOMDocument $document */
         $document = $parent instanceof DOMDocument ? $parent : $parent->ownerDocument;
@@ -152,7 +149,7 @@ final class RebuildDocument implements XmlDocumentCleanerInterface
 
     private function obtainNameWithPrefix(DOMNode $element): string
     {
-        $prefix = self::NAMESPACE_PREFIX[(string) $element->namespaceURI] ?? (string) $element->prefix;
+        $prefix = self::NAMESPACE_PREFIX[(string) $element->namespaceURI] ?? $element->prefix;
         if ('' === $prefix) {
             return (string) $element->localName;
         }

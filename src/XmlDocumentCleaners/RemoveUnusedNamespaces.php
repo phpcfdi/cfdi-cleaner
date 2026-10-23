@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\CfdiCleaner\XmlDocumentCleaners;
 
 use DOMDocument;
-use DOMNode;
+use DOMNameSpaceNode;
 use DOMXPath;
 use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleanerInterface;
@@ -14,11 +14,10 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
 {
     use XmlNamespaceMethodsTrait;
 
-    /** @var DOMXPath */
-    private $xpath;
+    private DOMXPath $xpath;
 
     /** @var array<string, bool> */
-    private $prefixedNamespaceOnUseCache;
+    private array $prefixedNamespaceOnUseCache;
 
     private function setUp(DOMXPath $xpath): void
     {
@@ -35,10 +34,7 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
         }
     }
 
-    /**
-     * @param DOMNode&object $namespaceNode
-     */
-    private function checkNamespaceNode($namespaceNode): void
+    private function checkNamespaceNode(DOMNameSpaceNode $namespaceNode): void
     {
         $namespace = $namespaceNode->nodeValue;
         if (null === $namespace) {
@@ -66,13 +62,8 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
 
     private function isPrefixedNamespaceOnUse(string $namespace, string $prefix): bool
     {
-        if ($this->hasElementsOnNamespace($namespace, $prefix)) {
-            return true;
-        }
-        if ($this->hasAttributesOnNamespace($namespace, $prefix)) {
-            return true;
-        }
-        return false;
+        return $this->hasElementsOnNamespace($namespace, $prefix)
+            || $this->hasAttributesOnNamespace($namespace, $prefix);
     }
 
     private function hasElementsOnNamespace(string $namespace, string $prefix): bool

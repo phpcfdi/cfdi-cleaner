@@ -15,14 +15,14 @@
     ],
     "homepage": "https://github.com/phpcfdi/cfdi-cleaner",
     "require": {
-        "php": ">=7.3",
+        "php": ">=8.2",
         "ext-dom": "*",
         "ext-libxml": "*",
         "symfony/polyfill-php80": "^1.22"
     },
     "require-dev": {
         "ext-json": "*",
-        "phpunit/phpunit": "^9.3"
+        "phpunit/phpunit": "^11.5.57"
     },
     "autoload": {
         "psr-4": {
@@ -54,7 +54,7 @@
         ],
         "dev:test": [
             "@dev:check-style",
-            "@php vendor/bin/phpunit --testdox --verbose --stop-on-failure",
+            "@php vendor/bin/phpunit --testdox --stop-on-failure",
             "@php tools/phpstan analyse --verbose"
         ]
     },

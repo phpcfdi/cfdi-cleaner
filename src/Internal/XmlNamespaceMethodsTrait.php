@@ -6,7 +6,7 @@ namespace PhpCfdi\CfdiCleaner\Internal;
 
 use DOMDocument;
 use DOMElement;
-use DOMNode;
+use DOMNameSpaceNode;
 use DOMNodeList;
 use DOMXPath;
 use Generator;
@@ -17,16 +17,14 @@ use Generator;
 trait XmlNamespaceMethodsTrait
 {
     /**
-     * @param DOMDocument $document
-     * @return Generator&iterable<DOMNode>
+     * @return Generator&iterable<DOMNameSpaceNode>
      * @phpstan-impure
-     * @internal The actual returned class is Generator<DOMNameSpaceNode> (undocumented until PHP 8.1)
      */
     private function iterateNonReservedNamespaces(DOMDocument $document): Generator
     {
         $xpath = new DOMXPath($document);
         $namespaceNodes = $xpath->query('//namespace::*') ?: new DOMNodeList();
-        /** @phpstan-var DOMNode $namespaceNode */
+        /** @phpstan-var DOMNameSpaceNode $namespaceNode */
         foreach ($namespaceNodes as $namespaceNode) {
             // discard removed namespaces they could be returned by XPath
             if (null === $namespaceNode->namespaceURI) {
@@ -42,11 +40,7 @@ trait XmlNamespaceMethodsTrait
         }
     }
 
-    /**
-     * @param DOMNode&object $namespaceNode
-     * @internal The actual class is DOMNameSpaceNode (undocumented until PHP 8.1)
-     */
-    private function removeNamespaceNodeAttribute($namespaceNode): void
+    private function removeNamespaceNodeAttribute(DOMNameSpaceNode $namespaceNode): void
     {
         $ownerElement = $namespaceNode->parentNode;
         if ($ownerElement instanceof DOMElement) {

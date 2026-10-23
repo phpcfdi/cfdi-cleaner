@@ -8,6 +8,13 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.5.0
+
+Por mantenimiento se elimina la compatiblidad de PHP 7.3, PHP 7.4, PHP 8.0 y PHP 8.2.
+Gracias especiales a [`rector`](https://getrector.com/) por ayudar enormemente a este proceso.
+
+Adicionalmente, se incrementa el entorno de pruebas a PHPUnit 11.
+
 ## Versión 1.4.1
 
 - Se agrega *Hidrocarburos y petrolíferos 1.0* a la lista de espacio de nombres conocidos.

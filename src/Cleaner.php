@@ -8,11 +8,9 @@ use DOMDocument;
 
 class Cleaner
 {
-    /** @var XmlStringCleaners */
-    private $stringCleaners;
+    private XmlStringCleaners $stringCleaners;
 
-    /** @var XmlDocumentCleaners */
-    private $xmlCleaners;
+    private XmlDocumentCleaners $xmlCleaners;
 
     public function __construct(?XmlStringCleaners $stringCleaners = null, ?XmlDocumentCleaners $xmlCleaners = null)
     {

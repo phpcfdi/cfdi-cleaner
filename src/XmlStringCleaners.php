@@ -6,12 +6,12 @@ namespace PhpCfdi\CfdiCleaner;
 
 class XmlStringCleaners implements XmlStringCleanerInterface
 {
-    /** @var XmlStringCleanerInterface[] */
-    private $cleaners;
+    /** @var list<XmlStringCleanerInterface> */
+    private readonly array $cleaners;
 
     public function __construct(XmlStringCleanerInterface ...$cleaners)
     {
-        $this->cleaners = $cleaners;
+        $this->cleaners = array_values($cleaners);
     }
 
     public static function createDefault(): self

@@ -32,8 +32,6 @@ final class RemoveIncompleteSchemaLocationsTest extends TestCase
     }
 
     /**
-     * @param string $uri
-     * @param bool $expected
      * @testWith ["location", false]
      *           ["locationxsd", false]
      *           ["", false]

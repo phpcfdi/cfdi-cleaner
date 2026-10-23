@@ -8,12 +8,12 @@ use DOMDocument;
 
 class XmlDocumentCleaners implements XmlDocumentCleanerInterface
 {
-    /** @var XmlDocumentCleanerInterface[] */
-    private $cleaners;
+    /** @var list<XmlDocumentCleanerInterface> */
+    private readonly array $cleaners;
 
     public function __construct(XmlDocumentCleanerInterface ...$cleaners)
     {
-        $this->cleaners = $cleaners;
+        $this->cleaners = array_values($cleaners);
     }
 
     public static function createDefault(): self

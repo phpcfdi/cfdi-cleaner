@@ -25,8 +25,6 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
     }
 
     /**
-     * @param string $schemaLocationValue
-     * @return string
      * @internal
      */
     public function cleanSchemaLocationValue(string $schemaLocationValue): string
@@ -39,7 +37,6 @@ class RemoveIncompleteSchemaLocations implements XmlDocumentCleanerInterface
     /**
      * Parses schema location value skipping namespaces without xsd locations (identified by .xsd extension)
      *
-     * @param string $schemaLocationValue
      * @return array<string, string>
      * @internal
      */
