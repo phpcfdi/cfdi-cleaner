@@ -6,11 +6,12 @@ namespace PhpCfdi\CfdiCleaner\Tests\Unit\Internal;
 
 use PhpCfdi\CfdiCleaner\Internal\CfdiXPath;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class CfdiXPathTest extends TestCase
 {
     /** @return array<string, array{string}> */
-    public function providerCreateCfdiVersions(): array
+    public static function providerCreateCfdiVersions(): array
     {
         return [
             'CFDI 3.3' => [<<<XML
@@ -58,7 +59,7 @@ final class CfdiXPathTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerCreateCfdiVersions */
+    #[DataProvider('providerCreateCfdiVersions')]
     public function testCreateCfdiVersions(string $source): void
     {
         $document = $this->createDocument($source);

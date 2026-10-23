@@ -6,11 +6,12 @@ namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlStringCleaners\SplitXmlDeclarationFromDocument;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class SplitXmlDeclarationFromDocumentTest extends TestCase
 {
     /** @return array<string, array{string, string}> */
-    public function providerInputCases(): array
+    public static function providerInputCases(): array
     {
         return [
             'doc on line 1 no white space' => [
@@ -40,9 +41,7 @@ final class SplitXmlDeclarationFromDocumentTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerInputCases
-     */
+    #[DataProvider('providerInputCases')]
     public function testClean(string $expected, string $input): void
     {
         $cleaner = new SplitXmlDeclarationFromDocument();

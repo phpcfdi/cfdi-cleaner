@@ -6,11 +6,12 @@ namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlDocumentCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RemoveAddenda;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class RemoveAddendaTest extends TestCase
 {
     /** @return array<string, array{string, string}> */
-    public function providerCleanDocumentWithAddenda(): array
+    public static function providerCleanDocumentWithAddenda(): array
     {
         return [
             'CFDI 3.3' => [
@@ -56,7 +57,7 @@ final class RemoveAddendaTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerCleanDocumentWithAddenda */
+    #[DataProvider('providerCleanDocumentWithAddenda')]
     public function testCleanDocumentWithAddenda(string $namespace, string $source): void
     {
         $document = $this->createDocument($source);

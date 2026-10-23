@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMElement;
 use PhpCfdi\CfdiCleaner\Internal\XmlNamespaceMethodsTrait;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class XmlNamespaceMethodsTraitTest extends TestCase
 {
@@ -70,7 +71,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
     }
 
     /** @return array<string, array{string, string}> */
-    public function providerRemoveNamespaceNodeAttribute(): array
+    public static function providerRemoveNamespaceNodeAttribute(): array
     {
         return [
             'unused' => [
@@ -115,7 +116,7 @@ final class XmlNamespaceMethodsTraitTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerRemoveNamespaceNodeAttribute */
+    #[DataProvider('providerRemoveNamespaceNodeAttribute')]
     public function testRemoveNamespaceNodeAttribute(string $target, string $xmlInput, string $xmlExpected): void
     {
         $specimen = new class () {

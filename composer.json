@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "ext-json": "*",
-        "phpunit/phpunit": "^9.3"
+        "phpunit/phpunit": "^10.5.66"
     },
     "autoload": {
         "psr-4": {
@@ -54,7 +54,7 @@
         ],
         "dev:test": [
             "@dev:check-style",
-            "@php vendor/bin/phpunit --testdox --verbose --stop-on-failure",
+            "@php vendor/bin/phpunit --testdox --stop-on-failure",
             "@php tools/phpstan analyse --verbose"
         ]
     },

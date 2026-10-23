@@ -7,11 +7,12 @@ namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlDocumentCleaners\RenameElementAddPrefix;
 use PhpCfdi\CfdiCleaner\XmlStringCleaners\RemoveDuplicatedCfdi3Namespace;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class RemoveDuplicatedCfdi3NamespaceTest extends TestCase
 {
     /** @return array<string, array{string, string}> */
-    public function providerInputCases(): array
+    public static function providerInputCases(): array
     {
         $xmlnsCfdi = 'xmlns:cfdi="http://www.sat.gob.mx/cfd/3"';
         $xmlns = 'xmlns="http://www.sat.gob.mx/cfd/3"';
@@ -31,9 +32,7 @@ class RemoveDuplicatedCfdi3NamespaceTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerInputCases
-     */
+    #[DataProvider('providerInputCases')]
     public function testClean(string $expected, string $input): void
     {
         $cleaner = new RemoveDuplicatedCfdi3Namespace();

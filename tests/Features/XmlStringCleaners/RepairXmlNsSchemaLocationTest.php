@@ -6,11 +6,12 @@ namespace PhpCfdi\CfdiCleaner\Tests\Features\XmlStringCleaners;
 
 use PhpCfdi\CfdiCleaner\Tests\TestCase;
 use PhpCfdi\CfdiCleaner\XmlStringCleaners\XmlNsSchemaLocation;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class RepairXmlNsSchemaLocationTest extends TestCase
 {
     /** @return array<string, array{string, string}> */
-    public function providerInputCases(): array
+    public static function providerInputCases(): array
     {
         return [
             'spaces' => [
@@ -56,9 +57,7 @@ class RepairXmlNsSchemaLocationTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerInputCases
-     */
+    #[DataProvider('providerInputCases')]
     public function testCleaning(string $expected, string $input): void
     {
         $cleaner = new XmlNsSchemaLocation();
