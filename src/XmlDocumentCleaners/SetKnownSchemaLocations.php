@@ -163,6 +163,8 @@ class SetKnownSchemaLocations implements XmlDocumentCleanerInterface
         'http://www.sat.gob.mx/esquemas/retencionpago/1/PlataformasTecnologicas10#1.0'
         => 'http://www.sat.gob.mx/esquemas/retencionpago/1/'
             . 'PlataformasTecnologicas10/ServiciosPlataformasTecnologicas10.xsd',
+        'http://www.sat.gob.mx/hidrocarburospetroliferos#1.0'
+        => 'http://www.sat.gob.mx/sitio_internet/cfd/hidrocarburospetroliferos.xsd',
     ];
 
     public function clean(DOMDocument $document): void
