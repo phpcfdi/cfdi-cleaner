@@ -14,11 +14,10 @@ class RemoveUnusedNamespaces implements XmlDocumentCleanerInterface
 {
     use XmlNamespaceMethodsTrait;
 
-    /** @var DOMXPath */
-    private $xpath;
+    private DOMXPath $xpath;
 
     /** @var array<string, bool> */
-    private $prefixedNamespaceOnUseCache;
+    private array $prefixedNamespaceOnUseCache;
 
     private function setUp(DOMXPath $xpath): void
     {

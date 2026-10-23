@@ -20,12 +20,8 @@ class CfdiXPath
         'http://www.sat.gob.mx/cfd/4',
     ];
 
-    /** @var DOMXPath */
-    private $xpath;
-
-    public function __construct(DOMXPath $xpath)
+    public function __construct(private DOMXPath $xpath)
     {
-        $this->xpath = $xpath;
     }
 
     public static function createFromDocument(DOMDocument $document): self

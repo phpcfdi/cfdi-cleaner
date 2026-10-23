@@ -15,9 +15,7 @@ trait UseSatNsRegistryTrait
     /** @return array<object{namespace: ?string, prefix: ?string, version: ?string, xsd: ?string}> */
     protected function getSatNsRegistry(): array
     {
-        if (null === $this->satNsRegistry) {
-            $this->satNsRegistry = $this->loadSatNsRegistry();
-        }
+        $this->satNsRegistry ??= $this->loadSatNsRegistry();
 
         return $this->satNsRegistry;
     }

@@ -11,17 +11,13 @@ namespace PhpCfdi\CfdiCleaner\Internal;
  */
 final class SchemaLocation
 {
-    /** @var array<string, string> */
-    private $pairs;
-
     /**
      * SchemaLocation constructor.
      *
      * @param array<string, string> $pairs On each entry: key is namespace, value is location
      */
-    public function __construct(array $pairs)
+    public function __construct(private array $pairs)
     {
-        $this->pairs = $pairs;
     }
 
     public static function createFromValue(string $value): self
