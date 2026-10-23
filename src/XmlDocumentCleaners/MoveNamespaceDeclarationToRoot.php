@@ -67,7 +67,7 @@ class MoveNamespaceDeclarationToRoot implements XmlDocumentCleanerInterface
             }
             $nsPrefix = (string) $namespaceNode->nodeName;
             $nsLocation = (string) $namespaceNode->nodeValue;
-            $namespaces[$nsPrefix] = $namespaces[$nsPrefix] ?? $nsLocation;
+            $namespaces[$nsPrefix] ??= $nsLocation;
             // do not iterate on overlapped
             if ($namespaces[$nsPrefix] !== $nsLocation) {
                 continue;

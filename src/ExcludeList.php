@@ -49,9 +49,7 @@ final class ExcludeList implements IteratorAggregate
     {
         return array_filter(
             $objects,
-            function (object $object): bool {
-                return ! $this->match($object);
-            }
+            fn (object $object): bool => ! $this->match($object)
         );
     }
 

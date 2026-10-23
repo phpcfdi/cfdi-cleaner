@@ -69,9 +69,7 @@ final class SchemaLocation
     public function asValue(): string
     {
         return implode(' ', array_map(
-            function (string $namespace, string $location): string {
-                return $namespace . ' ' . $location;
-            },
+            static fn (string $namespace, string $location): string => $namespace . ' ' . $location,
             array_keys($this->pairs),
             $this->pairs,
         ));
