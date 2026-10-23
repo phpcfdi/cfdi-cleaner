@@ -92,7 +92,7 @@ jobs:
       - name: PHPStan
         run: phpstan analyse --no-progress --verbose
 
-  tests:
+  phpunit:
     name: Tests on PHP ${{ matrix.php-version }}
     runs-on: "ubuntu-latest"
     strategy:
