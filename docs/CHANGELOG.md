@@ -8,6 +8,23 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Los cambios no liberados se integran a la rama principal, pero no requieren de la liberación de una nueva versión.
 
+## Versión 1.4.1
+
+- Se agrega *Hidrocarburos y petrolíferos 1.0* a la lista de espacio de nombres conocidos.
+- Se asegura la compatibilidad con PHP 8.5.
+- Se actualiza el año de la licencia a 2026.
+
+Se hacen los siguientes cambios al entorno de desarrollo:
+
+- Se agregan anotaciones de tipos para corregir la revisión de PHPStan.
+- Se renombran las reglas deprecadas de `php-cs-fixer`.
+- En los flujos de trabajo:
+  - Se agrega PHP 8.5 a la matrix de pruebas.
+  - Se ejecutan en PHP 8.5.
+  - Se corrije la ejecución de `composer-normalize` para fallar si es necesario.
+  - Se actualizan las versiones de las acciones.
+- Se actualizan las herramientas de desarrollo.
+
 ## Versión 1.4.0
 
 Se agrega una nueva característica:
