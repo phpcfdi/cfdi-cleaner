@@ -13,10 +13,10 @@ use Traversable;
  * @see Cleaner::exclude()
  * @implements IteratorAggregate<int, class-string>
  */
-final class ExcludeList implements IteratorAggregate
+final readonly class ExcludeList implements IteratorAggregate
 {
     /** @var list<class-string> */
-    private readonly array $classNames;
+    private array $classNames;
 
     /** @param class-string ...$classNames */
     public function __construct(string ...$classNames)
